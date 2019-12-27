@@ -1,0 +1,29 @@
+<h1> List all events </h1>
+
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Address</th>
+      <th>Data</th>
+      <th>Criado em</th>
+      <th class="text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of events">
+      <td>{{user.id}}</td>
+      <td>{{user.title}}</td>
+      <td>{{user.address}}</td>
+      <td>{{user.dateTime}}</td>
+      <td>{{user.creationDate}}</td>
+      <td>
+        <button type="button" class="btn" [routerLink]="['/user/view', user.id]">View details</button>
+        <button *ngIf="user.active" type="button" class="btn btn-danger" (click)="inactivate(user.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
