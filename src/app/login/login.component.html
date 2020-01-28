@@ -1,0 +1,95 @@
+<div class="modal-body row">
+    <div class="col-md-6">
+        <div class="row">
+            <h1>Login</h1>
+        </div>
+
+        <!--    <div class="col alert alert-warning" *ngIf="invalidLogin">{{errorMessage}}</div>-->
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && usernameField.invalid">Enter valid username</div>
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && passwordField.invalid">Enter password</div>
+
+        <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+
+            <fieldset class="form-group">
+                <label>Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       #usernameField="ngModel"
+                       [(ngModel)]="username"
+                       required
+                       autofocus/>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Password</label>
+                <input type="email"
+                       name="password"
+                       class="form-control"
+                       #passwordField="ngModel"
+                       [(ngModel)]="password" required/>
+            </fieldset>
+
+            <button (click)=handleLogin() type="submit" class="btn btn-primary btn-block">Enter</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+            <h1>Create account</h1>
+        </div>
+
+        <!--    <div class="col alert alert-warning" *ngIf="invalidLogin">{{errorMessage}}</div>-->
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && usernameField.invalid">Enter valid username</div>
+        <div class="alert alert-warning" *ngIf="todoForm.dirty && passwordField.invalid">Enter password</div>
+
+        <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+
+            <fieldset class="form-group">
+                <label>First name</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       #usernameField="ngModel"
+                       [(ngModel)]="username"
+                       required
+                       autofocus/>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Last name</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       #usernameField="ngModel"
+                       [(ngModel)]="username"
+                       required
+                       autofocus/>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       #usernameField="ngModel"
+                       [(ngModel)]="username"
+                       required
+                       autofocus/>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Password</label>
+                <input type="email"
+                       name="password"
+                       class="form-control"
+                       #passwordField="ngModel"
+                       [(ngModel)]="password" required/>
+            </fieldset>
+
+            <button (click)=handleLogin() type="submit" class="btn btn-primary">Create new account</button>
+        </form>
+    </div>
+</div>
