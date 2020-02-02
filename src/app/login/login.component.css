@@ -246,8 +246,8 @@ iframe {
 .input100 {
     display: block;
     width: 100%;
-    background: transparent;
-    /*font-family: Poppins-Regular;*/
+    /*background: transparent;*/
+    font-family: Poppins-Regular;
     font-size: 18px;
     color: #666666;
     line-height: 1.2;
