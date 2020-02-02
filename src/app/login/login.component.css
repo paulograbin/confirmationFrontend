@@ -17,8 +17,8 @@ a {
     /*font-family: Poppins-Regular;*/
     font-size: 14px;
     line-height: 1.7;
-    color: #666666;
-    margin: 0px;
+    /*color: #666666;*/
+    /*margin: 0px;*/
     transition: all 0.4s;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
@@ -157,7 +157,7 @@ iframe {
 
 .wrap-login100 {
     width: 1170px;
-    background: #fff;
+    /*background: #fff;*/
     overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;
@@ -190,7 +190,7 @@ iframe {
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,0.3);
+    /*background: rgba(0,0,0,0.3);*/
 }
 
 
