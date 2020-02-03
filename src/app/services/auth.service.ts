@@ -1,56 +1,51 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpHeaders, HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 // import 'rxjs/add/operator/filter';
 
 
 @Injectable()
 export class AuthService {
 
-    constructor(public router: Router) {
-      console.log("Salvando token ...");
-
-      localStorage.setItem('access_token',
-        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwbGdyYWJpbiIsImV4cCI6MTU3NzgwMTIxOCwiaWF0IjoxNTc3MTk2NDE4fQ.0LIJTrBMMn37ha6HaeMxq0mNx0ntIjc-QwmeTnMgn6eaeWtWEFGmjkziUUd8vmKSdWJxQP5FSWcA5ioWd62Pwg');
+    constructor(public router: Router,
+                private http: HttpClient) {
+        localStorage.setItem('access_token',
+            'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTgwMTYxODcxLCJleHAiOjE1ODI3NTM4NzF9.hroshGlEvjMYDbSoji6zRpSHZb_T3RCJHLgkesHgdS-IBzElnK_tbiCuUHl03LmT3NE5-IfKagT89Bg2VAU-LQ');
     }
 
-    public login(): void {
-      // this.auth0.authorize();
+    login(loginForm) {
+        return this.http.post<any>(`/server/api/auth/authenticate`, loginForm)
+            .pipe(
+                map(
+                    data => {
+                        return data;
+                    }
+                )
+            );
     }
 
-    public handleAuthentication(): void {
-        // this.auth0.parseHash((err, authResult) => {
-        //   if (authResult && authResult.accessToken && authResult.idToken) {
-        //     window.location.hash = '';
-        //     this.setSession(authResult);
-        //     this.router.navigate(['/admin']);
-        //   } else if (err) {
-        //     this.router.navigate(['/admin']);
-        //     console.log(err);
-        //   }
-        // });
-      }
-
-      private setSession(authResult): void {
+    private setSession(authResult): void {
         // Set the time that the access token will expire at
         const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
-      }
+    }
 
-      public logout(): void {
+    public logout(): void {
         // Remove tokens and expiry time from localStorage
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
         // Go back to the home route
         this.router.navigate(['/']);
-      }
+    }
 
-      public isAuthenticated(): boolean {
+    public isAuthenticated(): boolean {
         // Check whether the current time is past the
         // access token's expiry time
         const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         return new Date().getTime() < expiresAt;
-      }
+    }
 }
