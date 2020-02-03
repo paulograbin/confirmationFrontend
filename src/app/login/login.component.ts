@@ -11,8 +11,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
-    username = 'teste';
-    password = 'teste2';
     invalidLogin = false;
     errorMessage = 'error message';
 
@@ -22,17 +20,16 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = new FormGroup({
-            login: new FormControl('', Validators.required),
-            senha: new FormControl('', Validators.required),
+            usernameOrEmail: new FormControl('plgrabin', Validators.required),
+            password: new FormControl('aaa', Validators.required),
         });
     }
 
     handleLogin() {
-        console.log('vai login com ', this.username, this.password);
         console.log('vai login com ', this.loginForm.value);
 
         if (this.loginForm.valid) {
-            this.authService.login(this.username, this.password)
+            this.authService.login(this.loginForm.value)
                 .subscribe(
                     data => {
                         console.log(data);
