@@ -29,7 +29,8 @@ export class HomeComponent implements OnInit {
 
   submitRegistration() {
     if (this.bikeform.valid) {
-      this.validMessage = 'Your bike registration has been submited. Thanks';
+      this.validMessage = 'Your bike registration has been submitted. Thanks';
+
       this.bikeService.createBikeRegistration(this.bikeform.value).subscribe(
         data => {
           this.bikeform.reset();
