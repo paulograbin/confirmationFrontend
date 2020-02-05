@@ -12,7 +12,6 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'confirmationFrontend';
 
-  constructor(private authService: AuthService) {
-    authService.handleAuthentication();
+  constructor() {
   }
 }
