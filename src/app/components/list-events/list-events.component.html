@@ -1,29 +1,45 @@
-<h1> List all events </h1>
+<div class="container2">
 
-<div class="container">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Address</th>
-      <th>Data</th>
-      <th>Criado em</th>
-      <th class="text-center">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of events">
-      <td>{{user.id}}</td>
-      <td>{{user.title}}</td>
-      <td>{{user.address}}</td>
-      <td>{{user.dateTime}}</td>
-      <td>{{user.creationDate}}</td>
-      <td>
-        <button type="button" class="btn" [routerLink]="['/user/view', user.id]">View details</button>
-        <button *ngIf="user.active" type="button" class="btn btn-danger" (click)="inactivate(user.id)">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+    <div class="post-index">
+        <h1 class="post-title">Olá {{loggedUser.firstName}}</h1>
+        <header class="post-header">
+            <p>Essas são todas as cerimônias para as quais você foi convidado</p>
+        </header>
+    </div>
+
+    <ul class="post-list" *ngFor="let event of events">
+        <li class="post-stub">
+            <div class="renan">
+                <a [routerLink]="['/event/view', event.event.id]">
+                    <h4 class="post-stub-title">{{event.id}}</h4> -
+                    <h4 class="post-stub-title">{{event.event.title}} </h4>
+                    <time class="post-stub-date">Ocorrerá em {{event.event.dateTime | date: "EEEE, dd MMMM yy"}}</time>
+                </a>
+                <div>
+                    <button type="button">Yay</button>
+                    <button type="button">Nay</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+
 </div>
+
+<!--<div class="container">-->
+<!--    <mat-accordion>-->
+<!--        <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                             (closed)="panelOpenState = false"-->
+<!--                             *ngFor="let user of events">-->
+<!--            <mat-expansion-panel-header>-->
+<!--                <mat-panel-title>{{user.id}}</mat-panel-title>-->
+<!--                <mat-panel-title>{{user.event.title}}</mat-panel-title>-->
+<!--                <mat-panel-description>{{user.event.address}}</mat-panel-description>-->
+<!--                <mat-panel-description>{{user.event.dateTime}}</mat-panel-description>-->
+<!--            </mat-expansion-panel-header>-->
+<!--            <p>{{user.description}}</p>-->
+<!--            <mat-action-row>-->
+<!--                <button mat-button>Click me</button>-->
+<!--            </mat-action-row>-->
+<!--        </mat-expansion-panel>-->
+<!--    </mat-accordion>-->
+<!--</div>-->
