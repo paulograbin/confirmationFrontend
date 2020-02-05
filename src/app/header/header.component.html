@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngIf="authService.isAuthenticated()">
     <div>
       <a href="localhost:4200">Confirmation</a>
     </div>
