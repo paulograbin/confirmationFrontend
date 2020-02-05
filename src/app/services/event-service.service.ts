@@ -11,11 +11,18 @@ export class EventServiceService {
   }
 
   getAllEvents() {
-    return this.http.get('/server/events');
+    return this.http.get<EventModel[]>('/server/events');
   }
 
   getEvent(id: number) {
     return this.http.get<EventModel>('/server/events/' + id);
   }
 
+  getUserInvitations(id: number) {
+    return this.http.get<EventModel[]>(`/server/events/invitations/${id}`);
+  }
+
+  confirmPresence(eventId: number, userId: number) {
+    return this.http.post(`/server/event/${eventId}/confirm/${userId}`, null);
+  }
 }
