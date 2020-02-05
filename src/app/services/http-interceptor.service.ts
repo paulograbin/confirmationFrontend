@@ -8,18 +8,19 @@ import {AuthService} from './auth.service';
 export class HttpInterceptorService implements HttpInterceptor {
 
   constructor(
-    private basicAuthService : AuthService) { }
+    private basicAuthService: AuthService) { }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    // tslint:disable-next-line:max-line-length
-    const basicHeaderString = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwbGdyYWJpbiIsImV4cCI6MTU3NzgwMTIxOCwiaWF0IjoxNTc3MTk2NDE4fQ.0LIJTrBMMn37ha6HaeMxq0mNx0ntIjc-QwmeTnMgn6eaeWtWEFGmjkziUUd8vmKSdWJxQP5FSWcA5ioWd62Pwg';
-    const username = 'plgrabin';
+    let authenticationToken: string;
 
-    console.log('seta token na request');
+    if (this.basicAuthService.isAuthenticated()) {
+      authenticationToken = this.basicAuthService.getAuthenticationToken();
+    }
 
-    if (basicHeaderString && username) {
+    const basicHeaderString = `Bearer ${authenticationToken}`;
 
+    if (basicHeaderString) {
       request = request.clone({
         setHeaders: {
           Authorization: basicHeaderString
