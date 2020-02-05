@@ -9,6 +9,7 @@ import {ListEventsComponent} from './components/list-events/list-events.componen
 import {ViewEventComponent} from './components/view-event/view-event.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './services/auth.guard';
+import {LogoutComponent} from './logout/logout.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
   },
   {
     path: 'user/view/:id',
