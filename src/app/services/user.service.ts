@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from '../model/user';
+import {UserModel} from '../model/userModel';
+import {Observable} from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -14,13 +15,18 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+
+  fetchDetailsAboutLoggedUser() {
+    return this.http.get<UserModel>('/server/users/me');
+  }
+
   getAllUsers() {
     console.log('get all users');
     return this.http.get('/server/users');
   }
 
   getUser(id: number) {
-    return this.http.get<User>('/server/users/' + id);
+    return this.http.get<UserModel>('/server/users/' + id);
   }
 
   createUser(user) {
