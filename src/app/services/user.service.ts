@@ -34,4 +34,10 @@ export class UserService {
 
     return this.http.delete('/server/users/' + id);
   }
+
+  activate(id: number) {
+    console.log('Activating user...');
+
+    return this.http.put('/server/users/' + id + '/activate', null);
+  }
 }
