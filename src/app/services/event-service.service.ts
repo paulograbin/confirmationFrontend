@@ -30,4 +30,7 @@ export class EventServiceService {
     return this.http.post(`/server/event/${eventId}/decline/${userId}`, null);
   }
 
+  getEventsCreatedByUser(userId: number) {
+    return this.http.get(`/server/events/createdBy/${userId}`);
+  }
 }
