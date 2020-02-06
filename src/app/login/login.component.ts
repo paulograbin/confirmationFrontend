@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
             usernameOrEmail: new FormControl('plgrabin', Validators.required),
             password: new FormControl('aaa', Validators.required),
         });
+
+        this.authService.logout();
     }
 
     handleLogin() {
