@@ -430,6 +430,23 @@ table tr {
     height: 265px;
 }
 
+.replyButton {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.notDecided {
+    background-color: #000000;
+}
+
+.selected {
+    background-color: #00ad5f;
+}
+
+.notSelected {
+    background-color: #000000;
+}
+
 .button {
     background: #303030;
     border: none;

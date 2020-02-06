@@ -7,17 +7,23 @@
         </header>
     </div>
 
-    <ul class="post-list" *ngFor="let event of events">
+    <ul class="post-list" *ngFor="let participation of participations">
         <li class="post-stub">
             <div class="renan">
-                <a [routerLink]="['/event/view', event.event.id]">
-                    <h4 class="post-stub-title">{{event.id}}</h4> -
-                    <h4 class="post-stub-title">{{event.event.title}} </h4>
-                    <time class="post-stub-date">Ocorrerá em {{event.event.dateTime | date: "EEEE, dd MMMM yy"}}</time>
+                <a [routerLink]="['/event/view', participation.event.id]">
+                    <h4 class="post-stub-title">{{participation.event.id}}</h4> -
+                    <h4 class="post-stub-title">{{participation.event.title}} </h4>
+                    <time class="post-stub-date">Ocorrerá em {{participation.event.dateTime | date: "EEEE, dd MMMM yy"}}</time>
                 </a>
                 <div>
-                    <button type="button">Yay</button>
-                    <button type="button">Nay</button>
+                    <button *ngIf="participation.status == 'INVITED'" class="replyButton notDecided" type="button" (click)="confirmPresenceInEvent(participation.event.id)">Irei!</button>
+                    <button *ngIf="participation.status == 'INVITED'" class="replyButton notDecided" type="button" (click)="declinePresenceInEvent(participation.event.id)">Não irei</button>
+
+                    <button *ngIf="participation.status == 'CONFIRMED'" class="replyButton selected" type="button" (click)="confirmPresenceInEvent(participation.event.id)">Irei!</button>
+                    <button *ngIf="participation.status == 'CONFIRMED'" class="replyButton notSelected" type="button" (click)="declinePresenceInEvent(participation.event.id)">Não irei</button>
+
+                    <button *ngIf="participation.status == 'DECLINED'" class="replyButton notSelected" type="button" (click)="confirmPresenceInEvent(participation.event.id)">Irei!</button>
+                    <button *ngIf="participation.status == 'DECLINED'" class="replyButton selected" type="button" (click)="declinePresenceInEvent(participation.event.id)">Não irei</button>
                 </div>
             </div>
         </li>
