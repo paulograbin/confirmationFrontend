@@ -25,4 +25,9 @@ export class EventServiceService {
   confirmPresence(eventId: number, userId: number) {
     return this.http.post(`/server/event/${eventId}/confirm/${userId}`, null);
   }
+
+  declinePresence(eventId: number, userId: number) {
+    return this.http.post(`/server/event/${eventId}/decline/${userId}`, null);
+  }
+
 }
