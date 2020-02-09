@@ -10,6 +10,8 @@ import {ViewEventComponent} from './components/view-event/view-event.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './services/auth.guard';
 import {LogoutComponent} from './logout/logout.component';
+import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
+import {LoggedUserResolverService} from './services/logged-user-resolver.service';
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
     component: ListEventsComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'createdEvents',
+    component: ListCreatedEventsComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      loggedUser: LoggedUserResolverService
+    }
+},
   {
     path: 'login',
     component: LoginComponent
@@ -47,9 +57,12 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    component: ListUsersComponent
+    component: ListUsersComponent,
+    canActivate: [AuthGuard]
   }
 ];
+
+// TODO: don't user access events created by other MC
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

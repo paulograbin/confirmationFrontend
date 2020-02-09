@@ -1,0 +1,27 @@
+<div class="container2">
+
+    <div class="post-index">
+<!--        <h1 class="post-title">Olá</h1>-->
+        <h1 class="post-title">Olá, {{loggedUser.firstName}}</h1>
+        <header class="post-header">
+            <p>Estas são todas as cerimônias que você criou</p>
+        </header>
+    </div>
+
+    <ul class="post-list" *ngFor="let event of events">
+        <li class="post-stub">
+            <div class="renan">
+                <a [routerLink]="['/event/view', event.id]">
+                    <h4 class="post-stub-title">{{event.id}}</h4> -
+                    <h4 class="post-stub-title">{{event.title}} </h4>
+                    <time class="post-stub-date">Ocorrerá em {{event.dateTime | date: "EEEE, dd MMMM yy"}}</time>
+                </a>
+            </div>
+            <div>
+                <button class="replyButton notDecided" type="button">Modificar</button>
+                <button class="replyButton notDecided" type="button">Deletar</button>
+            </div>
+        </li>
+    </ul>
+
+</div>
