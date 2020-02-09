@@ -42,18 +42,18 @@ const routes: Routes = [
   },
   {
     path: 'user/view/:id',
-    component: ViewUserComponent
-    // canActivate: [AuthGuard]
+    component: ViewUserComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'event/view/:id',
-    component: ViewEventComponent
-    // canActivate: [AuthGuard]
+    component: ViewEventComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin',
-    component: AdminComponent
-    // canActivate: [AuthGuard]
+    component: AdminComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'users',
