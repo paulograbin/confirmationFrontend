@@ -26,8 +26,8 @@ export class UserService {
   }
 
   getAllUsers() {
-    console.log('get all users');
-    return this.http.get('/server/users');
+    console.log('get all users from server');
+    return this.http.get<UserModelInterface[]>('/server/users');
   }
 
   getUser(id: number) {

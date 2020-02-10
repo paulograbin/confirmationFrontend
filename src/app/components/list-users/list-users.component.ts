@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
+import {UserModelInterface} from '../../model/userModelInteface';
 
 @Component({
   selector: 'app-list-users',
@@ -8,7 +9,7 @@ import {UserService} from '../../services/user.service';
 })
 export class ListUsersComponent implements OnInit {
 
-  public users;
+    users: UserModelInterface[];
 
   constructor(private userService: UserService) {
   }
@@ -20,11 +21,11 @@ export class ListUsersComponent implements OnInit {
   fetchAndDisplayUsers() {
     this.userService.getAllUsers().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.users = data;
       },
       err => console.error(err),
-      () => console.log('users loaded')
+      () => console.log('user loading complete')
     );
   }
 
