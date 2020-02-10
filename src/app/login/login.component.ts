@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../services/user.service';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     errorMessage = 'error message';
 
     constructor(private router: Router,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private userService: UserService) {
     }
 
     ngOnInit() {
@@ -28,14 +30,17 @@ export class LoginComponent implements OnInit {
     }
 
     handleLogin() {
-        console.log('vai login com ', this.loginForm.value);
-
         if (this.loginForm.valid) {
             this.authService.login(this.loginForm.value)
                 .subscribe(
                     data => {
-                        console.log(data);
-                        this.router.navigate(['events']);
+
+                        if (data.master) {
+                            this.router.navigate(['createdEvents']);
+                        } else {
+                            this.router.navigate(['events']);
+                        }
+
                         this.invalidLogin = false;
                     },
                     error => {
