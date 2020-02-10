@@ -15,7 +15,7 @@ export class LoggedUserResolverService implements Resolve<UserModel> {
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<UserModel> {
 
-        console.log('Resolving logged user');
+        // console.log('Resolving logged user');
         return this.userService.fetchDetailsAboutLoggedUser();
     }
 

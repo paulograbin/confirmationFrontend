@@ -20,7 +20,7 @@ export class UserService {
   fetchDetailsAboutLoggedUser() {
     return this.http.get<UserModelInterface>('/server/users/me')
         .pipe(
-            tap(data => console.log(JSON.stringify(data))),
+            // tap(data => console.log(JSON.stringify(data))),
             catchError(this.handleError)
         );
   }
