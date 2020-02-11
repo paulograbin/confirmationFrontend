@@ -5,10 +5,11 @@ import {DateFormatter} from '../services/dateFormatter';
 export interface EventInterface {
 
     participants: ParticipationModel[];
-    id: string;
+    id: number;
     title: string;
     dateTime: Date;
     translatedDateTime: string;
+    creatorId: number;
     creationDate: Date;
     description: string;
 
@@ -17,10 +18,11 @@ export interface EventInterface {
 export class EventModel implements EventInterface {
     constructor(
         public participants: ParticipationModel[],
-        public id: string,
+        public id: number,
         public title: string,
         public dateTime: Date,
         public translatedDateTime: string,
+        public creatorId: number,
         public creationDate: Date,
         public description: string,
         private dateFormatter: DateFormatter) {
@@ -31,4 +33,9 @@ export class EventModel implements EventInterface {
     getFormatedDate(): string {
         return this.dateFormatter.formatDate(this.dateTime);
     }
+}
+
+export interface EventResolved {
+    eventModel: EventModel;
+    error?: any;
 }
