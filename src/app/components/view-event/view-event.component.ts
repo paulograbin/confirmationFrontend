@@ -10,7 +10,7 @@ import {EventModel} from '../../model/eventModel';
 })
 export class ViewEventComponent implements OnInit {
 
-  eventa = new EventModel('', '', null, null, '');
+    event: EventModel;
 
   constructor(private route: ActivatedRoute,
               private eventService: EventServiceService) { }
