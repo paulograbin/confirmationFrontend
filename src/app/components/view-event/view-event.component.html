@@ -1,1 +1,119 @@
-<p>view-event works!</p>
+<div class="container2">
+    <div class="post-index">
+        <h1 class="post-title">Olá</h1>
+        <header class="post-header">
+            <p>Aqui você pode ver todos os detalhes do evento</p>
+        </header>
+    </div>
+
+    <form novalidate #eventForm="ngForm">
+        <fieldset>
+            <legend>Opa</legend>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="eventTitle">Title</label>
+                <div>
+                    <input class="form-control"
+                           id="eventTitle"
+                           type="text"
+                           placeholder="Title (Required)"
+                           required
+                           minlength="5"
+                           [(ngModel)]="event.title"
+                           name="eventTitle"
+                           #eventTitle="ngModel">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="eventTitle">Description</label>
+                <div>
+                    <input class="form-control"
+                           id="eventDescription"
+                           type="text"
+                           placeholder="Description (Required)"
+                           required
+                           minlength="5"
+                           [(ngModel)]="event.description"
+                           name="eventDescription"
+                           #eventTitle="ngModel">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="eventTitle">Address</label>
+                <div>
+                    <input class="form-control"
+                           id="eventAddress"
+                           type="text"
+                           placeholder="Address (Required)"
+                           required
+                           minlength="5"
+                           [(ngModel)]="event.address"
+                           name="eventAddress"
+                           #eventTitle="ngModel">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="eventDateTime">Data</label>
+                <div>
+                    <input class="form-control"
+                           id="eventDateTime"
+                           type="text"
+                           placeholder="Data/Horário (Required)"
+                           required
+                           minlength="5"
+                           [(ngModel)]="event.dateTime"
+                           name="eventDateTime"
+                           #eventTitle="ngModel">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <button class="btn btn-primary mr-3"
+            style="width:80px"
+            type="button"
+            [title]="isValid() ? 'Save your entered data' : 'Disabled until the form data is valid'"
+            [disabled]="!isValid()"
+            (click)="saveProduct()">
+        Save
+    </button>
+    <button class="btn btn-outline-secondary mr-3"
+            style="width:80px"
+            type="button"
+            title="Cancel your edits"
+            [routerLink]="['/createdEvents']">
+        Cancel
+    </button>
+    <button class="btn btn-outline-danger"
+            style="width:80px"
+            type="button"
+            title="Delete this event"
+            (click)="deleteEvent()">
+        Delete
+    </button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table *ngIf="event.id != 0" class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+<!--            <th>Confirmado em</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let participant of event.participants">
+            <td>{{participant.user.firstName}} {{participant.user.lastName}}</td>
+            <td>{{participant.status}}</td>
+<!--            <td>{{participant.confirmationDate}}</td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
