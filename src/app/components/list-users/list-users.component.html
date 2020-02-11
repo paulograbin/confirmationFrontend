@@ -1,31 +1,36 @@
-<h1> List all users </h1>
-
 <div class="container">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Username</th>
-      <th>Last modified</th>
-      <th>Active</th>
-      <th class="text-center">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{user.id}}</td>
-      <td>{{user.firstName}} {{user.lastName}}</td>
-      <td>{{user.username}}</td>
-      <td>{{user.modificationDate }}</td>
-      <td>{{user.active}}</td>
-      <td>
-        <button type="button" class="btn" [routerLink]="['/user/view', user.id]">View details</button>
-        <button type="button" class="btn btn-warning" [routerLink]="['/user/view', user.id]">Lock</button>
-        <button *ngIf="user.active" type="button" class="btn btn-danger" (click)="inactivate(user.id)">Delete</button>
-        <button *ngIf="!user.active" type="button" class="btn btn-danger" (click)="inactivate(user.id)">Restore</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+    <div class="row">
+        <h1> List all users </h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Last modified</th>
+            <th>Active</th>
+            <th class="text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}} {{user.lastName}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.modificationDate }}</td>
+            <td>{{user.active}}</td>
+            <td>
+                <button type="button" class="btn" [routerLink]="['/user/view', user.id]">View details</button>
+                <!--        <button type="button" class="btn btn-warning" [routerLink]="['/user/view', user.id]">Lock</button>-->
+                <button *ngIf="user.active" type="button" class="btn btn-danger" (click)="inactivate(user.id)">
+                    Delete
+                </button>
+                <button *ngIf="!user.active" type="button" class="btn btn-danger" (click)="activate(user.id)">
+                    Restore
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>

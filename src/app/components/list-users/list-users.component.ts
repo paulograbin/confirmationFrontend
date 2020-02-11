@@ -39,4 +39,15 @@ export class ListUsersComponent implements OnInit {
       }
     );
   }
+
+  activate(id: number) {
+    console.log('here we go ACTIVATE this asshole', id);
+
+    this.userService.activate(id).subscribe(
+        data => {
+          console.log(data);
+          this.fetchAndDisplayUsers();
+        }
+    );
+  }
 }
