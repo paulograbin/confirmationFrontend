@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BikeService } from 'src/app/services/bike.service';
 import {UserService} from '../../services/user.service';
-import {User} from '../../model/user';
+import {UserModel} from '../../model/userModel';
 
 @Component({
   selector: 'app-view-registration',
-  templateUrl: './view-registration.component.html',
-  styleUrls: ['./view-registration.component.css']
+  templateUrl: './view-user.component.html',
+  styleUrls: ['./view-user.component.css']
 })
 export class ViewUserComponent implements OnInit {
 
-  user = new User('', '', '');
+  user: UserModel;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService) { }
