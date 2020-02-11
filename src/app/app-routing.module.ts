@@ -12,6 +12,7 @@ import {AuthGuard} from './services/auth.guard';
 import {LogoutComponent} from './logout/logout.component';
 import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
 import {LoggedUserResolverService} from './services/logged-user-resolver.service';
+import {EventResolverService} from './services/event-resolver.service';
 
 const routes: Routes = [
   {
@@ -48,7 +49,10 @@ const routes: Routes = [
   {
     path: 'event/view/:id',
     component: ViewEventComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    resolve: {
+      event: EventResolverService
+    }
   },
   {
     path: 'admin',
