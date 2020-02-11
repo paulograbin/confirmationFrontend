@@ -8,6 +8,10 @@
         </header>
     </div>
 
+    <header class="post-header">
+        <button [routerLink]="['/event/view', 0]" class="replyButton notDecided" type="button">Criar nova cerimônia</button>
+    </header>
+
     <ul class="post-list" *ngFor="let event of events">
         <li class="post-stub">
             <div class="renan">
