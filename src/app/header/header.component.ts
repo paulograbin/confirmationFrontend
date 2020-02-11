@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import {UserModel} from '../model/userModel';
+import {UserService} from '../services/user.service';
+import {UserModelInterface} from '../model/userModelInteface';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +11,26 @@ import {AuthService} from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  loggedUser: UserModelInterface;
+
+  constructor(private authService: AuthService,
+              private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.fetchDetailsAboutLoggedUser().subscribe(
+        data => {
+          // console.log('logged user', data);
+          this.loggedUser = data;
+        },
+        error => console.error(error),
+        () => {
+          // if (this.loggedUser.master) {
+          //   console.log('MC');
+          // } else {
+          //   console.log('Not MC');
+          // }
+        }
+    );
   }
 
 }
