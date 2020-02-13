@@ -51,7 +51,8 @@ const routes: Routes = [
     component: ViewEventComponent,
     canActivate: [AuthGuard],
     resolve: {
-      event: EventResolverService
+      resolvedEvent: EventResolverService,
+      loggedUser: LoggedUserResolverService
     }
   },
   {

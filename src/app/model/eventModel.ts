@@ -36,6 +36,6 @@ export class EventModel implements EventInterface {
 }
 
 export interface EventResolved {
-    eventModel: EventModel;
+    event: EventInterface;
     error?: any;
 }

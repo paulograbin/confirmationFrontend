@@ -3,7 +3,8 @@ import {EventServiceService} from './event-service.service';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {EventResolved} from '../model/eventModel';
 import {Observable, of} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
+import {log} from 'util';
 
 @Injectable({
     providedIn: 'root'
@@ -20,9 +21,10 @@ export class EventResolverService implements Resolve<EventResolved> {
 
         return this.eventService.getEvent(Number(eventId))
             .pipe(
-                map(event => ({eventModel: event})),
+                tap(x => console.log(x)),
+                map(event => ({ event })),
                 catchError(error => {
-                    return of({eventModel: null, error: 'carai'});
+                    return of({event: null, error: 'carai'});
                 })
             );
     }
