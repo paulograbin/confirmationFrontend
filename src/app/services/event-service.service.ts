@@ -1,11 +1,33 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {EventModel} from '../model/eventModel';
+import {EventInterface, EventModel} from '../model/eventModel';
+import {ParticipationModel} from '../model/participationModel';
+import {catchError, tap} from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
+import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventServiceService {
+
+    updateEvent(event: EventModel) {
+      return this.http.put<EventInterface>(`/server/events/${event.id}`, event)
+          .pipe(
+              tap(data => console.log('updated event ', data))
+          );
+    }
+
+  createEvent(event: EventModel) {
+        return this.http.post<EventInterface>('/server/events', event)
+            .pipe(
+                tap(data => console.log('created event ', data))
+            );
+    }
+
+  deleteEvent(id: number) {
+    return this.http.delete(`/server/events/${id}`);
+  }
 
   constructor(private http: HttpClient) {
   }
@@ -59,7 +81,7 @@ export class EventServiceService {
   }
 
   getUserInvitations(id: number) {
-    return this.http.get<EventModel[]>(`/server/events/invitations/${id}`);
+    return this.http.get<ParticipationModel[]>(`/server/events/invitations/${id}`);
   }
 
   confirmPresence(eventId: number, userId: number) {
@@ -71,6 +93,6 @@ export class EventServiceService {
   }
 
   getEventsCreatedByUser(userId: number) {
-    return this.http.get(`/server/events/createdBy/${userId}`);
+    return this.http.get<EventModel[]>(`/server/events/createdBy/${userId}`);
   }
 }
