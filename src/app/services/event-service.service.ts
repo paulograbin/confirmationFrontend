@@ -10,7 +10,7 @@ export class EventServiceService {
   constructor(private http: HttpClient) {
   }
 
-  getAllEvents() {
+  getAllEvents(): Observable<EventModel[]> {
     return this.http.get<EventModel[]>('/server/events');
   }
 
