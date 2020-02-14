@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {AdminComponent} from './components/admin/admin.component';
-import {HomeComponent} from './components/home/home.component';
 import {ViewUserComponent} from './components/view-registration/view-user.component';
 import {ListUsersComponent} from './components/list-users/list-users.component';
 import {ListEventsComponent} from './components/list-events/list-events.component';
@@ -54,11 +52,6 @@ const routes: Routes = [
       resolvedEvent: EventResolverService,
       loggedUser: LoggedUserResolverService
     }
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'users',
