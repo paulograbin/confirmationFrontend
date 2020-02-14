@@ -18,12 +18,31 @@ import {ViewEventComponent} from './components/view-event/view-event.component';
 import {LoginComponent} from './login/login.component';
 import {LogoutComponent} from './logout/logout.component';
 import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {ViewUserComponent} from './components/view-registration/view-user.component';
+
+import {
+    DateAdapter,
+    MAT_DATE_FORMATS, MAT_DATE_LOCALE,
+    MatDatepickerModule,
+    MatFormFieldModule
+} from '@angular/material';
+
+export const MY_FORMATS = {
+    parse: {
+        dateInput: 'LL',
+    },
+    display: {
+        dateInput: 'LL hA',
+        monthYearLabel: 'MMM YYYY hA',
+        dateA11yLabel: 'LL hA',
+        monthYearA11yLabel: 'MMMM YYYY hA',
+    },
+};
 
 @NgModule({
     declarations: [
         AppComponent,
-        AdminComponent,
-        HomeComponent,
         ViewUserComponent,
         ListUsersComponent,
         ListEventsComponent,
@@ -40,12 +59,21 @@ import {ListCreatedEventsComponent} from './components/list-created-events/list-
         AppRoutingModule,
         BrowserAnimationsModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatFormFieldModule
     ],
     // tslint:disable-next-line:max-line-length
-    providers: [DateFormatter, BikeService, AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
+    providers: [DateFormatter,
+        {
+            provide: DateAdapter,
+            useClass: MomentDateAdapter,
+            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+        },
+
+        {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+        AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
     bootstrap: [AppComponent],
-    exports: [AccordionModule]
 })
 export class AppModule {
 }

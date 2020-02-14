@@ -1,6 +1,5 @@
 <div class="container2">
     <div class="post-index">
-        <h1 class="post-title">Olá</h1>
         <header class="post-header">
             <p>Aqui você pode ver todos os detalhes do evento</p>
         </header>
@@ -8,8 +7,7 @@
 
     <form novalidate #eventForm="ngForm">
         <fieldset>
-            <legend>Opa</legend>
-
+<!--            <legend>Opa</legend>-->
             <div class="form-group row">
                 <label class="col-md-2 col-form-label" for="eventTitle">Title</label>
                 <div>
@@ -69,6 +67,12 @@
                            #eventTitle="ngModel">
                 </div>
             </div>
+
+            <input [matDatepicker]="myDatepicker" [value]="event.dateTime">
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+
+
         </fieldset>
     </form>
 
