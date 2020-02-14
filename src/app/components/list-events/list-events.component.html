@@ -8,6 +8,10 @@
         </header>
     </div>
 
+<!--    TODO: Present confirmation message -->
+<!--    <div class='alert alert-info'>opa</div>-->
+<!--    <div class='alert alert-success'>opa</div>-->
+
     <ul class="post-list" *ngFor="let participation of participations">
         <li class="post-stub">
             <div class="renan">
@@ -31,22 +35,3 @@
     </ul>
 
 </div>
-
-<!--<div class="container">-->
-<!--    <mat-accordion>-->
-<!--        <mat-expansion-panel (opened)="panelOpenState = true"-->
-<!--                             (closed)="panelOpenState = false"-->
-<!--                             *ngFor="let user of events">-->
-<!--            <mat-expansion-panel-header>-->
-<!--                <mat-panel-title>{{user.id}}</mat-panel-title>-->
-<!--                <mat-panel-title>{{user.event.title}}</mat-panel-title>-->
-<!--                <mat-panel-description>{{user.event.address}}</mat-panel-description>-->
-<!--                <mat-panel-description>{{user.event.dateTime}}</mat-panel-description>-->
-<!--            </mat-expansion-panel-header>-->
-<!--            <p>{{user.description}}</p>-->
-<!--            <mat-action-row>-->
-<!--                <button mat-button>Click me</button>-->
-<!--            </mat-action-row>-->
-<!--        </mat-expansion-panel>-->
-<!--    </mat-accordion>-->
-<!--</div>-->
