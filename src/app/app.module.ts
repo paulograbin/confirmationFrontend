@@ -4,18 +4,11 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AccordionModule} from 'ngx-bootstrap/accordion';
-
-
 import {DateFormatter} from './services/dateFormatter';
 import {AuthService} from './services/auth.service';
 import {AuthGuard} from './services/auth.guard';
-import {BikeService} from './services/bike.service';
-import {AdminComponent} from './components/admin/admin.component';
-import {HomeComponent} from './components/home/home.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
-import {ViewUserComponent} from './components/view-registration/view-user.component';
 import {ListUsersComponent} from './components/list-users/list-users.component';
 import {ListEventsComponent} from './components/list-events/list-events.component';
 import {HttpInterceptorService} from './services/http-interceptor.service';
