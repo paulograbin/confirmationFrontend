@@ -7,11 +7,12 @@ export interface EventInterface {
     participants: ParticipationModel[];
     id: number;
     title: string;
+    description: string;
+    address: string;
     dateTime: Date;
     translatedDateTime: string;
     creatorId: number;
     creationDate: Date;
-    description: string;
 
 }
 
@@ -20,11 +21,12 @@ export class EventModel implements EventInterface {
         public participants: ParticipationModel[],
         public id: number,
         public title: string,
+        public description: string,
+        public address: string,
         public dateTime: Date,
         public translatedDateTime: string,
         public creatorId: number,
         public creationDate: Date,
-        public description: string,
         private dateFormatter: DateFormatter) {
 
         this.translatedDateTime = this.dateFormatter.formatDate(new Date(dateTime));
