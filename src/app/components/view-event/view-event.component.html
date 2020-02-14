@@ -72,22 +72,25 @@
         </fieldset>
     </form>
 
-    <button class="btn btn-primary mr-3"
+    <button *ngIf="loggedUser.master"
+            class="btn btn-primary mr-3"
             style="width:80px"
             type="button"
             [title]="isValid() ? 'Save your entered data' : 'Disabled until the form data is valid'"
             [disabled]="!isValid()"
-            (click)="saveProduct()">
+            (click)="saveEvent()">
         Save
     </button>
-    <button class="btn btn-outline-secondary mr-3"
+    <button *ngIf="loggedUser.master"
+            class="btn btn-outline-secondary mr-3"
             style="width:80px"
             type="button"
             title="Cancel your edits"
             [routerLink]="['/createdEvents']">
         Cancel
     </button>
-    <button class="btn btn-outline-danger"
+    <button *ngIf="loggedUser.master"
+            class="btn btn-outline-danger"
             style="width:80px"
             type="button"
             title="Delete this event"
