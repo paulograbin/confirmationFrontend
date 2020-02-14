@@ -4,7 +4,7 @@ import {EventInterface, EventModel} from '../model/eventModel';
 import {ParticipationModel} from '../model/participationModel';
 import {catchError, tap} from 'rxjs/operators';
 import {Observable, of, throwError} from 'rxjs';
-import {log} from 'util';
+import {error, log} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,11 @@ export class EventServiceService {
           );
     }
 
-  createEvent(event: EventModel) {
+  createEvent(event) {
         return this.http.post<EventInterface>('/server/events', event)
             .pipe(
-                tap(data => console.log('created event ', data))
+                tap(data => console.log('created event ', data)),
+                catchError(this.handleError)
             );
     }
 
@@ -54,6 +55,7 @@ export class EventServiceService {
     return {
       id: 0,
       title: null,
+      address: null,
       creatorId: 0,
       description: null,
       creationDate: null,
@@ -65,18 +67,20 @@ export class EventServiceService {
 
 
   private handleError(err) {
+    // console.log('HANDLER ERROR!!!', err);
+
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
     let errorMessage: string;
+
     if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      errorMessage = `An error occurred: ${err.error.message}`;
+      errorMessage = `An error occurred: ${err.message}`;
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
+      errorMessage = `Backend returned code ${err.status}: ${err.error.message}`;
+      console.log('else', errorMessage);
     }
-    console.error(err);
+
+    console.error('error', errorMessage);
     return throwError(errorMessage);
   }
 
