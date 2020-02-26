@@ -3,7 +3,7 @@
         <div class="wrap-login100">
             <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
 
-                <div class="col alert alert-warning" *ngIf="invalidLogin">{{errorMessage}}</div>
+                <div class="col alert alert-warning text-center" *ngIf="invalidLogin">{{errorMessage}}</div>
 
                 <span class="login100-form-title p-b-34">
 						Login

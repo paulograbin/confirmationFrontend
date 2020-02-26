@@ -426,6 +426,10 @@ input.input100 {
     transition: opacity 0.4s;
 }
 
+.alert-warning {
+    margin-bottom: 20px;
+}
+
 .alert-validate::after {
     content: "\f12a";
     /*font-family: FontAwesome;*/

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
                         this.invalidLogin = true;
 
                         if (error.status === 401 || error.status === 400) {
-                            this.errorMessage = 'Dados inválidos';
+                            this.errorMessage = 'Senha e/ou usuários inválidos!';
                         } else {
                             this.errorMessage = 'Ops, parece que o servidor não está respondendo';
                         }
