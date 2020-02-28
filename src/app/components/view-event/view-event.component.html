@@ -102,21 +102,23 @@
         Delete
     </button>
 
-    <h3>Convidados</h3>
-    <table *ngIf="event.id != 0" class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <!--            <th>Confirmado em</th>-->
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let participant of event.participants">
-            <td>{{participant.user.firstName}} {{participant.user.lastName}}</td>
-            <td>{{participant.status}}</td>
-            <!--            <td>{{participant.confirmationDate}}</td>-->
-        </tr>
-        </tbody>
-    </table>
+    <div *ngIf="event.id != 0">
+        <h3>Convidados</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <!--            <th>Confirmado em</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let participant of event.participants">
+                <td>{{participant.user.firstName}} {{participant.user.lastName}}</td>
+                <td>{{participant.status}}</td>
+                <!--            <td>{{participant.confirmationDate}}</td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
