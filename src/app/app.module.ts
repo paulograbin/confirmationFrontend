@@ -22,12 +22,17 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import {ViewUserComponent} from './components/view-registration/view-user.component';
 import {MatInputModule} from '@angular/material/input';
 
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt');
+
 import {
     DateAdapter,
     MAT_DATE_FORMATS, MAT_DATE_LOCALE,
     MatDatepickerModule,
     MatFormFieldModule
 } from '@angular/material';
+import {registerLocaleData} from '@angular/common';
 
 export const MY_FORMATS = {
     parse: {
