@@ -60,9 +60,49 @@ export class ListEventsComponent implements OnInit {
         );
     }
 
-    private confirmPresenceInEvent() {
-        this.eventService.confirmPresence(7, 1).subscribe();
+    private confirmPresenceInEvent(eventId: number) {
+        this.eventService.confirmPresence(eventId, Number(this.loggedUser.id))
+            .subscribe(
+                data => {
+                    this.confirmationMessage = `Presença confirmada com sucesso`;
+                    this.confirmed = true;
+                },
+                error => {
+                    this.confirmationMessage = `Ocorreu algum problema ao registrar sua presença`;
+                    this.confirmed = true;
+                },
+                () => {
+                    setTimeout(function() {
+                        this.confirmed = false;
+                    }.bind(this), 3000);
 
-        this.ngOnInit();
+                    this.participations = null;
+                    this.fetchEvents();
+                }
+            );
+
+    }
+
+    private declinePresenceInEvent(eventId: number) {
+        this.eventService.declinePresence(eventId, Number(this.loggedUser.id))
+            .subscribe(
+                data => {
+                    this.confirmationMessage = `Presença declinada com sucesso`;
+                    this.confirmed = true;
+                },
+                error => {
+                    this.confirmationMessage = `Ocorreu algum problema ao rejeitar sua presença`;
+                    this.confirmed = true;
+                },
+                () => {
+                    setTimeout(function() {
+                        this.confirmed = false;
+                    }.bind(this), 1500);
+
+                    this.participations = null;
+                    this.fetchEvents();
+                }
+            );
+
     }
 }
