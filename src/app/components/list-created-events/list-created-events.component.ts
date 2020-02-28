@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {EventServiceService} from '../../services/event-service.service';
 import {UserService} from '../../services/user.service';
-import {UserModel} from '../../model/userModel';
+import {UserInterface, UserModel} from '../../model/userModel';
 import {EventModel} from '../../model/eventModel';
 import {ActivatedRoute} from '@angular/router';
-import {UserModelInterface} from '../../model/userModelInteface';
 
 @Component({
     selector: 'app-list-created-events',
@@ -13,7 +12,7 @@ import {UserModelInterface} from '../../model/userModelInteface';
 })
 export class ListCreatedEventsComponent implements OnInit {
 
-    loggedUser: UserModelInterface;
+    loggedUser: UserInterface;
     events: EventModel[];
 
     constructor(private userService: UserService,
