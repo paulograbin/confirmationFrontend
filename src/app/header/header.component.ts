@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
-import {UserModel} from '../model/userModel';
+import {UserInterface, UserModel} from '../model/userModel';
 import {UserService} from '../services/user.service';
-import {UserModelInterface} from '../model/userModelInteface';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +10,7 @@ import {UserModelInterface} from '../model/userModelInteface';
 })
 export class HeaderComponent implements OnInit {
 
-  loggedUser: UserModelInterface;
+  loggedUser: UserInterface;
 
   constructor(private authService: AuthService,
               private userService: UserService) { }
