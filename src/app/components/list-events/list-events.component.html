@@ -8,9 +8,7 @@
         </header>
     </div>
 
-<!--    TODO: Present confirmation message -->
-<!--    <div class='alert alert-info'>opa</div>-->
-<!--    <div class='alert alert-success'>opa</div>-->
+    <div *ngIf="confirmed" class='alert alert-success'>{{confirmationMessage}}</div>
 
     <ul class="post-list" *ngFor="let participation of participations">
         <li class="post-stub">
