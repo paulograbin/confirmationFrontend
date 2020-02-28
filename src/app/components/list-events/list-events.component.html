@@ -1,8 +1,7 @@
 <div class="container2">
 
     <div class="post-index">
-        <h1 class="post-title">Olá</h1>
-<!--        <h1 class="post-title">Olá, {{loggedUser.firstName}}</h1>-->
+        <h1 class="post-title">Olá, {{loggedUser.firstName}}</h1>
         <header class="post-header">
             <p>Estas são todas as cerimônias para as quais você foi convidado</p>
         </header>
@@ -16,6 +15,7 @@
                 <a [routerLink]="['/event/view', participation.event.id]">
                     <h4 class="post-stub-title">{{participation.event.id}}</h4> -
                     <h4 class="post-stub-title">{{participation.event.title}} </h4>
+                    <time class="post-stub-date">Ocorrerá em {{participation.event.dateTime}}</time>
                     <time class="post-stub-date">Ocorrerá em {{participation.event.dateTime | date: "EEEE, dd MMMM yy"}}</time>
                 </a>
                 <div>

@@ -20,6 +20,7 @@ import {LogoutComponent} from './logout/logout.component';
 import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {ViewUserComponent} from './components/view-registration/view-user.component';
+import {MatInputModule} from '@angular/material/input';
 
 import {
     DateAdapter,
@@ -61,6 +62,7 @@ export const MY_FORMATS = {
         FormsModule,
         ReactiveFormsModule,
         MatDatepickerModule,
+        MatInputModule,
         MatFormFieldModule
     ],
     // tslint:disable-next-line:max-line-length
