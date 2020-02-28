@@ -21,7 +21,10 @@ const routes: Routes = [
   {
     path: 'events',
     component: ListEventsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    resolve: {
+      loggedUser: LoggedUserResolverService
+    }
   },
   {
     path: 'createdEvents',
