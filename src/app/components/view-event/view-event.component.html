@@ -5,9 +5,23 @@
         </header>
     </div>
 
+    <div>
+<!--        <mat-form-field>-->
+        <input [matDatepicker]="myDatepicker" [value]="event.dateTime"
+               (dateInput)="addEvent('input', $event)"
+               (dateChange)="addEvent('change', $event)"
+        >
+        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+<!--        </mat-form-field>-->
+    </div>
+
+    <div class='alert alert-success' *ngIf="eventCreated">{{successMessage}}</div>
+    <div class="alert alert-danger" *ngIf="invalidCreationRequest">{{errorMessage}}</div>
+
     <form novalidate #eventForm="ngForm">
         <fieldset>
-<!--            <legend>Opa</legend>-->
+            <!--            <legend>Opa</legend>-->
             <div class="form-group row">
                 <label class="col-md-2 col-form-label" for="eventTitle">Title</label>
                 <div>
@@ -16,6 +30,7 @@
                            type="text"
                            placeholder="Title (Required)"
                            required
+                           size="50"
                            minlength="5"
                            [(ngModel)]="event.title"
                            name="eventTitle"
@@ -31,6 +46,7 @@
                            type="text"
                            placeholder="Description (Required)"
                            required
+                           size="50"
                            minlength="5"
                            [(ngModel)]="event.description"
                            name="eventDescription"
@@ -46,6 +62,7 @@
                            type="text"
                            placeholder="Address (Required)"
                            required
+                           size="30"
                            minlength="5"
                            [(ngModel)]="event.address"
                            name="eventAddress"
@@ -61,16 +78,13 @@
                            type="text"
                            placeholder="Data/Horário (Required)"
                            required
+                           size="30"
                            minlength="5"
                            [(ngModel)]="event.dateTime"
                            name="eventDateTime"
                            #eventTitle="ngModel">
                 </div>
             </div>
-
-            <input [matDatepicker]="myDatepicker" [value]="event.dateTime">
-            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-            <mat-datepicker #myDatepicker></mat-datepicker>
 
 
         </fieldset>
