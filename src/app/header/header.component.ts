@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   loggedUser: UserInterface;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private userService: UserService) { }
 
   ngOnInit() {
