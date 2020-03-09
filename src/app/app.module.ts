@@ -33,6 +33,7 @@ import {
     MatFormFieldModule
 } from '@angular/material';
 import {registerLocaleData} from '@angular/common';
+import { EventRouterComponent } from './event-router/event-router.component';
 
 export const MY_FORMATS = {
     parse: {
@@ -57,7 +58,8 @@ export const MY_FORMATS = {
         ViewEventComponent,
         LoginComponent,
         LogoutComponent,
-        ListCreatedEventsComponent
+        ListCreatedEventsComponent,
+        EventRouterComponent
     ],
     imports: [
         BrowserModule,
