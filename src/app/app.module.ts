@@ -26,9 +26,12 @@ import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt');
 
+// todo udpate angular https://www.infoq.com/news/2020/02/angular-9-ivy-rendering-engine/
+//  ?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global
+
 import {
     DateAdapter,
-    MAT_DATE_FORMATS, MAT_DATE_LOCALE,
+    MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatCardModule, MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule
 } from '@angular/material';
@@ -70,9 +73,10 @@ export const MY_FORMATS = {
         ReactiveFormsModule,
         MatDatepickerModule,
         MatInputModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatCheckboxModule,
+        MatCardModule
     ],
-    // tslint:disable-next-line:max-line-length
     providers: [DateFormatter,
         {
             provide: DateAdapter,
