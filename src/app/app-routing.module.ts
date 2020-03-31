@@ -11,12 +11,16 @@ import {LogoutComponent} from './logout/logout.component';
 import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
 import {LoggedUserResolverService} from './services/logged-user-resolver.service';
 import {EventResolverService} from './services/event-resolver.service';
+import {EventRouterComponent} from './event-router/event-router.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListEventsComponent,
-    canActivate: [AuthGuard]
+    component: EventRouterComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      loggedUser: LoggedUserResolverService
+    }
   },
   {
     path: 'events',

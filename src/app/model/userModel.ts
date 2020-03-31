@@ -6,6 +6,9 @@ export interface UserInterface {
     username: string;
     email: string;
     master: boolean;
+    creationDate: Date;
+    modificationDate: Date;
+    inactivatedIn: Date;
 }
 
 export class UserModel implements UserInterface {
@@ -16,6 +19,9 @@ export class UserModel implements UserInterface {
         public lastName: string,
         public username: string,
         public email: string,
-        public master: boolean) {
+        public master: boolean,
+        public creationDate: Date,
+        public modificationDate: Date,
+        public inactivatedIn: Date) {
     }
 }

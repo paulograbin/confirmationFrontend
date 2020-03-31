@@ -22,12 +22,21 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import {ViewUserComponent} from './components/view-registration/view-user.component';
 import {MatInputModule} from '@angular/material/input';
 
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt');
+
+// todo udpate angular https://www.infoq.com/news/2020/02/angular-9-ivy-rendering-engine/
+//  ?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global
+
 import {
     DateAdapter,
-    MAT_DATE_FORMATS, MAT_DATE_LOCALE,
+    MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatCardModule, MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule
 } from '@angular/material';
+import {registerLocaleData} from '@angular/common';
+import { EventRouterComponent } from './event-router/event-router.component';
 
 export const MY_FORMATS = {
     parse: {
@@ -52,7 +61,8 @@ export const MY_FORMATS = {
         ViewEventComponent,
         LoginComponent,
         LogoutComponent,
-        ListCreatedEventsComponent
+        ListCreatedEventsComponent,
+        EventRouterComponent
     ],
     imports: [
         BrowserModule,
@@ -63,9 +73,10 @@ export const MY_FORMATS = {
         ReactiveFormsModule,
         MatDatepickerModule,
         MatInputModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatCheckboxModule,
+        MatCardModule
     ],
-    // tslint:disable-next-line:max-line-length
     providers: [DateFormatter,
         {
             provide: DateAdapter,

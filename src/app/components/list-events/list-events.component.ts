@@ -67,7 +67,7 @@ export class ListEventsComponent implements OnInit {
         );
     }
 
-    private confirmPresenceInEvent(eventId: number) {
+    confirmPresenceInEvent(eventId: number) {
         this.eventService.confirmPresence(eventId, Number(this.loggedUser.id))
             .subscribe(
                 data => {
@@ -90,7 +90,7 @@ export class ListEventsComponent implements OnInit {
 
     }
 
-    private declinePresenceInEvent(eventId: number) {
+    declinePresenceInEvent(eventId: number) {
         this.eventService.declinePresence(eventId, Number(this.loggedUser.id))
             .subscribe(
                 data => {
