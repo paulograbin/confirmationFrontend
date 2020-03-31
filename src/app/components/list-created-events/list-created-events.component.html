@@ -19,7 +19,9 @@
                 <a [routerLink]="['/event/view', event.id]">
                     <h4 class="post-stub-title">{{event.id}}</h4> -
                     <h4 class="post-stub-title">{{event.title}} </h4>
-                    <time class="post-stub-date">Ocorrerá em {{event.dateTime | date: "EEEE, d MMMM, HH:mm":'UTC-3':'pt'}}</time>
+                    <time class="post-stub-date">Ocorrerá em {{event.date}}, as {{event.time}}h</time>
+<!--                    <time class="post-stub-date">Ocorrerá em {{event.date | date: "EEEE, d MMMM":'UTC-0':'pt'}} - {{event.time}}</time>-->
+<!--                    <time class="post-stub-date">Ocorrerá em {{event.time | date: "HH:mm":'UTC-0':'pt'}}</time>-->
                 </a>
             </div>
             <div>
