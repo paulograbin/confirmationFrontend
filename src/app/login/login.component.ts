@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
     errorMessage = 'error message';
 
     constructor(private router: Router,
-                private authService: AuthService,
-                private userService: UserService) {
+                private authService: AuthService) {
     }
 
     ngOnInit() {
@@ -34,12 +33,7 @@ export class LoginComponent implements OnInit {
             this.authService.login(this.loginForm.value)
                 .subscribe(
                     data => {
-
-                        if (data.master) {
-                            this.router.navigate(['createdEvents']);
-                        } else {
-                            this.router.navigate(['events']);
-                        }
+                        this.router.navigate(['/']);
 
                         this.invalidLogin = false;
                     },
