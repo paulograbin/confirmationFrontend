@@ -1,5 +1,4 @@
 import {ParticipationModel} from './participationModel';
-import {DateFormatter} from '../services/dateFormatter';
 
 
 export interface EventInterface {
@@ -9,8 +8,9 @@ export interface EventInterface {
     title: string;
     description: string;
     address: string;
-    dateTime: Date;
-    translatedDateTime: string;
+    published: boolean;
+    date: Date;
+    time: Date;
     creatorId: number;
     creationDate: Date;
 
@@ -23,17 +23,11 @@ export class EventModel implements EventInterface {
         public title: string,
         public description: string,
         public address: string,
-        public dateTime: Date,
-        public translatedDateTime: string,
+        public published: boolean,
+        public date: Date,
+        public time: Date,
         public creatorId: number,
-        public creationDate: Date,
-        private dateFormatter: DateFormatter) {
-
-        this.translatedDateTime = this.dateFormatter.formatDate(new Date(dateTime));
-    }
-
-    getFormatedDate(): string {
-        return this.dateFormatter.formatDate(this.dateTime);
+        public creationDate: Date) {
     }
 }
 
