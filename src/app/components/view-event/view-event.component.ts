@@ -52,7 +52,9 @@ export class ViewEventComponent implements OnInit {
         this.route.data.subscribe(
             data => {
                 const resolvedData = data;
+
                 this.event = resolvedData.resolvedEvent.event;
+                this.displayEvent(resolvedData.resolvedEvent.event);
                 // this.errorMessage = resolvedData.resolvedEvent.error;
 
                 this.loggedUser = resolvedData.loggedUser;
@@ -68,6 +70,19 @@ export class ViewEventComponent implements OnInit {
                 console.log(`event ${this.event.id} loaded completely`);
             }
         );
+    }
+
+    displayEvent(event: EventModel) {
+        console.log('Displaying ', event);
+
+        this.eventForm.patchValue({
+            title: this.event.title,
+            description: this.event.description,
+            address: this.event.address,
+            date: this.event.date,
+            time: this.event.time,
+            published: this.event.published,
+        });
     }
 
     saveEvent(): void {
