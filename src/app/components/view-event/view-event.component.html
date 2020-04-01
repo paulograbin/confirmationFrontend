@@ -29,12 +29,15 @@
                            id="eventTitle"
                            type="text"
                            placeholder="Título da cerimônia"
-                           required
                            size="50"
-                           minlength="5"
-                           [(ngModel)]="event.title"
+                           formControlName="title"
                            name="eventTitle"
-                           #eventTitle="ngModel">
+                           [ngClass]="{'is-invalid': (eventForm.get('title').touched ||
+                                                       eventForm.get('title').dirty) &&
+                                                       !eventForm.get('title').valid }"/>
+                    <span class="invalid-feedback">
+                        Pelo menos 3 caraceteres ai mano
+                    </span>
                 </div>
             </div>
 
@@ -48,9 +51,8 @@
                            required
                            size="50"
                            minlength="5"
-                           [(ngModel)]="event.description"
-                           name="eventDescription"
-                           #eventTitle="ngModel">
+                           formControlName="description"
+                           name="eventDescription">
                 </div>
             </div>
 
@@ -61,12 +63,9 @@
                            id="eventAddress"
                            type="text"
                            placeholder="Endereço do Capítulo, Loja, etc"
-                           required
-                           size="30"
-                           minlength="5"
-                           [(ngModel)]="event.address"
+                           size="50"
                            name="eventAddress"
-                           #eventTitle="ngModel">
+                           formControlName="address">
                 </div>
             </div>
 
@@ -77,12 +76,9 @@
                            id="eventDate"
                            type="text"
                            placeholder="Data da cerimônia, exemplo: 30/08/2020"
-                           required
-                           size="30"
-                           minlength="5"
-                           [(ngModel)]="event.dateTime"
-                           name="eventDateTime"
-                           #eventTitle="ngModel">
+                           size="50"
+                           formControlName="date"
+                           name="eventDate">
                 </div>
             </div>
 
@@ -93,18 +89,35 @@
                            id="eventTime"
                            type="text"
                            placeholder="Horário da cerimônia, exemplo: 14:00"
-                           required
                            size="35"
                            minlength="5"
-                           [(ngModel)]="event.time"
-                           [disabled]="!loggedUser.master"
-                           name="eventTime"
-                           #eventTitle="ngModel">
+                           formControlName="time"
+                           name="eventTime">
                 </div>
             </div>
 
+            <div class="form-group row" *ngIf="loggedUser.master">
+                <label class="col-md-2 col-form-label" for="published">Publicado</label>
+                <div>
+                    <mat-checkbox class="example-margin"
+                                  id="published"
+                                  name="published"
+                                  formControlName="published">
+                    </mat-checkbox>
+
+<!--                    <input class="form-control"-->
+<!--                           id="published"-->
+<!--                           type="checkbox"-->
+<!--                           [value]="event.published"-->
+<!--                           required-->
+<!--                           [(ngModel)]="event.published"-->
+<!--                           name="published"-->
+<!--                           #eventTitle="ngModel">-->
+                </div>
+            </div>
         </fieldset>
     </form>
+
 
     <button *ngIf="loggedUser.master"
             class="btn btn-primary mr-3"
@@ -152,3 +165,11 @@
         </table>
     </div>
 </div>
+
+<div>
+    Dirty: {{eventForm.dirty}} <br>
+    Touched: {{eventForm.touched}} <br>
+    Valid: {{eventForm.valid}} <br>
+    Value: {{eventForm.value | json}}
+</div>
+

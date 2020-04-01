@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventModel} from '../../model/eventModel';
 import {DateFormatter} from '../../services/dateFormatter';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {UserInterface} from '../../model/userModel';
 import {EventServiceService} from '../../services/event-service.service';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
@@ -16,7 +16,8 @@ export class ViewEventComponent implements OnInit {
 
     event: EventModel;
     loggedUser: UserInterface;
-    eventForm: NgForm;
+    eventForm: FormGroup;
+
 
     errorMessage: string;
     successMessage: string;
@@ -34,10 +35,20 @@ export class ViewEventComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private eventService: EventServiceService,
-                private dateFormater: DateFormatter) {
+                private dateFormater: DateFormatter,
+                private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
+        this.eventForm = this.formBuilder.group({
+            title: ['', [Validators.required, Validators.minLength(3)]],
+            description: [''],
+            address: [''],
+            published: [''],
+            date: ['', Validators.required],
+            time: ['', Validators.required]
+        });
+
         this.route.data.subscribe(
             data => {
                 const resolvedData = data;
