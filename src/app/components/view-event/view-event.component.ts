@@ -41,9 +41,9 @@ export class ViewEventComponent implements OnInit {
     ngOnInit() {
         this.eventForm = this.formBuilder.group({
             title: ['', [Validators.required, Validators.minLength(3)]],
-            description: [''],
-            address: [''],
-            published: [''],
+            description: ['', Validators.required],
+            address: ['', Validators.required],
+            published: ['', Validators.required],
             date: ['', Validators.required],
             time: ['', Validators.required]
         });
