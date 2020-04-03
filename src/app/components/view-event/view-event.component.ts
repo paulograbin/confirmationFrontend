@@ -5,7 +5,6 @@ import {DateFormatter} from '../../services/dateFormatter';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {UserInterface} from '../../model/userModel';
 import {EventServiceService} from '../../services/event-service.service';
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 @Component({
     selector: 'app-view-event',

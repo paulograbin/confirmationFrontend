@@ -19,7 +19,7 @@
     <div class='alert alert-success' *ngIf="eventCreated">{{successMessage}}</div>
     <div class="alert alert-danger" *ngIf="invalidCreationRequest">{{errorMessage}}</div>
 
-    <form novalidate #eventForm="ngForm">
+    <form novalidate [formGroup]="eventForm">
         <fieldset>
             <!--            <legend>Opa</legend>-->
             <div class="form-group row">
@@ -36,7 +36,12 @@
                                                        eventForm.get('title').dirty) &&
                                                        !eventForm.get('title').valid }"/>
                     <span class="invalid-feedback">
-                        Pelo menos 3 caraceteres ai mano
+                        <span *ngIf="eventForm.get('title').errors?.required">
+                            Título é um campo obrigatório.
+                        </span>
+                        <span *ngIf="eventForm.get('title').errors?.minlength">
+                            Pelo menos 3 caraceteres ai mano
+                        </span>
                     </span>
                 </div>
             </div>
@@ -48,11 +53,17 @@
                            id="eventDescription"
                            type="text"
                            placeholder="Descrição, ordem do dia, etc"
-                           required
                            size="50"
-                           minlength="5"
                            formControlName="description"
-                           name="eventDescription">
+                           name="eventDescription"
+                           [ngClass]="{'is-invalid': (eventForm.get('description').touched ||
+                                                       eventForm.get('description').dirty) &&
+                                                       !eventForm.get('description').valid }">
+                    <span class="invalid-feedback">
+                        <span *ngIf="eventForm.get('description').errors?.required">
+                            Descrição é um campo obrigatório.
+                        </span>
+                    </span>
                 </div>
             </div>
 
@@ -65,7 +76,15 @@
                            placeholder="Endereço do Capítulo, Loja, etc"
                            size="50"
                            name="eventAddress"
-                           formControlName="address">
+                           formControlName="address"
+                           [ngClass]="{'is-invalid': (eventForm.get('address').touched ||
+                                                       eventForm.get('address').dirty) &&
+                                                       !eventForm.get('address').valid }">
+                    <span class="invalid-feedback">
+                        <span *ngIf="eventForm.get('address').errors?.required">
+                            Endereço é um campo obrigatório.
+                        </span>
+                    </span>
                 </div>
             </div>
 
@@ -78,7 +97,15 @@
                            placeholder="Data da cerimônia, exemplo: 30/08/2020"
                            size="50"
                            formControlName="date"
-                           name="eventDate">
+                           name="eventDate"
+                           [ngClass]="{'is-invalid': (eventForm.get('date').touched ||
+                                                       eventForm.get('date').dirty) &&
+                                                       !eventForm.get('date').valid }">
+                    <span class="invalid-feedback">
+                        <span *ngIf="eventForm.get('date').errors?.required">
+                            Data é um campo obrigatório.
+                        </span>
+                    </span>
                 </div>
             </div>
 
@@ -92,7 +119,15 @@
                            size="35"
                            minlength="5"
                            formControlName="time"
-                           name="eventTime">
+                           name="eventTime"
+                           [ngClass]="{'is-invalid': (eventForm.get('time').touched ||
+                                                       eventForm.get('time').dirty) &&
+                                                       !eventForm.get('time').valid }">
+                    <span class="invalid-feedback">
+                        <span *ngIf="eventForm.get('time').errors?.required">
+                            Horário é um campo obrigatório.
+                        </span>
+                    </span>
                 </div>
             </div>
 
