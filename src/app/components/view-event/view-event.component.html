@@ -5,19 +5,8 @@
         </header>
     </div>
 
-    <div>
-<!--        <mat-form-field>-->
-        <input [matDatepicker]="myDatepicker" [value]="event.dateTime"
-               (dateInput)="addEvent('input', $event)"
-               (dateChange)="addEvent('change', $event)"
-        >
-        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-        <mat-datepicker #myDatepicker></mat-datepicker>
-<!--        </mat-form-field>-->
-    </div>
-
-    <div class='alert alert-success' *ngIf="eventCreated">{{successMessage}}</div>
-    <div class="alert alert-danger" *ngIf="invalidCreationRequest">{{errorMessage}}</div>
+    <div class='alert alert-success' *ngIf="eventCreated">{{successMessage}}<a href="event/view/{{event.id}}">dasdasdas</a></div>
+    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
 
     <form novalidate [formGroup]="eventForm">
         <fieldset>
