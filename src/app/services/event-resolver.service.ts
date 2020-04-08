@@ -4,15 +4,13 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {EventResolved} from '../model/eventModel';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
-import {log} from 'util';
 
 @Injectable({
     providedIn: 'root'
 })
 export class EventResolverService implements Resolve<EventResolved> {
 
-    constructor(private eventService: EventServiceService) {
-    }
+    constructor(private eventService: EventServiceService) {}
 
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<EventResolved> {
@@ -24,7 +22,8 @@ export class EventResolverService implements Resolve<EventResolved> {
                 // tap(x => console.log(x)),
                 map(event => ({ event })),
                 catchError(error => {
-                    return of({event: null, error: 'carai'});
+                    console.error(`Resolving event failed`, error.error);
+                    return of({event: null, error: error.error});
                 })
             );
     }
