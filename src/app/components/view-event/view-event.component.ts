@@ -72,7 +72,7 @@ export class ViewEventComponent implements OnInit {
     }
 
     displayEvent(event: EventModel) {
-        console.log('Displaying ', event);
+        console.log('Displaying', event);
 
         this.eventForm.patchValue({
             title: this.event.title,
@@ -85,47 +85,84 @@ export class ViewEventComponent implements OnInit {
     }
 
     saveEvent(): void {
-        console.log('save');
-        this.invalidCreationRequest = false;
-        this.eventCreated = false;
+        this.successMessage = '';
+        this.errorMessage = '';
 
-        if (this.isValid()) {
-            if (this.event.id === 0) {
-                console.log('cerate');
+        if (this.eventForm.valid) {
+            if (this.eventForm.dirty) {
 
-                const eventToCreate = {
-                    title: this.event.title,
-                    description: this.event.description,
-                    address: this.event.address,
-                    dateTime: this.event.dateTime,
-                };
-                console.log('event to create', eventToCreate);
-
-                this.eventService.createEvent(eventToCreate).subscribe(
-                    data => {
-                        console.log('CRIOU', data);
-                        this.successMessage = 'Evento criado!';
-                        this.eventCreated = true;
-                    },
-                    error => {
-                        console.log('Create event errored!');
-                        console.log('err', error);
-
-                        this.invalidCreationRequest = true;
-                        this.errorMessage = error;
-                    },
-                    () => {}
-                );
+                if (this.event.id === 0) {
+                    this.requestEventCreationToBackend();
+                } else {
+                    this.requestEventUpdateToBackend();
+                }
             } else {
-                this.event.dateTime = null;
-                this.event.creationDate = null;
-                console.log('update', this.event);
-                this.eventService.updateEvent(this.event).subscribe();
+                console.log('Nothing changed, just return');
+                this.onSaveComplete();
             }
         } else {
-            console.error('Validation failed');
+            this.errorMessage = 'Verifique os dados informados';
         }
+    }
 
+    private requestEventUpdateToBackend() {
+        console.log('Updating event');
+
+        const eventToUpdate = {
+            id: this.event.id,
+            title: this.eventForm.get('title').value,
+            description: this.eventForm.get('description').value,
+            address: this.eventForm.get('address').value,
+            date: this.eventForm.get('date').value.split('-').join('/'),
+            time: this.eventForm.get('time').value,
+            published: this.eventForm.get('published').value
+        };
+
+        console.log('update', eventToUpdate);
+        this.eventService.updateEvent(eventToUpdate).subscribe(
+            data => {
+                this.event = data;
+                console.log('event updated ', this.event);
+                this.onSaveComplete();
+            }, error => {
+                console.log('Update event errored!');
+                console.log('err', error);
+
+            }
+        );
+    }
+
+    private requestEventCreationToBackend() {
+        console.log('cerate');
+
+        const eventToCreate = {
+            title: this.eventForm.get('title').value,
+            description: this.eventForm.get('description').value,
+            address: this.eventForm.get('address').value,
+            date: this.eventForm.get('date').value.split('-').join('/'),
+            time: this.eventForm.get('time').value,
+            published: this.eventForm.get('published').value
+        };
+        console.log('event to create', eventToCreate);
+
+        this.eventService.createEvent(eventToCreate).subscribe(
+            data => {
+                console.log('Event creation returned successful', data);
+                this.successMessage = 'Evento criado! Clique para vê-lo';
+                this.event = data;
+                this.eventCreated = true;
+                this.onSaveComplete();
+            },
+            error => {
+                console.log('Create event errored!');
+                console.log('err', error);
+
+                this.invalidCreationRequest = true;
+                this.errorMessage = error;
+            },
+            () => {
+            }
+        );
     }
 
     isValid(path?: string): boolean {
@@ -144,4 +181,9 @@ export class ViewEventComponent implements OnInit {
         }
     }
 
+    private onSaveComplete() {
+        console.log('On Save Complete');
+        this.eventForm.reset();
+        this.router.navigate(['/']);
+    }
 }
