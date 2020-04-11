@@ -17,19 +17,12 @@ export class ViewEventComponent implements OnInit {
     loggedUser: UserInterface;
     eventForm: FormGroup;
 
+    // TODO impedir usuario de navegar pelos eventos pela URL
 
-    errorMessage: string;
-    successMessage: string;
+    errorMessage = '';
+    successMessage = '';
     invalidCreationRequest = false;
     eventCreated = false;
-
-    events: string[] = [];
-
-    addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-        console.log('log', `${event.value}`);
-        this.event.dateTime = event.value;
-        this.events.push(`${type}: ${event.value}`);
-    }
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -40,8 +33,8 @@ export class ViewEventComponent implements OnInit {
 
     ngOnInit() {
         this.eventForm = this.formBuilder.group({
-            title: ['', [Validators.required, Validators.minLength(3)]],
-            description: ['', Validators.required],
+            title: ['', [Validators.required, Validators.minLength(5)]],
+            description: ['', [Validators.required, Validators.minLength(5)]],
             address: ['', Validators.required],
             published: ['', Validators.required],
             date: ['', Validators.required],
@@ -51,6 +44,8 @@ export class ViewEventComponent implements OnInit {
         this.route.data.subscribe(
             data => {
                 const resolvedData = data;
+
+                const error = resolvedData.resolvedEvent.error;
 
                 this.event = resolvedData.resolvedEvent.event;
                 this.displayEvent(resolvedData.resolvedEvent.event);
