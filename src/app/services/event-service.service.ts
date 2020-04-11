@@ -7,96 +7,97 @@ import {Observable, of, throwError} from 'rxjs';
 import {error, log} from 'util';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class EventServiceService {
 
-    updateEvent(event: EventModel) {
-      return this.http.put<EventInterface>(`/server/events/${event.id}`, event)
-          .pipe(
-              tap(data => console.log('updated event ', data))
-          );
+    constructor(private http: HttpClient) {
     }
 
-  createEvent(event) {
+    updateEvent(event) {
+        return this.http.put<EventInterface>(`/server/events/${event.id}`, event)
+            .pipe(
+                tap(data => console.log('Event Service: Event updated in the Backend ', data))
+            );
+    }
+
+    createEvent(event) {
         return this.http.post<EventInterface>('/server/events', event)
             .pipe(
-                tap(data => console.log('created event ', data)),
+                tap(data => console.log('Event Service: Event created in the Backend ', data)),
                 catchError(this.handleError)
             );
     }
 
-  deleteEvent(id: number) {
-    return this.http.delete(`/server/events/${id}`);
-  }
-
-  constructor(private http: HttpClient) {
-  }
-
-  getAllEvents(): Observable<EventModel[]> {
-    return this.http.get<EventModel[]>('/server/events');
-  }
-
-  getEvent(id: number): Observable<EventInterface> {
-    if (id === 0) {
-      return of(this.createNullEvent());
+    deleteEvent(id: number) {
+        return this.http.delete(`/server/events/${id}`);
     }
 
-    return this.http.get<EventInterface>('/server/events/' + id)
-        .pipe(
-            // tap(data => console.log('getEvent: ' + JSON.stringify(data))),
-            // tap(data => console.log('getEvent: ' + data)),
-            catchError(this.handleError)
-        );
-  }
-
-  private createNullEvent(): EventInterface {
-    console.log('Return null event');
-    return {
-      id: 0,
-      title: null,
-      address: null,
-      creatorId: 0,
-      description: null,
-      creationDate: null,
-      dateTime: null,
-      participants: null,
-      translatedDateTime: null
-    };
-  }
-
-
-  private handleError(err) {
-    // console.log('HANDLER ERROR!!!', err);
-
-    // in a real world app, we may send the server to some remote logging infrastructure
-    // instead of just logging it to the console
-    let errorMessage: string;
-
-    if (err.error instanceof ErrorEvent) {
-      errorMessage = `An error occurred: ${err.message}`;
-    } else {
-      errorMessage = `Backend returned code ${err.status}: ${err.error.message}`;
-      console.log('else', errorMessage);
+    getAllEvents(): Observable<EventModel[]> {
+        return this.http.get<EventModel[]>('/server/events');
     }
 
-    console.error('error', errorMessage);
-    return throwError(errorMessage);
-  }
+    getEvent(id: number): Observable<EventInterface> {
+        if (id === 0) {
+            return of(this.createNullEvent());
+        }
 
-  getUserInvitations(id: number) {
-    return this.http.get<ParticipationModel[]>(`/server/events/invitations/${id}`);
-  }
+        return this.http.get<EventInterface>('/server/events/' + id)
+            .pipe(
+                // tap(data => console.log('getEvent: ' + JSON.stringify(data))),
+                // tap(data => console.log('getEvent: ' + data)),
+                // catchError(this.handleError)
+            );
+    }
 
-  confirmPresence(eventId: number, userId: number) {
-    return this.http.post(`/server/event/${eventId}/confirm/${userId}`, null);
-  }
+    private createNullEvent(): EventInterface {
+        console.log('Return null event');
+        return {
+            id: 0,
+            title: null,
+            address: null,
+            creatorId: 0,
+            published: false,
+            description: null,
+            creationDate: null,
+            date: null,
+            time: null,
+            participants: null,
+        };
+    }
 
-  declinePresence(eventId: number, userId: number) {
-    return this.http.post(`/server/event/${eventId}/decline/${userId}`, null);
-  }
 
-  getEventsCreatedByUser(userId: number) {
-    return this.http.get<EventModel[]>(`/server/events/createdBy/${userId}`);
-  }
+    private handleError(err) {
+        console.log('HANDLER ERROR!!!', err);
+
+        // in a real world app, we may send the server to some remote logging infrastructure
+        // instead of just logging it to the console
+        let errorMessage: string;
+
+        if (err.error instanceof ErrorEvent) {
+            errorMessage = `An error occurred: ${err.message}`;
+        } else {
+            errorMessage = `Erro ${err.status}: ${err.error.message}`;
+            console.log('else', errorMessage);
+        }
+
+        console.error('error', errorMessage);
+        return throwError(errorMessage);
+    }
+
+    getUserInvitations(id: number) {
+        return this.http.get<ParticipationModel[]>(`/server/events/invitations/${id}`);
+    }
+
+    confirmPresence(eventId: number, userId: number) {
+        return this.http.post(`/server/event/${eventId}/confirm/${userId}`, null);
+    }
+
+    declinePresence(eventId: number, userId: number) {
+        return this.http.post(`/server/event/${eventId}/decline/${userId}`, null);
+    }
+
+    getEventsCreatedByUser(userId: number) {
+        return this.http.get<EventModel[]>(`/server/events/createdBy/${userId}`);
+    }
 }
