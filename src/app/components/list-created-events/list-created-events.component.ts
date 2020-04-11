@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EventServiceService} from '../../services/event-service.service';
 import {UserService} from '../../services/user.service';
-import {UserInterface, UserModel} from '../../model/userModel';
+import {UserInterface} from '../../model/userModel';
 import {EventModel} from '../../model/eventModel';
 import {ActivatedRoute} from '@angular/router';
 
@@ -23,29 +23,27 @@ export class ListCreatedEventsComponent implements OnInit {
     ngOnInit() {
         this.route.data.subscribe(
             data => {
-                const paramName = 'loggedUser';
-                const resolvedData = data[paramName];
-
-                this.loggedUser = resolvedData;
+                this.loggedUser = data.loggedUser;
             },
             err => console.error(err)
         );
 
-        console.log(this.loggedUser);
+        console.log('found logged user', this.loggedUser);
 
         this.fetchEventsCreatedByUser(Number(this.loggedUser.id));
     }
 
     private fetchEventsCreatedByUser(id: number) {
-        this.eventService.getEventsCreatedByUser(id).subscribe(
-            data => {
-                this.events = data;
-                console.log(this.events);
-            },
-            err => console.error(err),
-            () => {
+        this.eventService.getEventsCreatedByUser(id)
+            .subscribe(
+                data => {
+                    this.events = data;
+                    console.log('events loaded', this.events);
+                },
+                err => console.error(err),
+                () => {
 
-            }
-        );
+                }
+            );
     }
 }

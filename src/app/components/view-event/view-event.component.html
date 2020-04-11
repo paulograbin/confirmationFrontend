@@ -103,7 +103,7 @@
                 <div>
                     <input class="form-control"
                            id="eventTime"
-                           type="text"
+                           type="time"
                            placeholder="Horário da cerimônia, exemplo: 14:00"
                            size="35"
                            minlength="5"
@@ -174,7 +174,7 @@
             <tr *ngFor="let participant of event.participants">
                 <td>{{participant.user.firstName}} {{participant.user.lastName}}</td>
                 <td>{{participant.status}}</td>
-                <!--            <td>{{participant.confirmationDate}}</td>-->
+                <!--                            <td>{{participant.confirmationDate}}</td>-->
             </tr>
             </tbody>
         </table>
