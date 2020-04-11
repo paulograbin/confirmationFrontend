@@ -15,8 +15,9 @@
                 <a [routerLink]="['/event/view', participation.event.id]">
                     <h4 class="post-stub-title">{{participation.event.id}}</h4> -
                     <h4 class="post-stub-title">{{participation.event.title}} </h4>
-                    <time class="post-stub-date">Ocorrerá em {{participation.event.dateTime}}</time>
-                    <time class="post-stub-date">Ocorrerá em {{participation.event.dateTime | date: "EEEE, dd MMMM yy"}}</time>
+<!--                    <time class="post-stub-date">Ocorrerá em {{participation.event.dateTime}}</time>-->
+<!--                    <time class="post-stub-date">Ocorrerá em {{participation.event.dateTime | date: "EEEE, dd MMMM yy"}}</time>-->
+                    <time class="post-stub-date">Ocorrerá em {{participation.event.date}}, as {{participation.event.time}}h</time>
                 </a>
                 <div>
                     <button *ngIf="participation.status == 'INVITED'" class="replyButton notDecided" type="button" (click)="confirmPresenceInEvent(participation.event.id)">Irei!</button>
@@ -31,5 +32,9 @@
             </div>
         </li>
     </ul>
+
+    <div *ngIf="participations.length == 0">
+        <h1>O Mestre Conselheiro não criou cerimônias, ou elas não estão publicadas.</h1>
+    </div>
 
 </div>
