@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 
 @Injectable()
@@ -11,8 +12,10 @@ export class AuthService {
                 private http: HttpClient) {
     }
 
+    backendUrl = environment.localApiAddress;
+
     login(loginForm) {
-        return this.http.post<any>(`/server/api/auth/authenticate`, loginForm)
+        return this.http.post<any>(`${this.backendUrl}/api/auth/authenticate`, loginForm)
             .pipe(
                 map(
                     data => {
