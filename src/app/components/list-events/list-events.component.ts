@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {EventServiceService} from '../../services/event-service.service';
-import {UserModel} from '../../model/userModel';
 import {UserService} from '../../services/user.service';
-import {DateFormatter} from '../../services/dateFormatter';
 import {ParticipationModel} from '../../model/participationModel';
 import {ActivatedRoute} from '@angular/router';
+import {UserInterface} from '../../model/userModel';
 
 @Component({
     selector: 'app-list-events',
@@ -14,7 +13,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ListEventsComponent implements OnInit {
 
     participations: ParticipationModel[];
-    loggedUser: UserModel;
+    loggedUser: UserInterface;
 
     confirmationMessage = '';
     confirmed = false;

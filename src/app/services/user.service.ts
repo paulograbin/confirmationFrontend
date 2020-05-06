@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {UserInterface, UserModel} from '../model/userModel';
+import {UserInterface} from '../model/userModel';
 import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 

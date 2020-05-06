@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {UserService} from '../../services/user.service';
-import {UserModel} from '../../model/userModel';
+import {UserInterface} from '../../model/userModel';
 
 @Component({
   selector: 'app-view-registration',
@@ -10,7 +10,7 @@ import {UserModel} from '../../model/userModel';
 })
 export class ViewUserComponent implements OnInit {
 
-  user: UserModel;
+  user: UserInterface;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService) { }
