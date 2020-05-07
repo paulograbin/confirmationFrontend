@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserInterface} from '../model/userModel';
 import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,8 +18,11 @@ export class UserService {
     constructor(private http: HttpClient) {
     }
 
+    backendUrl = environment.localApiAddress;
+    userServiceUrl = this.backendUrl + '/users';
+
     fetchDetailsAboutLoggedUser(): Observable<UserInterface> {
-        return this.http.get<UserInterface>('/server/users/me')
+        return this.http.get<UserInterface>(`${this.userServiceUrl}/me`)
             .pipe(
                 // map(user => { this.loggedUser = user; }),
                 // tap(data => console.log(JSON.stringify(data))),
@@ -27,31 +31,31 @@ export class UserService {
             );
     }
 
-    getAllUsers() {
+    getAllUsers(): Observable<UserInterface[]> {
         console.log('get all users from server');
-        return this.http.get<UserInterface[]>('/server/users');
+        return this.http.get<UserInterface[]>(`${this.userServiceUrl}`);
     }
 
-    getUser(id: number) {
-        return this.http.get<UserModel>('/server/users/' + id);
+    getUser(id: number): Observable<UserInterface> {
+        return this.http.get<UserInterface>(`${this.userServiceUrl}/${id}`);
     }
 
     createUser(user) {
         const body = JSON.stringify(user);
 
-        return this.http.post('/server/users', body);
+        return this.http.post(`${this.userServiceUrl}`, body);
     }
 
     inactivateUser(id: number) {
         console.log('Inactivating user...');
 
-        return this.http.delete('/server/users/' + id);
+        return this.http.delete(`${this.userServiceUrl}/${id}`);
     }
 
     activate(id: number) {
         console.log('Activating user...');
 
-        return this.http.put('/server/users/' + id + '/activate', null);
+        return this.http.put(`${this.userServiceUrl}/${id}/activate`, null);
     }
 
     private handleError(err) {
