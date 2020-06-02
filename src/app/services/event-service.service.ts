@@ -5,6 +5,7 @@ import {ParticipationModel} from '../model/participationModel';
 import {catchError, tap} from 'rxjs/operators';
 import {Observable, of, throwError} from 'rxjs';
 import {error, log} from 'util';
+import {environment} from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -14,15 +15,18 @@ export class EventServiceService {
     constructor(private http: HttpClient) {
     }
 
+    backendUrl = environment.localApiAddress;
+    eventServiceUrl = this.backendUrl + '/events';
+
     updateEvent(event) {
-        return this.http.put<EventInterface>(`/server/events/${event.id}`, event)
+        return this.http.put<EventInterface>(`${this.eventServiceUrl}/${event.id}`, event)
             .pipe(
                 tap(data => console.log('Event Service: Event updated in the Backend ', data))
             );
     }
 
-    createEvent(event) {
-        return this.http.post<EventInterface>('/server/events', event)
+    createEvent(event): Observable<EventInterface> {
+        return this.http.post<EventInterface>(`${this.eventServiceUrl}`, event)
             .pipe(
                 tap(data => console.log('Event Service: Event created in the Backend ', data)),
                 catchError(this.handleError)
@@ -30,11 +34,11 @@ export class EventServiceService {
     }
 
     deleteEvent(id: number) {
-        return this.http.delete(`/server/events/${id}`);
+        return this.http.delete(`${this.eventServiceUrl}/${id}`);
     }
 
     getAllEvents(): Observable<EventModel[]> {
-        return this.http.get<EventModel[]>('/server/events');
+        return this.http.get<EventModel[]>(`${this.eventServiceUrl}`);
     }
 
     getEvent(id: number): Observable<EventInterface> {
@@ -42,7 +46,7 @@ export class EventServiceService {
             return of(this.createNullEvent());
         }
 
-        return this.http.get<EventInterface>('/server/events/' + id)
+        return this.http.get<EventInterface>(`${this.eventServiceUrl}/${id}`)
             .pipe(
                 // tap(data => console.log('getEvent: ' + JSON.stringify(data))),
                 // tap(data => console.log('getEvent: ' + data)),
@@ -86,18 +90,18 @@ export class EventServiceService {
     }
 
     getUserInvitations(id: number) {
-        return this.http.get<ParticipationModel[]>(`/server/events/invitations/${id}`);
+        return this.http.get<ParticipationModel[]>(`${this.eventServiceUrl}/invitations/${id}`);
     }
 
     confirmPresence(eventId: number, userId: number) {
-        return this.http.post(`/server/event/${eventId}/confirm/${userId}`, null);
+        return this.http.post(`${this.eventServiceUrl}/${eventId}/confirm/${userId}`, null);
     }
 
     declinePresence(eventId: number, userId: number) {
-        return this.http.post(`/server/event/${eventId}/decline/${userId}`, null);
+        return this.http.post(`${this.eventServiceUrl}/${eventId}/decline/${userId}`, null);
     }
 
     getEventsCreatedByUser(userId: number) {
-        return this.http.get<EventModel[]>(`/server/events/createdBy/${userId}`);
+        return this.http.get<EventModel[]>(`${this.eventServiceUrl}/createdBy/${userId}`);
     }
 }

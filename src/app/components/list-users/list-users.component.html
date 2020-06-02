@@ -21,7 +21,7 @@
             <td>{{user.modificationDate }}</td>
             <td>{{user.active}}</td>
             <td>
-                <button type="button" class="btn" [routerLink]="['/user/view', user.id]">View details</button>
+                <button type="button" class="btn btn-primary" [routerLink]="['/user/view', user.id]">View details</button>
                 <!--        <button type="button" class="btn btn-warning" [routerLink]="['/user/view', user.id]">Lock</button>-->
                 <button *ngIf="user.active" type="button" class="btn btn-danger" (click)="inactivate(user.id)">
                     Delete

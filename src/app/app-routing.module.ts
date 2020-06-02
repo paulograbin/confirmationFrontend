@@ -63,7 +63,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: ListUsersComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    resolve: {
+      loggedUser: LoggedUserResolverService
+    }
   }
 ];
 
