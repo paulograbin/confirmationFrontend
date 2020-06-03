@@ -1,15 +1,11 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngIf="authService.isAuthenticated()">
-        <div>
-            <a href="localhost:4200">Confirmation</a>
-        </div>
-
         <ul class="navbar-nav">
-            <li><a routerLink="/" class="nav-link">Home</a></li>
-            <li><a routerLink="/users" class="nav-link">Users</a></li>
+            <li><a routerLink="/" class="nav-link">Cerimônias</a></li>
+<!--            <li><a routerLink="/users" class="nav-link">Users</a></li>-->
 <!--            <li><a *ngIf="loggedUser.master" routerLink="/users" class="nav-link">Users</a></li>-->
-            <li><a routerLink="/events" class="nav-link">Meus convites</a></li>
-            <li><a routerLink="/createdEvents" class="nav-link">Minhas cerimônias</a></li>
+<!--            <li><a routerLink="/events" class="nav-link">Meus convites</a></li>-->
+<!--            <li><a routerLink="/createdEvents" class="nav-link">Minhas cerimônias</a></li>-->
         </ul>
         <ul class="navbar-nav navbar-collapse justify-content-end">
             <li><a *ngIf="!authService.isAuthenticated()" routerLink="/login" class="nav-link">Login</a></li>
