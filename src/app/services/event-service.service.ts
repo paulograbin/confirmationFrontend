@@ -101,7 +101,7 @@ export class EventServiceService {
         return this.http.post(`${this.eventServiceUrl}/${eventId}/decline/${userId}`, null);
     }
 
-    getEventsCreatedByUser(userId: number) {
+    getEventsCreatedByUser(userId: number): Observable<EventInterface[]> {
         return this.http.get<EventModel[]>(`${this.eventServiceUrl}/createdBy/${userId}`);
     }
 }
