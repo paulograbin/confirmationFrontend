@@ -34,7 +34,7 @@ export class ListEventsComponent implements OnInit {
             err => console.error(err)
         );
 
-        // this.fetchEvents();
+        this.fetchEvents();
     }
 
     private fetchEvents() {
