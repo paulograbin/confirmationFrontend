@@ -18,8 +18,8 @@ export class UserService {
     constructor(private http: HttpClient) {
     }
 
-    backendUrl = environment.localApiAddress;
-    userServiceUrl = this.backendUrl + '/users';
+    private backendUrl = environment.localApiAddress;
+    private userServiceUrl = this.backendUrl + '/users';
 
     fetchDetailsAboutLoggedUser(): Observable<UserInterface> {
         return this.http.get<UserInterface>(`${this.userServiceUrl}/me`)
