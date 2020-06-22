@@ -122,7 +122,6 @@ export class ViewEventComponent implements OnInit {
             }, error => {
                 console.log('Update event errored!');
                 console.log('err', error);
-
             }
         );
     }

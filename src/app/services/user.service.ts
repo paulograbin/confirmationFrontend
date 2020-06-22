@@ -69,4 +69,8 @@ export class UserService {
         console.error(err);
         return throwError(errorMessage);
     }
+
+    updateUser(id: number, passwordUpdateRequest: any) {
+        return this.http.put(`${this.userServiceUrl}/${id}`, passwordUpdateRequest);
+    }
 }
