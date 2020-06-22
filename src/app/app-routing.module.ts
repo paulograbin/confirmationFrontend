@@ -12,6 +12,7 @@ import {ListCreatedEventsComponent} from './components/list-created-events/list-
 import {LoggedUserResolverService} from './services/logged-user-resolver.service';
 import {EventResolverService} from './services/event-resolver.service';
 import {EventRouterComponent} from './event-router/event-router.component';
+import {MeusdadosComponent} from './components/meusdados/meusdados.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,14 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent
+  },
+  {
+    path: 'meusdados',
+    component: MeusdadosComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      loggedUser: LoggedUserResolverService
+    }
   },
   {
     path: 'user/view/:id',
