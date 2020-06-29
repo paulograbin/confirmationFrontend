@@ -33,7 +33,7 @@
         </li>
     </ul>
 
-    <div *ngIf="participations.length == 0">
+    <div *ngIf="participations != null && participations.length == 0">
         <h1>O Mestre Conselheiro não criou cerimônias, ou elas não estão publicadas.</h1>
     </div>
 
