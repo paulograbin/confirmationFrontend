@@ -26,21 +26,19 @@ export class ListEventsComponent implements OnInit {
     ngOnInit() {
         this.route.data.subscribe(
             data => {
-                console.log(data);
-
-                this.participations = data.participations;
                 this.loggedUser = data.loggedUser;
+                this.participations = data.loggedUser.participations;
             },
             err => console.error(err)
         );
 
-        this.fetchEvents();
+        // this.fetchEvents();
     }
 
     private fetchEvents() {
         // console.log('fetch events', this.loggedUser);
 
-        console.log('Not MC');
+        // console.log('Not MC');
         this.fetchUserInvitations(this.loggedUser.id);
     }
 
