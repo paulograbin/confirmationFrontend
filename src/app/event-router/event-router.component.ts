@@ -18,7 +18,7 @@ export class EventRouterComponent implements OnInit {
     ngOnInit() {
         this.route.data.subscribe(
             data => {
-                // console.log('lets route!', data);
+                console.log('Send him to the proper destination!', data);
                 this.loggedUser = data.loggedUser;
 
                 if (this.loggedUser.master) {
@@ -26,7 +26,7 @@ export class EventRouterComponent implements OnInit {
                     this.router.navigate(['createdEvents']);
                 } else {
                     // console.log('Manda pros invited');
-                    this.router.navigate(['events']);
+                    this.router.navigate(['events'], {state: {id: 5}});
                 }
             }
         );
