@@ -50,8 +50,9 @@ export class MeusdadosComponent implements OnInit {
     }
 
     isValid() {
-        if (this.passwordForm.get('password').value === this.passwordForm.get('passwordConfirmation').value &&
-            this.passwordForm.get('password').value.length > 0) {
+        if (this.passwordForm.get('password').value != null &&
+            this.passwordForm.get('password').value.length > 0 &&
+            this.passwordForm.get('password').value === this.passwordForm.get('passwordConfirmation').value) {
             return true;
         }
 
