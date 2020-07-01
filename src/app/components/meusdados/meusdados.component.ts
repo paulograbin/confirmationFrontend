@@ -16,22 +16,14 @@ export class MeusdadosComponent implements OnInit {
 
     loggedUser: UserInterface;
     passwordForm: FormGroup;
-    private chapterList: Chapter[];
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private formBuilder: FormBuilder,
-                private userService: UserService,
-                private chapterService: ChapterService) {
+                private userService: UserService) {
     }
 
     ngOnInit() {
-        this.chapterService.fetchAllChapters().subscribe(
-            data => {
-                this.chapterList = data;
-            }
-        );
-
         this.route.data.subscribe(
             data => {
                 console.log(data);
