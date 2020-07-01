@@ -18,7 +18,7 @@ export class EventRouterComponent implements OnInit {
     ngOnInit() {
         this.route.data.subscribe(
             data => {
-                console.log('Send him to the proper destination!', data);
+                // console.log('Send him to the proper destination!', data);
                 this.loggedUser = data.loggedUser;
 
                 if (this.loggedUser.master) {

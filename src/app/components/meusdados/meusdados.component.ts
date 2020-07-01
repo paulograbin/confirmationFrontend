@@ -26,13 +26,13 @@ export class MeusdadosComponent implements OnInit {
     ngOnInit() {
         this.route.data.subscribe(
             data => {
-                console.log(data);
+                // console.log(data);
                 const resolvedData = data;
 
                 this.loggedUser = resolvedData.loggedUser;
-                console.log(this.loggedUser.chapter);
-                console.log(this.loggedUser.chapter.id);
-                console.log(this.loggedUser.chapter.name);
+                // console.log(this.loggedUser.chapter);
+                // console.log(this.loggedUser.chapter.id);
+                // console.log(this.loggedUser.chapter.name);
             });
 
         this.passwordForm = this.formBuilder.group({
