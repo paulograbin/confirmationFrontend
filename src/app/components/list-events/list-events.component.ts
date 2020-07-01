@@ -66,7 +66,7 @@ export class ListEventsComponent implements OnInit {
         );
     }
 
-    confirmPresenceInEvent(eventId: number) {
+    confirmPresenceInEvent(indice: number, eventId: number) {
         this.eventService.confirmPresence(eventId, Number(this.loggedUser.id))
             .subscribe(
                 data => {
@@ -82,14 +82,13 @@ export class ListEventsComponent implements OnInit {
                     setTimeout(function() {
                         this.confirmed = false;
                     }.bind(this), 3000);
-
-                    this.participations = null;
-                    this.fetchEvents();
                 }
             );
+
+        this.participations[indice].status = 'CONFIRMADO';
     }
 
-    declinePresenceInEvent(eventId: number) {
+    declinePresenceInEvent(indice: number, eventId: number) {
         this.eventService.declinePresence(eventId, Number(this.loggedUser.id))
             .subscribe(
                 data => {
@@ -98,7 +97,7 @@ export class ListEventsComponent implements OnInit {
                     this.confirmed = true;
                 },
                 error => {
-                    this.confirmationMessage = `Ocorreu algum problema ao rejeitar sua presença`;
+                    this.confirmationMessage = `Ocorreu algum problema ao recusar sua presença`;
                     this.confirmed = true;
                 },
                 () => {
@@ -106,10 +105,11 @@ export class ListEventsComponent implements OnInit {
                         this.confirmed = false;
                     }.bind(this), 1500);
 
-                    this.participations = null;
+                    console.log('refetch');
                     this.fetchEvents();
                 }
             );
 
+        this.participations[indice].status = 'RECUSADO';
     }
 }
