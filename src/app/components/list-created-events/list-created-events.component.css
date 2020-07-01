@@ -689,6 +689,10 @@ table tr {
     position: relative;
 }
 
+.not-published {
+    background-color: #999999;
+}
+
 .post-stub:first-child {
     padding-top: 0;
 }
