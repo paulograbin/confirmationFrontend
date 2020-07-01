@@ -4,6 +4,7 @@ import {UserService} from '../../services/user.service';
 import {ParticipationModel} from '../../model/participationModel';
 import {ActivatedRoute} from '@angular/router';
 import {UserInterface} from '../../model/userModel';
+import {MatSnackBarModule, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-list-events',
@@ -18,9 +19,21 @@ export class ListEventsComponent implements OnInit {
     confirmationMessage = '';
     confirmed = false;
 
+    horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+    verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
     constructor(private eventService: EventServiceService,
                 private userService: UserService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private snackBar: MatSnackBar) {
+    }
+
+    openSnackBar(mensagem: string) {
+        this.snackBar.open(mensagem, 'Fechar', {
+            duration: 1000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+        });
     }
 
     ngOnInit() {
@@ -46,10 +59,10 @@ export class ListEventsComponent implements OnInit {
         this.eventService.getUserInvitations(id).subscribe(
             data => {
                 this.participations = data;
-                console.log(this.participations);
+                // console.log(this.participations);
             },
             err => console.error(err),
-            () => console.log('events loaded')
+            // () => console.log('events loaded')
         );
     }
 
@@ -57,6 +70,7 @@ export class ListEventsComponent implements OnInit {
         this.eventService.confirmPresence(eventId, Number(this.loggedUser.id))
             .subscribe(
                 data => {
+                    this.openSnackBar(`Presença confirmada com sucesso`);
                     this.confirmationMessage = `Presença confirmada com sucesso`;
                     this.confirmed = true;
                 },
@@ -73,13 +87,13 @@ export class ListEventsComponent implements OnInit {
                     this.fetchEvents();
                 }
             );
-
     }
 
     declinePresenceInEvent(eventId: number) {
         this.eventService.declinePresence(eventId, Number(this.loggedUser.id))
             .subscribe(
                 data => {
+                    this.openSnackBar(`Presença declinada com sucesso`);
                     this.confirmationMessage = `Presença declinada com sucesso`;
                     this.confirmed = true;
                 },
