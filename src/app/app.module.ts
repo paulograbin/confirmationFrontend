@@ -21,6 +21,7 @@ import {ListCreatedEventsComponent} from './components/list-created-events/list-
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {ViewUserComponent} from './components/view-registration/view-user.component';
 import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import localePt from '@angular/common/locales/pt';
 
@@ -77,7 +78,8 @@ export const MY_FORMATS = {
         MatInputModule,
         MatFormFieldModule,
         MatCheckboxModule,
-        MatCardModule
+        MatCardModule,
+        MatSnackBarModule
     ],
     providers: [DateFormatter,
         {
