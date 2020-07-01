@@ -26,6 +26,8 @@
 
     <header class="post-header"></header>
 
+    <div *ngIf="confirmed" class='alert alert-success'>{{confirmationMessage}}</div>
+
     <div>
         <form novalidate [formGroup]="passwordForm">
             <fieldset>

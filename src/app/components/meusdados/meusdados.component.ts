@@ -17,6 +17,9 @@ export class MeusdadosComponent implements OnInit {
     loggedUser: UserInterface;
     passwordForm: FormGroup;
 
+    confirmed = false;
+    confirmationMessage = '';
+
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private formBuilder: FormBuilder,
@@ -52,23 +55,27 @@ export class MeusdadosComponent implements OnInit {
     }
 
     changePassword(): void {
-        console.log('Changing password');
-
         const passwordUpdateRequest = {
             firstName: this.loggedUser.firstName,
             lastName: this.loggedUser.lastName,
             password: this.passwordForm.get('password').value
         };
 
-        console.log('Request ', passwordUpdateRequest);
-
         this.userService.updateUser(this.loggedUser.id, passwordUpdateRequest).subscribe(
             data => {
-                console.log(data);
+                this.confirmed = true;
+                this.confirmationMessage = 'Senha alterada com sucesso!';
                 this.passwordForm.reset();
             },
             error => {
+                this.confirmed = true;
+                this.confirmationMessage = 'Ocorreu algum problema na troca da senha';
                 console.log('Ops não deu pra atualizar');
+            },
+            () => {
+                setTimeout(function() {
+                    this.confirmed = false;
+                }.bind(this), 3000);
             }
         );
     }
