@@ -2,10 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserInterface} from '../../model/userModel';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ChapterService} from '../../services/chapter.service';
-import {Chapter} from '../../model/chapterModel';
 import {UserService} from '../../services/user.service';
-import {log} from 'util';
 
 @Component({
     selector: 'app-meusdados',
@@ -56,27 +53,29 @@ export class MeusdadosComponent implements OnInit {
 
     changePassword(): void {
         const passwordUpdateRequest = {
+            id: this.loggedUser.id,
             firstName: this.loggedUser.firstName,
             lastName: this.loggedUser.lastName,
             password: this.passwordForm.get('password').value
         };
 
-        this.userService.updateUser(this.loggedUser.id, passwordUpdateRequest).subscribe(
-            data => {
-                this.confirmed = true;
-                this.confirmationMessage = 'Senha alterada com sucesso!';
-                this.passwordForm.reset();
-            },
-            error => {
-                this.confirmed = true;
-                this.confirmationMessage = 'Ocorreu algum problema na troca da senha';
-                console.log('Ops não deu pra atualizar');
-            },
-            () => {
-                setTimeout(function() {
-                    this.confirmed = false;
-                }.bind(this), 3000);
-            }
-        );
+        this.userService.updateUser(this.loggedUser.id, passwordUpdateRequest)
+            .subscribe(
+                data => {
+                    this.confirmed = true;
+                    this.confirmationMessage = 'Senha alterada com sucesso!';
+                    this.passwordForm.reset();
+                },
+                error => {
+                    this.confirmed = true;
+                    this.confirmationMessage = 'Ocorreu algum problema na troca da senha';
+                    console.log('Ops não deu pra atualizar');
+                },
+                () => {
+                    setTimeout(function() {
+                        this.confirmed = false;
+                    }.bind(this), 3000);
+                }
+            );
     }
 }
