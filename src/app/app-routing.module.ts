@@ -15,74 +15,75 @@ import {EventRouterComponent} from './event-router/event-router.component';
 import {MeusdadosComponent} from './components/meusdados/meusdados.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: EventRouterComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-      loggedUser: LoggedUserResolverService
+    {
+        path: '',
+        component: EventRouterComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            loggedUser: LoggedUserResolverService
+        }
+    },
+    {
+        path: 'events',
+        component: ListEventsComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            loggedUser: LoggedUserResolverService
+        }
+    },
+    {
+        path: 'createdEvents',
+        component: ListCreatedEventsComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            loggedUser: LoggedUserResolverService
+        }
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+        path: 'logout',
+        component: LogoutComponent
+    },
+    {
+        path: 'meusdados',
+        component: MeusdadosComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            loggedUser: LoggedUserResolverService
+        }
+    },
+    {
+        path: 'user/view/:id',
+        component: ViewUserComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'event/view/:id',
+        component: ViewEventComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            resolvedEvent: EventResolverService,
+            loggedUser: LoggedUserResolverService
+        }
+    },
+    {
+        path: 'users',
+        component: ListUsersComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            loggedUser: LoggedUserResolverService
+        }
     }
-  },
-  {
-    path: 'events',
-    component: ListEventsComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-      loggedUser: LoggedUserResolverService
-    }
-  },
-  {
-    path: 'createdEvents',
-    component: ListCreatedEventsComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-      loggedUser: LoggedUserResolverService
-    }
-},
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent
-  },
-  {
-    path: 'meusdados',
-    component: MeusdadosComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-      loggedUser: LoggedUserResolverService
-    }
-  },
-  {
-    path: 'user/view/:id',
-    component: ViewUserComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'event/view/:id',
-    component: ViewEventComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-      resolvedEvent: EventResolverService,
-      loggedUser: LoggedUserResolverService
-    }
-  },
-  {
-    path: 'users',
-    component: ListUsersComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-      loggedUser: LoggedUserResolverService
-    }
-  }
 ];
 
 // TODO: don't user access events created by other MC
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
