@@ -1,4 +1,5 @@
 import {ParticipationModel} from './participationModel';
+import {Chapter} from './chapterModel';
 
 
 export interface EventInterface {
@@ -13,6 +14,7 @@ export interface EventInterface {
     time: Date;
     creatorId: number;
     creationDate: Date;
+    chapter: Chapter;
 
 }
 
@@ -26,6 +28,7 @@ export class EventModel implements EventInterface {
         public published: boolean,
         public date: Date,
         public time: Date,
+        public chapter: Chapter,
         public creatorId: number,
         public creationDate: Date) {
     }

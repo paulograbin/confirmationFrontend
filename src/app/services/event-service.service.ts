@@ -60,6 +60,7 @@ export class EventServiceService {
             id: 0,
             title: null,
             address: null,
+            chapter: null,
             creatorId: 0,
             published: false,
             description: null,
