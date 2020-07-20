@@ -37,8 +37,8 @@ export class EventServiceService {
         return this.http.delete(`${this.eventServiceUrl}/${id}`);
     }
 
-    getAllEvents(): Observable<EventModel[]> {
-        return this.http.get<EventModel[]>(`${this.eventServiceUrl}`);
+    getAllEvents(): Observable<EventInterface[]> {
+        return this.http.get<EventInterface[]>(`${this.eventServiceUrl}`);
     }
 
     getEvent(id: number): Observable<EventInterface> {
