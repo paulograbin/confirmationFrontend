@@ -9,6 +9,7 @@ export interface UserInterface {
     chapter: Chapter;
     email: string;
     master: boolean;
+    active: boolean;
     creationDate: Date;
     modificationDate: Date;
     inactivatedIn: Date;
