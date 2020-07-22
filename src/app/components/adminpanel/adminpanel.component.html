@@ -1,1 +1,62 @@
-<p>adminpanel works!</p>
+<div class="scroll-sidebar">
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+        <ul id="sidebarnav">
+            <li> <a class="waves-effect waves-dark" href="dashboard" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
+            </li>
+            <li> <a class="waves-effect waves-dark" href="agency" aria-expanded="false"><i class="mdi mdi-factory"></i><span class="hide-menu">Agency</span></a>
+            </li>
+            <li> <a class="waves-effect waves-dark" href="bus" aria-expanded="false"><i class="mdi mdi-bus"></i><span class="hide-menu">Buses</span></a>
+            </li>
+            <li> <a class="waves-effect waves-dark" href="trip" aria-expanded="false"><i class="mdi mdi-road-variant"></i><span class="hide-menu">Trips</span></a>
+            </li>
+            <li> <a class="waves-effect waves-dark" href="profile" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+</div>
+<div class="container">
+    <thead>
+    <button (click)="toggleChapters()" [ngClass]="{'is-invalid': showChapters }" type="button">Show Chapters</button>
+    <button (click)="toggleEvents()" class="replyButton notDecided" type="button">Show Events</button>
+    <button (click)="toggleUsers()" class="replyButton notDecided" type="button">Show Users</button>
+    </thead>
+    <tbody>
+    <div *ngIf="showChapters">
+        <div class="row">
+            <h1> List all users </h1>
+        </div>
+        <table class="table">
+            <tr *ngFor="let chapter of chapters">
+                <td>{{chapter.id}}</td>
+                <td>{{chapter.name}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="showEvents">
+        <table class="table">
+            <tr *ngFor="let event of events">
+                <td>{{event.id}}</td>
+                <td>{{event.title}}</td>
+                <td>{{event.date}}</td>
+                <td>{{event.time}}</td>
+                <td>{{event.chapter.id}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="showUsers">
+        <table class="table">
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.active}}</td>
+                <td>{{user.master}}</td>
+                <td>{{user.chapter.id}}</td>
+            </tr>
+        </table>
+    </div>
+    </tbody>
+</div>
