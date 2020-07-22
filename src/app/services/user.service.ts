@@ -40,6 +40,11 @@ export class UserService {
         return this.http.get<UserInterface>(`${this.userServiceUrl}/${id}`);
     }
 
+    getCanAccessAdmin(): Observable<boolean> {
+        // console.log('check if user can access admin panel');
+        return this.http.get<boolean>(`${this.userServiceUrl}/panel`);
+    }
+
     createUser(user) {
         const body = JSON.stringify(user);
 
