@@ -15,6 +15,8 @@ export class ListCreatedEventsComponent implements OnInit {
     loggedUser: UserInterface;
     events: EventModel[];
 
+    loading = true;
+
     constructor(private userService: UserService,
                 private eventService: EventServiceService,
                 private route: ActivatedRoute) {
@@ -28,8 +30,6 @@ export class ListCreatedEventsComponent implements OnInit {
             err => console.error(err)
         );
 
-        console.log('found logged user', this.loggedUser);
-
         this.fetchEventsCreatedByUser(Number(this.loggedUser.id));
     }
 
@@ -38,12 +38,13 @@ export class ListCreatedEventsComponent implements OnInit {
             .subscribe(
                 data => {
                     this.events = data;
-                    console.log('events loaded', this.events);
+                    this.loading = false;
                 },
                 err => console.error(err),
                 () => {
-
+                    console.log(`${this.events.length} events loadded`);
                 }
             );
     }
+
 }
