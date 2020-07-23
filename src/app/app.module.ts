@@ -30,12 +30,11 @@ registerLocaleData(localePt, 'pt');
 // todo udpate angular https://www.infoq.com/news/2020/02/angular-9-ivy-rendering-engine/
 //  ?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global
 
-import {
-    DateAdapter,
-    MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatCardModule, MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule
-} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {registerLocaleData} from '@angular/common';
 import { EventRouterComponent } from './event-router/event-router.component';
 import { MeusdadosComponent } from './components/meusdados/meusdados.component';
