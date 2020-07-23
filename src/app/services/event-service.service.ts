@@ -4,7 +4,6 @@ import {EventInterface, EventModel} from '../model/eventModel';
 import {ParticipationModel} from '../model/participationModel';
 import {catchError, tap} from 'rxjs/operators';
 import {Observable, of, throwError} from 'rxjs';
-import {error, log} from 'util';
 import {environment} from '../../environments/environment';
 
 @Injectable({

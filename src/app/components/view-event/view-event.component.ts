@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventModel} from '../../model/eventModel';
 import {DateFormatter} from '../../services/dateFormatter';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserInterface} from '../../model/userModel';
 import {EventServiceService} from '../../services/event-service.service';
 

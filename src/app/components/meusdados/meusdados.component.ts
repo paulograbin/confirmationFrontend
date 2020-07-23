@@ -27,9 +27,7 @@ export class MeusdadosComponent implements OnInit {
         this.route.data.subscribe(
             data => {
                 // console.log(data);
-                const resolvedData = data;
-
-                this.loggedUser = resolvedData.loggedUser;
+                this.loggedUser = data.loggedUser;
                 // console.log(this.loggedUser.chapter);
                 // console.log(this.loggedUser.chapter.id);
                 // console.log(this.loggedUser.chapter.name);

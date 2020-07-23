@@ -4,7 +4,7 @@ import {UserService} from '../../services/user.service';
 import {ParticipationModel} from '../../model/participationModel';
 import {ActivatedRoute} from '@angular/router';
 import {UserInterface} from '../../model/userModel';
-import {MatSnackBarModule, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar} from '@angular/material';
+import {MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-list-events',

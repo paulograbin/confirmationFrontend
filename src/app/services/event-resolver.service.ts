@@ -3,7 +3,7 @@ import {EventServiceService} from './event-service.service';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {EventResolved} from '../model/eventModel';
 import {Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
