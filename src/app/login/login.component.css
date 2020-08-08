@@ -56,7 +56,7 @@ ul, li {
 /*---------------------------------------------*/
 input {
     outline: none;
-    border: none;
+    /*border: none;*/
 }
 
 textarea {
@@ -193,8 +193,6 @@ iframe {
     /*background: rgba(0,0,0,0.3);*/
 }
 
-
-
 /*==================================================================
 [ Form ]*/
 
@@ -206,7 +204,7 @@ iframe {
     display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
-    padding: 303px 65px 40px 65px;
+    padding: 200px 65px 40px 65px;
 }
 
 .login100-form-title {
@@ -230,13 +228,13 @@ iframe {
 .wrap-input100 {
     width: 100%;
     position: relative;
-    border: 1px solid #e6e6e6;
+    /*border: 1px solid #ec3636;*/
 }
 
 .rs1-wrap-input100,
 .rs2-wrap-input100 {
     width: 50%;
-    border-left: none;
+    /*border-left: none;*/
 }
 
 .input100 {
@@ -339,7 +337,9 @@ input.input100 {
     background: #333333;
 }
 
-
+div {
+    /*border-style: dotted;*/
+}
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
@@ -358,11 +358,24 @@ input.input100 {
 
 @media (max-width: 768px) {
     .login100-form {
+        padding-left: 15px;
+        padding-right: 15px;
         width: 100%;
     }
 
     .login100-more {
         width: 100%;
+    }
+
+    .rs1-wrap-input100,
+    .rs2-wrap-input100 {
+        width: 100%;
+    }
+
+    .login-input-label {
+        height: fit-content;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
 }
 
@@ -376,7 +389,14 @@ input.input100 {
     .rs1-wrap-input100,
     .rs2-wrap-input100 {
         width: 100%;
-        border-left: 1px solid #e6e6e6;
+        margin-bottom: 300px;
+        /*border-style: dotted;*/
+    }
+
+    .login-input-label {
+        height: fit-content;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
 }
 
@@ -466,6 +486,7 @@ input.input100 {
 */
 
 .m-b-20 {margin-bottom: 20px;}
+.m-b-30 {margin-bottom: 40px;}
 .m-l-r-auto {margin-left: auto;	margin-right: auto;}
 .m-l-auto {margin-left: auto;}
 .m-r-auto {margin-right: auto;}
