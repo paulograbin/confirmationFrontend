@@ -39,6 +39,7 @@ import {registerLocaleData} from '@angular/common';
 import { EventRouterComponent } from './event-router/event-router.component';
 import { MeusdadosComponent } from './components/meusdados/meusdados.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
+import { ViewChapterComponent } from './components/view-chapter/view-chapter.component';
 
 export const MY_FORMATS = {
     parse: {
@@ -66,7 +67,8 @@ export const MY_FORMATS = {
         ListCreatedEventsComponent,
         EventRouterComponent,
         MeusdadosComponent,
-        AdminpanelComponent
+        AdminpanelComponent,
+        ViewChapterComponent
     ],
     imports: [
         BrowserModule,
