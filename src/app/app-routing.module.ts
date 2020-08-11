@@ -14,6 +14,8 @@ import {EventResolverService} from './services/event-resolver.service';
 import {EventRouterComponent} from './event-router/event-router.component';
 import {MeusdadosComponent} from './components/meusdados/meusdados.component';
 import {AdminpanelComponent} from './components/adminpanel/adminpanel.component';
+import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
+import {ChapterResolverService} from './services/chapter-resolver.service';
 
 const routes: Routes = [
     {
@@ -75,6 +77,15 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         resolve: {
             resolvedEvent: EventResolverService,
+            loggedUser: LoggedUserResolverService
+        }
+    },
+    {
+        path: 'chapter/view/:id',
+        component: ViewChapterComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+            resolvedEvent: ChapterResolverService,
             loggedUser: LoggedUserResolverService
         }
     },
