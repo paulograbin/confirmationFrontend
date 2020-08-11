@@ -85,7 +85,7 @@ const routes: Routes = [
         component: ViewChapterComponent,
         canActivate: [AuthGuard],
         resolve: {
-            resolvedEvent: ChapterResolverService,
+            resolvedChapter: ChapterResolverService,
             loggedUser: LoggedUserResolverService
         }
     },

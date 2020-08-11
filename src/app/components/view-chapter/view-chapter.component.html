@@ -1,1 +1,17 @@
-<p>view-chapter works!</p>
+<div class="container">
+    <div>
+        <div class="form-group">
+            <label>Id</label>
+            <div class="form-control">{{chapter.id}}</div>
+        </div>
+        <div class="form-group">
+            <label>Nome</label>
+            <div class="form-control">{{chapter.name}}</div>
+        </div>
+        Membros
+
+        <tr *ngFor="let member of chapter.members">
+            <td>{{member.username}} </td>
+        </tr>
+    </div>
+</div>
