@@ -32,7 +32,7 @@ export class UserService {
     }
 
     getAllUsers(): Observable<UserInterface[]> {
-        console.log('get all users from server');
+        // console.log('get all users from server');
         return this.http.get<UserInterface[]>(`${this.userServiceUrl}`);
     }
 
@@ -40,7 +40,7 @@ export class UserService {
         return this.http.get<UserInterface>(`${this.userServiceUrl}/${id}`);
     }
 
-    getCanAccessAdmin(): Observable<boolean> {
+    getCanOpenPanel(): Observable<boolean> {
         // console.log('check if user can access admin panel');
         return this.http.get<boolean>(`${this.userServiceUrl}/panel`);
     }
@@ -52,13 +52,13 @@ export class UserService {
     }
 
     inactivateUser(id: number) {
-        console.log('Inactivating user...');
+        // console.log('Inactivating user...');
 
         return this.http.delete(`${this.userServiceUrl}/${id}`);
     }
 
     activate(id: number) {
-        console.log('Activating user...');
+        // console.log('Activating user...');
 
         return this.http.put(`${this.userServiceUrl}/${id}/activate`, null);
     }
