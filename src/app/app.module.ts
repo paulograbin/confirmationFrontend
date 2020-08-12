@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DateFormatter} from './services/dateFormatter';
 import {AuthService} from './services/auth.service';
 import {AuthGuard} from './services/auth.guard';
+import {AdminGuard} from './services/admin.guard';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
 import {ListUsersComponent} from './components/list-users/list-users.component';
@@ -92,7 +93,7 @@ export const MY_FORMATS = {
         },
 
         {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-        AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
+        AuthService, AuthGuard, AdminGuard, {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
     bootstrap: [AppComponent],
 })
 export class AppModule {
