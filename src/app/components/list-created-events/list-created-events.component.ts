@@ -30,11 +30,12 @@ export class ListCreatedEventsComponent implements OnInit {
             err => console.error(err)
         );
 
-        this.fetchEventsCreatedByUser(Number(this.loggedUser.id));
+        console.log(`Fetching events from chapter ${this.loggedUser.chapter.id}`);
+        this.fetchEventsFromChapter();
     }
 
-    private fetchEventsCreatedByUser(id: number) {
-        this.eventService.getEventsCreatedByUser(id)
+    fetchEventsFromChapter() {
+        this.eventService.getUpcomingEventsFromChapter()
             .subscribe(
                 data => {
                     this.events = data;

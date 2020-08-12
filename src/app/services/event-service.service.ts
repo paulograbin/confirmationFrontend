@@ -104,4 +104,8 @@ export class EventServiceService {
     getEventsCreatedByUser(userId: number): Observable<EventInterface[]> {
         return this.http.get<EventModel[]>(`${this.eventServiceUrl}/createdBy/${userId}`);
     }
+
+    getUpcomingEventsFromChapter(): Observable<EventInterface[]> {
+        return this.http.get<EventModel[]>(`${this.eventServiceUrl}/chapter`);
+    }
 }
