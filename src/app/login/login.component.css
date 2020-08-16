@@ -357,14 +357,20 @@ div {
 }
 
 @media (max-width: 768px) {
+    .container-login100 {
+        align-items: flex-start;
+    }
+
     .login100-form {
         padding-left: 15px;
         padding-right: 15px;
+        padding-top: 10px;
         width: 100%;
     }
 
     .login100-more {
         width: 100%;
+        display: none;
     }
 
     .rs1-wrap-input100,
@@ -380,10 +386,14 @@ div {
 }
 
 @media (max-width: 576px) {
+    .container-login100 {
+        align-items: flex-start;
+    }
+
     .login100-form {
         padding-left: 15px;
         padding-right: 15px;
-        padding-top: 150px;
+        padding-top: 10px;
     }
 
     .rs1-wrap-input100,
