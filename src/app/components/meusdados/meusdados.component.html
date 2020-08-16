@@ -44,7 +44,8 @@
                                type="password"
                                placeholder=""
                                formControlName="password"
-                               name="password"
+                               name="new-password"
+                               autocomplete="new-password"
                                [ngClass]="{'is-invalid': (passwordForm.get('password').touched ||
                                                        passwordForm.get('password').dirty) &&
                                                        !passwordForm.get('password').valid }"/>

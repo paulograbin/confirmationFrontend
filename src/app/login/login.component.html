@@ -13,7 +13,9 @@
                     <label class="login-input-label" for="first-name">Usuário/Email</label>
                     <input id="first-name" type="text" class="input100"
                            autofocus
+                           required
                            name="username"
+                           autocomplete="username"
                            formControlName="usernameOrEmail"
                            placeholder="">
                     <span class="focus-input100"></span>
@@ -23,7 +25,9 @@
                      data-validate="Type password">
                     <label class="login-input-label" for="password">Senha</label>
                     <input id="password" type="password" class="input100"
-                           name="pass"
+                           required
+                           name="current-password"
+                           autocomplete="password"
                            formControlName="password"
                            placeholder="">
                     <span class="focus-input100"></span>
