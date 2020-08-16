@@ -16,6 +16,7 @@ import {MeusdadosComponent} from './components/meusdados/meusdados.component';
 import {AdminpanelComponent} from './components/adminpanel/adminpanel.component';
 import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
 import {ChapterResolverService} from './services/chapter-resolver.service';
+import {AdminGuard} from './services/admin.guard';
 
 const routes: Routes = [
     {
@@ -83,10 +84,9 @@ const routes: Routes = [
     {
         path: 'chapter/view/:id',
         component: ViewChapterComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AdminGuard],
         resolve: {
             resolvedChapter: ChapterResolverService,
-            loggedUser: LoggedUserResolverService
         }
     },
     {
