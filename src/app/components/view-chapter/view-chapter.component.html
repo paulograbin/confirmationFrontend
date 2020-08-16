@@ -1,17 +1,62 @@
-<div class="container">
-    <div>
-        <div class="form-group">
-            <label>Id</label>
-            <div class="form-control">{{chapter.id}}</div>
-        </div>
-        <div class="form-group">
-            <label>Nome</label>
-            <div class="form-control">{{chapter.name}}</div>
-        </div>
-        Membros
+<div class="col-lg-8">
+    <form novalidate [formGroup]="chapterForm">
+        <fieldset>
+            <!--            <legend>Opa</legend>-->
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="chapterId">Id</label>
+                <div>
+                    <input class="form-control"
+                           id="chapterId"
+                           type="text"
+                           placeholder="Número do capítulo"
+                           size="50"
+                           formControlName="id"
+                           name="chapterId"/>
+                </div>
+            </div>
 
-        <tr *ngFor="let member of chapter.members">
-            <td>{{member.username}} </td>
-        </tr>
-    </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="chapterName">Nome</label>
+                <div>
+                    <input class="form-control"
+                           id="chapterName"
+                           type="text"
+                           placeholder="Nome do capítulo"
+                           size="50"
+                           formControlName="name"
+                           name="chapterName"/>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <button class="btn btn-primary mr-3"
+            style="width:80px"
+            type="button"
+            [disabled]="!isValid()"
+            (click)="saveChapter()">
+        Salvar
+    </button>
+
+    <button class="btn btn-primary mr-3"
+            style="width:80px"
+            type="button"
+            (click)="deleteChapter()">
+        Deletar
+    </button>
+    <!--    <div>-->
+    <!--        <div class="form-group">-->
+    <!--            <label>Id</label>-->
+    <!--            <div class="form-control">{{chapter.id}}</div>-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--            <label>Nome</label>-->
+    <!--            <div class="form-control">{{chapter.name}}</div>-->
+    <!--        </div>-->
+    <!--        Membros-->
+
+    <!--        <tr *ngFor="let member of chapter.members">-->
+    <!--            <td>{{member.username}} </td>-->
+    <!--        </tr>-->
+    <!--    </div>-->
 </div>
