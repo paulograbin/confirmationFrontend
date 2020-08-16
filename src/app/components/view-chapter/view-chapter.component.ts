@@ -21,23 +21,29 @@ export class ViewChapterComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.chapterForm = this.formBuilder.group({
+            id: [{value: '', disabled: true}, [Validators.required]],
+            name: ['', [Validators.required]],
+        });
+
         this.route.data.subscribe(
             data => {
-                const resolvedData = data;
-                console.log('resolved chapter', resolvedData.resolvedChapter);
+                this.chapter = data.resolvedChapter;
 
-                this.chapter = resolvedData.resolvedChapter;
-
-                this.chapterForm = this.formBuilder.group({
-                    id: [{value: this.chapter.id, disabled: true}, [Validators.required]],
-                    name: [{value: this.chapter.name}, [Validators.required]],
-                });
+                this.displayChapter();
             },
-            // err => console.error(err),
-            // () => {
-            //   console.log(`event ${this.event.id} loaded completely`);
-            // }
+            err => console.error(err),
+            () => {
+                console.log(`chapter ${this.chapter.id} loaded completely`);
+            }
         );
+    }
+
+    private displayChapter() {
+        this.chapterForm.patchValue({
+            id: this.chapter.id,
+            name: this.chapter.name,
+        });
     }
 
     isValid(): boolean {
@@ -51,16 +57,17 @@ export class ViewChapterComponent implements OnInit {
             id: this.chapterForm.get('id').value,
             name: this.chapterForm.get('name').value,
         };
-        console.log('chapter to create', chapterToUpdate);
+        console.log('chapter to update', chapterToUpdate);
 
         this.chapterService.updateChapter(chapterToUpdate).subscribe(
             data => {
-                console.log('Event creation returned successful', data);
+                console.log('Chapter update returned successful', data);
+
                 this.chapter = data;
-                // this.onSaveComplete();
+                this.displayChapter();
             },
             error => {
-                console.log('Create event errored!');
+                console.log('Chapter update errored!');
                 console.log('err', error);
             },
             () => {
