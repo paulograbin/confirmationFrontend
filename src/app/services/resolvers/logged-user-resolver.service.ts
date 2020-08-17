@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {UserInterface} from '../model/userModel';
+import {UserInterface} from '../../model/userModel';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import {UserService} from './user.service';
+import {UserService} from '../user.service';
 
 @Injectable({
     providedIn: 'root'

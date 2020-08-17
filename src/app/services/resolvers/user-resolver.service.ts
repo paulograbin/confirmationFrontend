@@ -1,23 +1,23 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import {Chapter} from '../model/chapterModel';
-import {ChapterService} from './chapter.service';
+import {UserService} from '../user.service';
+import {UserInterface} from '../../model/userModel';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ChapterResolverService implements Resolve<Chapter> {
+export class UserResolverService implements Resolve<UserInterface> {
 
-    constructor(private chapterService: ChapterService) {
+    constructor(private userService: UserService) {
     }
 
     resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<Chapter> {
-        const chapterId = route.paramMap.get('id');
-        console.log(`Resolving chapter ${chapterId}`);
+            state: RouterStateSnapshot): Observable<UserInterface> {
+        const userId = route.paramMap.get('id');
+        console.log(`Resolving user ${userId}`);
 
-        return this.chapterService.getChapter(Number(chapterId));
+        return this.userService.getUser(Number(userId));
         // .pipe(
         //     // tap(x => console.log(x)),
         //     map(event => ({ event })),

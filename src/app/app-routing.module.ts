@@ -6,18 +6,18 @@ import {ListUsersComponent} from './components/list-users/list-users.component';
 import {ListEventsComponent} from './components/list-events/list-events.component';
 import {ViewEventComponent} from './components/view-event/view-event.component';
 import {LoginComponent} from './login/login.component';
-import {AuthGuard} from './services/auth.guard';
+import {AuthGuard} from './services/guards/auth.guard';
 import {LogoutComponent} from './logout/logout.component';
 import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
-import {LoggedUserResolverService} from './services/logged-user-resolver.service';
-import {EventResolverService} from './services/event-resolver.service';
+import {LoggedUserResolverService} from './services/resolvers/logged-user-resolver.service';
+import {EventResolverService} from './services/resolvers/event-resolver.service';
 import {EventRouterComponent} from './event-router/event-router.component';
 import {MeusdadosComponent} from './components/meusdados/meusdados.component';
 import {AdminpanelComponent} from './components/adminpanel/adminpanel.component';
 import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
-import {ChapterResolverService} from './services/chapter-resolver.service';
-import {AdminGuard} from './services/admin.guard';
-import {UserResolverService} from './services/user-resolver.service';
+import {ChapterResolverService} from './services/resolvers/chapter-resolver.service';
+import {AdminGuard} from './services/guards/admin.guard';
+import {UserResolverService} from './services/resolvers/user-resolver.service';
 
 const routes: Routes = [
     {
