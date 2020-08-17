@@ -17,6 +17,7 @@ import {AdminpanelComponent} from './components/adminpanel/adminpanel.component'
 import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
 import {ChapterResolverService} from './services/chapter-resolver.service';
 import {AdminGuard} from './services/admin.guard';
+import {UserResolverService} from './services/user-resolver.service';
 
 const routes: Routes = [
     {
@@ -70,7 +71,10 @@ const routes: Routes = [
     {
         path: 'user/view/:id',
         component: ViewUserComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AdminGuard],
+        resolve: {
+            resolvedUser: UserResolverService,
+        }
     },
     {
         path: 'event/view/:id',
