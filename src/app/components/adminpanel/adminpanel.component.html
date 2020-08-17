@@ -15,10 +15,6 @@
         </div>
     </div>
     <div class="row">
-        <thead>
-
-        </thead>
-        <tbody>
         <div *ngIf="showChapters">
             <div class="row">
                 <h1> List all chapters </h1>
@@ -29,7 +25,9 @@
                     <th>Nome</th>
                 </tr>
                 <tr *ngFor="let chapter of chapters">
-                    <td>{{chapter.id}}</td>
+                    <a [routerLink]="['/chapter/view', chapter.id]" disabled>
+                        <td>{{chapter.id}}</td>
+                    </a>
                     <td>{{chapter.name}}</td>
                 </tr>
             </table>
@@ -49,7 +47,9 @@
                     <th>Capitulo</th>
                 </tr>
                 <tr *ngFor="let event of events">
-                    <td>{{event.id}}</td>
+                    <a [routerLink]="['/event/view', event.id]" disabled>
+                        <td>{{event.id}}</td>
+                    </a>
                     <td>{{event.title}}</td>
                     <td>{{event.date}}</td>
                     <td>{{event.time}}</td>
@@ -70,7 +70,6 @@
                     <th>Email</th>
                     <th>Ativo</th>
                     <th>Master</th>
-                    <th>Capitulo</th>
                 </tr>
                 <tr *ngFor="let user of users">
                     <a [routerLink]="['/user/view', user.id]" disabled>
@@ -80,10 +79,9 @@
                     <td>{{user.email}}</td>
                     <td>{{user.active}}</td>
                     <td>{{user.master}}</td>
-                    <td>{{user.chapter.id}}</td>
+<!--                    <td>{{user.chapter.id}}</td>-->
                 </tr>
             </table>
         </div>
-        </tbody>
     </div>
 </div>
