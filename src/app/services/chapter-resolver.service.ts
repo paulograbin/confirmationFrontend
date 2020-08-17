@@ -5,18 +5,19 @@ import {Chapter} from '../model/chapterModel';
 import {ChapterService} from './chapter.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ChapterResolverService implements Resolve<Chapter> {
 
-  constructor(private chapterService: ChapterService) {}
+    constructor(private chapterService: ChapterService) {
+    }
 
-  resolve(route: ActivatedRouteSnapshot,
-          state: RouterStateSnapshot): Observable<Chapter> {
-    const chapterId = route.paramMap.get('id');
-    console.log(`Resolving chapter ${chapterId}`);
+    resolve(route: ActivatedRouteSnapshot,
+            state: RouterStateSnapshot): Observable<Chapter> {
+        const chapterId = route.paramMap.get('id');
+        console.log(`Resolving chapter ${chapterId}`);
 
-    return this.chapterService.getChapter(Number(chapterId));
+        return this.chapterService.getChapter(Number(chapterId));
         // .pipe(
         //     // tap(x => console.log(x)),
         //     map(event => ({ event })),
@@ -25,5 +26,5 @@ export class ChapterResolverService implements Resolve<Chapter> {
         //       return of({event: null, error: error.error});
         //     })
         // );
-  }
+    }
 }
