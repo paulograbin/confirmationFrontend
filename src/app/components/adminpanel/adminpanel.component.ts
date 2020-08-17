@@ -36,46 +36,32 @@ export class AdminpanelComponent implements OnInit {
             data => {
                 // console.log(data);
                 this.loggedUser = data.loggedUser;
-                // console.log(this.loggedUser.chapter);
-                // console.log(this.loggedUser.chapter.id);
-                // console.log(this.loggedUser.chapter.name);
-                // if (this.loggedUser.username !== 'plgrabin') {
-                //     this.router.navigate(['events']);
-                // }
 
-                console.log(this.loggedUser.username);
-            });
-
-        this.userService.getCanAccessAdmin().subscribe(
-            data => {
-                console.log('can open returned', data);
-
-                if (data === true) {
-                    console.log('can open');
+                if (this.loggedUser.username !== 'plgrabin') {
+                    console.log('Not so fast champ');
+                    this.router.navigate(['events']);
                 } else {
-                    console.log('CANT open');
+                    this.userService.getAllUsers().subscribe(
+                        userData => {
+                            // console.log(userData);
+                            this.users = userData;
+                        }
+                    );
+                    this.chapterService.fetchAllChapters().subscribe(
+                        chapterData => {
+                            // console.log(chapterData);
+                            this.chapters = chapterData;
+                        }
+                    );
+
+                    this.eventService.getAllEvents().subscribe(
+                        eventData => {
+                            this.events = eventData;
+                            // console.log(eventData);
+                        }
+                    );
                 }
-            }
-        );
-
-        this.userService.getAllUsers().subscribe(
-            data => {
-                console.log(data);
-                this.users = data;
-            }
-        );
-        this.chapterService.fetchAllChapters().subscribe(
-            data => {
-                this.chapters = data;
-            }
-        );
-
-        this.eventService.getAllEvents().subscribe(
-            data => {
-                this.events = data;
-                console.log(data);
-            }
-        );
+            });
     }
 
     toggleChapters() {

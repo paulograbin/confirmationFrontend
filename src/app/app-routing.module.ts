@@ -54,7 +54,7 @@ const routes: Routes = [
     {
         path: 'panel',
         component: AdminpanelComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AdminGuard],
         resolve: {
             loggedUser: LoggedUserResolverService
         }
