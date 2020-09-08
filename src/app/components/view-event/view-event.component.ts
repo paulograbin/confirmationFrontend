@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EventModel} from '../../model/eventModel';
-import {DateFormatter} from '../../services/dateFormatter';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserInterface} from '../../model/userModel';
 import {EventServiceService} from '../../services/event-service.service';
@@ -27,7 +26,6 @@ export class ViewEventComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private eventService: EventServiceService,
-                private dateFormater: DateFormatter,
                 private formBuilder: FormBuilder) {
     }
 

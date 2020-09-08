@@ -4,7 +4,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DateFormatter} from './services/dateFormatter';
 import {AuthService} from './services/auth.service';
 import {AuthGuard} from './services/guards/auth.guard';
 import {AdminGuard} from './services/guards/admin.guard';
@@ -87,13 +86,12 @@ export const MY_FORMATS = {
         MatCardModule,
         MatSnackBarModule
     ],
-    providers: [DateFormatter,
+    providers: [
         {
             provide: DateAdapter,
             useClass: MomentDateAdapter,
             deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
         },
-
         {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
         AuthService, AuthGuard, AdminGuard, {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
     bootstrap: [AppComponent],
