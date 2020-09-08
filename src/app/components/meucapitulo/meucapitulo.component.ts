@@ -14,19 +14,14 @@ export class MeuscapituloComponent implements OnInit {
 
     chapter: Chapter;
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
-                private formBuilder: FormBuilder,
-                private userService: UserService,
-                private chapterService: ChapterService) {
+    constructor(private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.chapterService.getMyChapter().subscribe(
+        this.route.data.subscribe(
             data => {
                 console.log(data);
-                this.chapter = data;
-            }
-        );
+                this.chapter = data.resolvedChapter;
+            });
     }
 }

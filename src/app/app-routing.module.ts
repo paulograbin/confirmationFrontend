@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 import {ViewUserComponent} from './components/view-registration/view-user.component';
 import {ListUsersComponent} from './components/list-users/list-users.component';
@@ -19,6 +19,7 @@ import {ChapterResolverService} from './services/resolvers/chapter-resolver.serv
 import {AdminGuard} from './services/guards/admin.guard';
 import {UserResolverService} from './services/resolvers/user-resolver.service';
 import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
+import {MyChapterResolverService} from './services/resolvers/my-chapter-resolver.service';
 
 const routes: Routes = [
     {
@@ -40,10 +41,10 @@ const routes: Routes = [
     {
         path: 'capitulo',
         component: MeuscapituloComponent,
-        canActivate: [AuthGuard]
-        // resolve: {
-        //     resolvedChapter: ChapterResolverService,
-        // }
+        canActivate: [AuthGuard],
+        resolve: {
+            resolvedChapter: MyChapterResolverService,
+        }
     },
     {
         path: 'createdEvents',
