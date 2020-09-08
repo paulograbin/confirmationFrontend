@@ -39,6 +39,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {registerLocaleData} from '@angular/common';
 import { EventRouterComponent } from './event-router/event-router.component';
 import { MeusdadosComponent } from './components/meusdados/meusdados.component';
+import { MeuscapituloComponent } from './components/meucapitulo/meucapitulo.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { ViewChapterComponent } from './components/view-chapter/view-chapter.component';
 
@@ -68,6 +69,7 @@ export const MY_FORMATS = {
         ListCreatedEventsComponent,
         EventRouterComponent,
         MeusdadosComponent,
+        MeuscapituloComponent,
         AdminpanelComponent,
         ViewChapterComponent
     ],

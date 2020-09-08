@@ -25,6 +25,10 @@ export class ChapterService {
         return this.http.get<Chapter>(`${this.chapterServiceUrl}/${id}`);
     }
 
+    getMyChapter(): Observable<Chapter> {
+        return this.http.get<Chapter>(`${this.chapterServiceUrl}/meucapitulo`);
+    }
+
     updateChapter(chapterToUpdate) {
         return this.http.put<Chapter>(`${this.chapterServiceUrl}/${chapterToUpdate.id}`, chapterToUpdate)
             .pipe(

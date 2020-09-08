@@ -18,6 +18,7 @@ import {ViewChapterComponent} from './components/view-chapter/view-chapter.compo
 import {ChapterResolverService} from './services/resolvers/chapter-resolver.service';
 import {AdminGuard} from './services/guards/admin.guard';
 import {UserResolverService} from './services/resolvers/user-resolver.service';
+import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
 
 const routes: Routes = [
     {
@@ -35,6 +36,14 @@ const routes: Routes = [
         resolve: {
             loggedUser: LoggedUserResolverService
         }
+    },
+    {
+        path: 'capitulo',
+        component: MeuscapituloComponent,
+        canActivate: [AuthGuard]
+        // resolve: {
+        //     resolvedChapter: ChapterResolverService,
+        // }
     },
     {
         path: 'createdEvents',
