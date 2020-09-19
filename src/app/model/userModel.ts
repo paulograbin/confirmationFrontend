@@ -10,6 +10,7 @@ export interface UserInterface {
     email: string;
     master: boolean;
     active: boolean;
+    lastLogin: Date;
     creationDate: Date;
     modificationDate: Date;
     inactivatedIn: Date;

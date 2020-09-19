@@ -70,6 +70,7 @@
                     <th>Email</th>
                     <th>Ativo</th>
                     <th>Master</th>
+                    <th>Ultimo login</th>
                 </tr>
                 <tr *ngFor="let user of users">
                     <a [routerLink]="['/user/view', user.id]" disabled>
@@ -79,6 +80,7 @@
                     <td>{{user.email}}</td>
                     <td>{{user.active}}</td>
                     <td>{{user.master}}</td>
+                    <td>{{user.lastLogin}}</td>
 <!--                    <td>{{user.chapter.id}}</td>-->
                 </tr>
             </table>
