@@ -113,12 +113,12 @@
             <div class="form-group row">
                 <label class="col-md-2 col-form-label" for="mestre">Mestre</label>
                 <div>
-                    <input class="form-control"
-                           id="mestre"
-                           type="text"
-                           size="50"
-                           formControlName="master"
-                           name="name"/>
+                    <mat-checkbox
+                            id="mestre"
+                            class="example-margin"
+                            formControlName="master"
+                            name="mestre">
+                    </mat-checkbox>
                 </div>
             </div>
 
@@ -129,7 +129,7 @@
                             id="active"
                             class="example-margin"
                             formControlName="active"
-                            name="active">Ativo
+                            name="active">
                     </mat-checkbox>
                 </div>
             </div>
@@ -185,14 +185,14 @@
             style="width:80px"
             type="button"
             [disabled]="!isValid()"
-            (click)="saveChapter()">
+            (click)="saveUser()">
         Salvar
     </button>
 
     <button class="btn btn-primary mr-3"
             style="width:80px"
             type="button"
-            (click)="deleteChapter()">
+            (click)="deleteUser()">
         Deletar
     </button>
 
