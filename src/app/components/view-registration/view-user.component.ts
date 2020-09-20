@@ -29,10 +29,10 @@ export class ViewUserComponent implements OnInit {
             email: ['', [Validators.required]],
             master: ['', [Validators.required]],
             active: ['', [Validators.required]],
-            lastLogin: ['', [Validators.required]],
-            creationDate: ['', [Validators.required]],
-            modificationDate: ['', [Validators.required]],
-            inactivatedIn: ['', [Validators.required]],
+            lastLogin: [{value: '', disabled: true}, [Validators.required]],
+            creationDate: [{value: '', disabled: true}, [Validators.required]],
+            modificationDate: [{value: '', disabled: true}, [Validators.required]],
+            inactivatedIn: [{value: '', disabled: true}, [Validators.required]],
         });
 
         this.route.data.subscribe(
