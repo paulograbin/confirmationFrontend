@@ -51,10 +51,10 @@ export class UserService {
         return this.http.post(`${this.userServiceUrl}`, body);
     }
 
-    inactivateUser(id: number) {
+    inactivateUser(id: number): Observable<UserInterface> {
         // console.log('Inactivating user...');
 
-        return this.http.delete(`${this.userServiceUrl}/${id}`);
+        return this.http.delete<UserInterface>(`${this.userServiceUrl}/${id}`);
     }
 
     activate(id: number) {
@@ -77,5 +77,9 @@ export class UserService {
 
     updateUser(id: number, passwordUpdateRequest: any) {
         return this.http.put(`${this.userServiceUrl}/${id}`, passwordUpdateRequest);
+    }
+
+    updateUserForAdmin(id: number, passwordUpdateRequest: any): Observable<UserInterface> {
+        return this.http.put<UserInterface>(`${this.userServiceUrl}/${id}/admin`, passwordUpdateRequest);
     }
 }

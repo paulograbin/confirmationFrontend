@@ -62,7 +62,7 @@ export class ViewUserComponent implements OnInit {
             lastLogin: this.user.lastLogin,
             creationDate: this.user.creationDate,
             modificationDate: this.user.modificationDate,
-            inativatedIn: this.user.inactivatedIn,
+            inactivatedIn: this.user.inactivatedIn,
         });
     }
 
@@ -71,7 +71,23 @@ export class ViewUserComponent implements OnInit {
     }
 
     saveUser() {
+        const updateUserForAdminRequest = {
+            id: this.user.id,
+            username: this.userForm.get('username').value,
+            email: this.userForm.get('email').value,
+            firstName: this.userForm.get('firstName').value,
+            lastName: this.userForm.get('lastName').value,
+            active: this.userForm.get('active').value,
+            master: this.userForm.get('master').value
+        };
 
+        this.userService.updateUserForAdmin(this.user.id, updateUserForAdminRequest)
+            .subscribe(
+                data => {
+                    this.user = data;
+                    this.displayUser();
+                }
+            );
     }
 
     deleteUser() {
