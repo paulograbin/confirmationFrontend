@@ -70,11 +70,11 @@ export class ViewUserComponent implements OnInit {
         return this.userForm.dirty;
     }
 
-    saveChapter() {
+    saveUser() {
 
     }
 
-    deleteChapter() {
+    deleteUser() {
 
     }
 }
