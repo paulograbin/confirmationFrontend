@@ -75,7 +75,15 @@ export class ViewUserComponent implements OnInit {
     }
 
     deleteUser() {
-
+        this.userService.inactivateUser(this.user.id).subscribe(
+            data => {
+                this.user = data;
+                this.displayUser();
+            },
+            error => {
+                console.log('Error deleting user');
+            }
+        );
     }
 }
 
