@@ -57,6 +57,12 @@ export class UserService {
         return this.http.delete<UserInterface>(`${this.userServiceUrl}/${id}`);
     }
 
+    hardDelete(id: number): Observable<UserInterface> {
+        // console.log('Inactivating user...');
+
+        return this.http.delete<UserInterface>(`${this.userServiceUrl}/${id}/harddelete`);
+    }
+
     activate(id: number) {
         // console.log('Activating user...');
 
