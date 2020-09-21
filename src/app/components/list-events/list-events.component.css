@@ -443,6 +443,10 @@ table tr {
     background-color: #0f5a17;
 }
 
+.selected-declined {
+    background-color: #d20c0c;
+}
+
 .notSelected {
     background-color: #000000;
 }
