@@ -73,17 +73,20 @@ export class EventServiceService {
 
     private handleError(err) {
         console.log('HANDLER ERROR!!!', err);
+        // console.log(JSON.stringify(err));
 
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console
         let errorMessage: string;
 
-        if (err.error instanceof ErrorEvent) {
-            errorMessage = `An error occurred: ${err.message}`;
-        } else {
-            errorMessage = `Erro ${err.status}: ${err.error.message}`;
-            console.log('else', errorMessage);
-        }
+        // if (err.error instanceof ErrorEvent) {
+        //     console.log('1111');
+        //     errorMessage = `An error occurred: ${err.message}`;
+        // } else {
+        //     console.log('2222');
+        errorMessage = `Erro ${err.status}: ${err.error.errorMessage}`;
+        //     console.log(errorMessage);
+        // }
 
         console.error('error', errorMessage);
         return throwError(errorMessage);
