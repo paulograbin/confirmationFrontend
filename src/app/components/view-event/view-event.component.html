@@ -35,19 +35,41 @@
                 </div>
             </div>
 
+<!--            <div class="form-group row">-->
+<!--                <label class="col-md-2 col-form-label" for="eventDescription">Descrição</label>-->
+<!--                <div>-->
+<!--                    <input class="form-control"-->
+<!--                           id="eventDescription"-->
+<!--                           type="text"-->
+<!--                           placeholder="Descrição, ordem do dia, etc"-->
+<!--                           size="50"-->
+<!--                           formControlName="description"-->
+<!--                           name="eventDescription"-->
+<!--                           [ngClass]="{'is-invalid': (eventForm.get('description').touched ||-->
+<!--                                                       eventForm.get('description').dirty) &&-->
+<!--                                                       !eventForm.get('description').valid }">-->
+<!--                    <span class="invalid-feedback">-->
+<!--                        <span *ngIf="eventForm.get('description').errors?.required">-->
+<!--                            Descrição é um campo obrigatório.-->
+<!--                        </span>-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+
             <div class="form-group row">
                 <label class="col-md-2 col-form-label" for="eventDescription">Descrição</label>
                 <div>
-                    <input class="form-control"
-                           id="eventDescription"
-                           type="text"
-                           placeholder="Descrição, ordem do dia, etc"
-                           size="50"
-                           formControlName="description"
-                           name="eventDescription"
-                           [ngClass]="{'is-invalid': (eventForm.get('description').touched ||
+                    <textarea
+                            id="eventDescription"
+                            class="form-control"
+                            formControlName="description"
+                            cols="49"
+                            rows="8"
+                            name="eventDescription"
+                            placeholder="Descrição, ordem do dia, etc"
+                            [ngClass]="{'is-invalid': (eventForm.get('description').touched ||
                                                        eventForm.get('description').dirty) &&
-                                                       !eventForm.get('description').valid }">
+                                                       !eventForm.get('description').valid }"></textarea>
                     <span class="invalid-feedback">
                         <span *ngIf="eventForm.get('description').errors?.required">
                             Descrição é um campo obrigatório.
