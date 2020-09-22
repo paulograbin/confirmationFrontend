@@ -200,8 +200,9 @@
             <tbody>
             <tr *ngFor="let participant of event.participants">
                 <td>{{participant.user.firstName}} {{participant.user.lastName}}</td>
-                <td>{{participant.status}}</td>
-                <!--                            <td>{{participant.confirmationDate}}</td>-->
+                <td *ngIf="participant.status == 'CONVIDADO'">{{participant.status}}</td>
+                <td *ngIf="participant.status == 'RECUSADO'" class="text-red">{{participant.status}}</td>
+                <td *ngIf="participant.status == 'CONFIRMADO'" class="text-green">{{participant.status}}</td>
             </tr>
             </tbody>
         </table>
