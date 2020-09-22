@@ -168,6 +168,16 @@ template {
     background: #f0f0f0;
 }
 
+.text-green {
+    color: #0f5a17;
+    font-weight: bold;
+}
+
+.text-red {
+    color: #d20c0c;
+    font-weight: bold;
+}
+
 .hljs, .hljs-subst {
     color: #444;
 }
