@@ -41,6 +41,7 @@ import { MeusdadosComponent } from './components/meusdados/meusdados.component';
 import { MeuscapituloComponent } from './components/meucapitulo/meucapitulo.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { ViewChapterComponent } from './components/view-chapter/view-chapter.component';
+import {MatSelectModule} from '@angular/material/select';
 
 export const MY_FORMATS = {
     parse: {
@@ -84,7 +85,8 @@ export const MY_FORMATS = {
         MatFormFieldModule,
         MatCheckboxModule,
         MatCardModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatSelectModule
     ],
     providers: [
         {

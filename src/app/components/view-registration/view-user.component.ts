@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {UserInterface} from '../../model/userModel';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ChapterService} from '../../services/chapter.service';
+import {Chapter} from '../../model/chapterModel';
 
 @Component({
     selector: 'app-view-registration',
@@ -13,10 +15,12 @@ export class ViewUserComponent implements OnInit {
 
     user: UserInterface;
     userForm: FormGroup;
+    chapters: Chapter[];
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private userService: UserService,
+                private chapterService: ChapterService,
                 private formBuilder: FormBuilder) {
     }
 
@@ -27,6 +31,7 @@ export class ViewUserComponent implements OnInit {
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             email: ['', [Validators.required]],
+            chapter: ['', [Validators.required]],
             master: ['', [Validators.required]],
             active: ['', [Validators.required]],
             lastLogin: [{value: '', disabled: true}, [Validators.required]],
@@ -34,6 +39,15 @@ export class ViewUserComponent implements OnInit {
             modificationDate: [{value: '', disabled: true}, [Validators.required]],
             inactivatedIn: [{value: '', disabled: true}, [Validators.required]],
         });
+
+        this.chapterService.fetchAllChapters().subscribe(
+            data => {
+                this.chapters = data;
+            },
+            error => {
+                console.log('Error loading chapters', error);
+            }
+        );
 
         this.route.data.subscribe(
             data => {
@@ -57,6 +71,7 @@ export class ViewUserComponent implements OnInit {
             firstName: this.user.firstName,
             lastName: this.user.lastName,
             email: this.user.email,
+            chapter: this.user.chapter.id,
             master: this.user.master,
             active: this.user.active,
             lastLogin: this.user.lastLogin,
