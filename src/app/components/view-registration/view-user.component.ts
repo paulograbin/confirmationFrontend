@@ -79,6 +79,7 @@ export class ViewUserComponent implements OnInit {
             modificationDate: this.user.modificationDate,
             inactivatedIn: this.user.inactivatedIn,
         });
+        this.userForm.markAsPristine();
     }
 
     isValid(): boolean {
@@ -92,6 +93,7 @@ export class ViewUserComponent implements OnInit {
             email: this.userForm.get('email').value,
             firstName: this.userForm.get('firstName').value,
             lastName: this.userForm.get('lastName').value,
+            chapter: this.userForm.get('chapter').value,
             active: this.userForm.get('active').value,
             master: this.userForm.get('master').value
         };
