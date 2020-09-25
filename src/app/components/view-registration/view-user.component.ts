@@ -30,7 +30,7 @@ export class ViewUserComponent implements OnInit {
             username: ['', [Validators.required]],
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
-            email: ['', [Validators.required]],
+            email: ['', [Validators.required, Validators.email]],
             chapter: ['', [Validators.required]],
             master: ['', [Validators.required]],
             active: ['', [Validators.required]],
