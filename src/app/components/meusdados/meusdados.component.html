@@ -56,12 +56,15 @@
                         <span *ngIf="passwordForm.get('password').errors?.minlength">
                             Senha deve ter pelo menos 6 letras e/ou números.
                         </span>
+                            <span *ngIf="passwordForm.get('password').errors?.maxlength">
+                            Senha deve ter no máximo 128 letras e/ou números.
+                        </span>
                     </span>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label" for="password">Confirmação de senha</label>
+                    <label class="col-md-2 col-form-label" for="passwordConfirmation">Confirmação de senha</label>
                     <div>
                         <input class="form-control"
                                id="passwordConfirmation"

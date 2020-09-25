@@ -34,8 +34,12 @@ export class MeusdadosComponent implements OnInit {
             });
 
         this.passwordForm = this.formBuilder.group({
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            passwordConfirmation: ['', [Validators.required, Validators.minLength(6)]],
+            password: ['', [Validators.required,
+                Validators.minLength(6),
+                Validators.maxLength(128)]],
+            passwordConfirmation: ['', [Validators.required,
+                Validators.minLength(6),
+                Validators.maxLength(128)]],
         });
     }
 
