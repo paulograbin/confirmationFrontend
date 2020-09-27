@@ -1,0 +1,136 @@
+<div class="alert alert-danger" *ngIf="!userRequest.successful">{{errorMessage}}</div>
+
+<div *ngIf="userRequest.successful">
+    <div>
+        <fieldset>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Email</label>
+                <h2>{{userRequest.email}}</h2>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Capitulo</label>
+                <h2>{{userRequest.chapterName}} nº {{userRequest.chapterId}}</h2>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Valido até</label>
+                <h2>{{userRequest.expirationDate}}</h2>
+            </div>
+        </fieldset>
+    </div>
+
+    <div>
+        <form novalidate [formGroup]="requestForm">
+            <fieldset>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="firstName">Nome</label>
+                    <div>
+                        <input class="form-control"
+                               id="firstName"
+                               type="text"
+                               size="50"
+                               formControlName="firstName"
+                               name="firstName"
+                               [ngClass]="{'is-invalid': (requestForm.get('firstName').touched ||
+                                                       requestForm.get('firstName').dirty) &&
+                                                       !requestForm.get('firstName').valid }"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="requestForm.get('firstName').errors?.required">
+                                Nome é um campo obrigatório.
+                            </span>
+                            <span *ngIf="requestForm.get('firstName').errors?.minlength">
+                                Nome deve ter pelo menos 3 letras.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="lastName">Sobrenome</label>
+                    <div>
+                        <input class="form-control"
+                               id="lastName"
+                               type="text"
+                               size="50"
+                               formControlName="lastName"
+                               name="lastName"
+                               [ngClass]="{'is-invalid': (requestForm.get('lastName').touched ||
+                                                       requestForm.get('lastName').dirty) &&
+                                                       !requestForm.get('lastName').valid }"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="requestForm.get('lastName').errors?.required">
+                                Sobrenome é um campo obrigatório.
+                            </span>
+                            <span *ngIf="requestForm.get('lastName').errors?.minlength">
+                                Sobrenome deve ter pelo menos 3 letras.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="lastName">Usuário</label>
+                    <div>
+                        <input class="form-control"
+                               id="username"
+                               type="text"
+                               size="50"
+                               formControlName="username"
+                               name="username"
+                               [ngClass]="{'is-invalid': (requestForm.get('username').touched ||
+                                                       requestForm.get('username').dirty) &&
+                                                       !requestForm.get('username').valid }"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="requestForm.get('username').errors?.required">
+                                Usuário é um campo obrigatório.
+                            </span>
+                            <span *ngIf="requestForm.get('username').errors?.minlength">
+                                Usuário deve ter pelo menos 6 letras.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="lastName">Senha</label>
+                    <div>
+                        <input class="form-control"
+                               id="password"
+                               type="password"
+                               size="50"
+                               formControlName="password"
+                               name="password"
+                               [ngClass]="{'is-invalid': (requestForm.get('password').touched ||
+                                                       requestForm.get('password').dirty) &&
+                                                       !requestForm.get('password').valid }"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="requestForm.get('password').errors?.required">
+                                Senha é um campo obrigatório.
+                            </span>
+                            <span *ngIf="requestForm.get('password').errors?.minlength">
+                                Senha deve ter pelo menos 6 letras.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <button mat-flat-button color="primary"
+                [disabled]="!isValid()"
+                (click)="convertUser()">Salvar
+        </button>
+
+    </div>
+</div>
+
+<div>
+    firstName valid: {{userRequest.firstName}} <br>
+<!--    firstName: {{requestForm.get('firstName').errors | json}} <br>-->
+
+    Dirty: {{requestForm.dirty}} <br>
+    Touched: {{requestForm.touched}} <br>
+    Valid: {{requestForm.valid}} <br>
+    Value: {{requestForm.value | json}}
+</div>
