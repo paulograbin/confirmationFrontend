@@ -30,18 +30,19 @@ registerLocaleData(localePt, 'pt');
 // todo udpate angular https://www.infoq.com/news/2020/02/angular-9-ivy-rendering-engine/
 //  ?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global
 
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {registerLocaleData} from '@angular/common';
-import { EventRouterComponent } from './event-router/event-router.component';
-import { MeusdadosComponent } from './components/meusdados/meusdados.component';
-import { MeuscapituloComponent } from './components/meucapitulo/meucapitulo.component';
-import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
-import { ViewChapterComponent } from './components/view-chapter/view-chapter.component';
+import {EventRouterComponent} from './event-router/event-router.component';
+import {MeusdadosComponent} from './components/meusdados/meusdados.component';
+import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
+import {AdminpanelComponent} from './components/adminpanel/adminpanel.component';
+import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
 import {MatSelectModule} from '@angular/material/select';
+import {UserRequestComponent} from './components/userrequest/user-request.component';
 
 export const MY_FORMATS = {
     parse: {
@@ -71,7 +72,8 @@ export const MY_FORMATS = {
         MeusdadosComponent,
         MeuscapituloComponent,
         AdminpanelComponent,
-        ViewChapterComponent
+        ViewChapterComponent,
+        UserRequestComponent
     ],
     imports: [
         BrowserModule,
