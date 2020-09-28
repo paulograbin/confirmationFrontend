@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserRequestService} from '../../services/user-request.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserRequestInterface} from '../../model/userRequestInterface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -15,9 +15,11 @@ export class UserRequestComponent implements OnInit {
 
     requestForm: FormGroup;
     errorMessage = '';
+    successMessage = '';
 
     constructor(private route: ActivatedRoute,
                 private formBuilder: FormBuilder,
+                private router: Router,
                 private userRequestService: UserRequestService) {
     }
 
@@ -83,12 +85,26 @@ export class UserRequestComponent implements OnInit {
 
         console.log(convertUserRequest);
 
-        this.userRequestService.convertRequestToUser(this.userRequest.requestId, convertUserRequest).subscribe(
-            data => {
-                console.log(data);
-            }, error => {
-                console.log(error);
-            }
-        );
+        this.userRequestService.convertRequestToUser(this.userRequest.requestId, convertUserRequest)
+            .subscribe(
+                data => {
+                    console.log(data);
+
+                    if (!data.successful) {
+                        this.successMessage = '';
+                        this.errorMessage = data.errorMessage;
+                    } else {
+                        this.errorMessage = '';
+                        this.successMessage = 'Usuário criado com sucesso, redirecionando para o login...';
+
+                        setTimeout(() => {
+                            this.router.navigate(['/']);
+                        }, 3000);
+                    }
+                }, error => {
+                    console.log(error);
+                    this.errorMessage = error.errorMessage;
+                }
+            );
     }
 }

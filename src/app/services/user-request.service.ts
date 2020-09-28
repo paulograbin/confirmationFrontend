@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {UserRequestInterface} from '../model/userRequestInterface';
-import {UserInterface} from '../model/userModel';
+import {ConvertUserRequestResponse} from './responses/convertUserRequestResponse';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +21,6 @@ export class UserRequestService {
     }
 
     convertRequestToUser(requestId: string, convertUserRequest: any) {
-        return this.http.post<UserInterface>(`${this.userRequestUrl}/${requestId}`, convertUserRequest);
+        return this.http.post<ConvertUserRequestResponse>(`${this.userRequestUrl}/${requestId}`, convertUserRequest);
     }
 }

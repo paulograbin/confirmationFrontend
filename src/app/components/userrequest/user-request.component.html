@@ -1,5 +1,6 @@
 <div class="container2">
-    <div class="alert alert-danger" *ngIf="!userRequest.successful">{{errorMessage}}</div>
+    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+    <div class="alert alert-success" *ngIf="successMessage">{{successMessage}}</div>
 
     <div *ngIf="userRequest.successful">
         <div>
