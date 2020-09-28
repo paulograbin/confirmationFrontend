@@ -21,6 +21,7 @@ import {UserResolverService} from './services/resolvers/user-resolver.service';
 import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
 import {MyChapterResolverService} from './services/resolvers/my-chapter-resolver.service';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
+import {UserRequestResolverService} from './services/resolvers/userrequest-resolver.service';
 
 const routes: Routes = [
     {
@@ -108,9 +109,9 @@ const routes: Routes = [
         path: 'request/:requestNumber',
         component: UserRequestComponent,
         // canActivate: [AdminGuard],
-        // resolve: {
-        //     resolvedChapter: ChapterResolverService,
-        // }
+        resolve: {
+            resolvedRequest: UserRequestResolverService,
+        }
     },
     {
         path: 'users',

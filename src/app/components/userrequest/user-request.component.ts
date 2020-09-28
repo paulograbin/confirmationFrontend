@@ -38,23 +38,23 @@ export class UserRequestComponent implements OnInit {
             }
         );
 
-        console.log(`request number ${this.route.snapshot.params.requestNumber}`);
-
-        const requestNumber = this.route.snapshot.params.requestNumber;
-
-        this.userRequestService.getUserRequest(requestNumber).subscribe(
+        this.route.data.subscribe(
             data => {
-                console.log(data);
-                this.userRequest = data;
+                console.log('resolved data', this.userRequest);
+                this.userRequest = data.resolvedRequest;
+
+                if (this.userRequest.successful === false) {
+                    this.errorMessage = data.resolvedRequest.errorMessage;
+                }
 
                 this.displayRequest();
-            }, error => {
-                this.userRequest = error;
-
-                console.log(`Request ${requestNumber} not found`);
-                console.log(error);
-                console.log(error.error.errorMessage);
-                this.errorMessage = error.error.errorMessage;
+            },
+            err => {
+                console.log('Error');
+                console.log(err);
+            },
+            () => {
+                console.log(`user ${this.userRequest.requestId} loaded completely`);
             }
         );
     }
