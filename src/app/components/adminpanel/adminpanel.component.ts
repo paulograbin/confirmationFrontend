@@ -6,6 +6,8 @@ import {ChapterService} from '../../services/chapter.service';
 import {EventServiceService} from '../../services/event-service.service';
 import {Chapter} from '../../model/chapterModel';
 import {EventInterface} from '../../model/eventModel';
+import {MetricsService} from '../../services/metrics.service';
+import {MetricsResponse} from '../../model/metricsResponse';
 
 @Component({
     selector: 'app-adminpanel',
@@ -15,6 +17,8 @@ import {EventInterface} from '../../model/eventModel';
 export class AdminpanelComponent implements OnInit {
 
     loggedUser: UserInterface;
+    metrics: MetricsResponse;
+
     chapters: Chapter[];
     showChapters = false;
 
@@ -26,6 +30,7 @@ export class AdminpanelComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
+                private metricsService: MetricsService,
                 private userService: UserService,
                 private chapterService: ChapterService,
                 private eventService: EventServiceService) {
@@ -62,6 +67,15 @@ export class AdminpanelComponent implements OnInit {
                     );
                 }
             });
+
+        this.metricsService.fetchAllMetrics().subscribe(
+            data => {
+                console.log(data);
+                this.metrics = data;
+            }, error => {
+                console.log('Error loading metrics');
+            }
+        );
     }
 
     toggleChapters() {
