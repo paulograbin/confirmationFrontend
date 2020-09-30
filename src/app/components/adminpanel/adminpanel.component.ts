@@ -8,6 +8,8 @@ import {Chapter} from '../../model/chapterModel';
 import {EventInterface} from '../../model/eventModel';
 import {MetricsService} from '../../services/metrics.service';
 import {MetricsResponse} from '../../model/metricsResponse';
+import {UserRequestService} from '../../services/user-request.service';
+import {UserRequestInterface} from '../../model/userRequestInterface';
 
 @Component({
     selector: 'app-adminpanel',
@@ -28,9 +30,13 @@ export class AdminpanelComponent implements OnInit {
     users: UserInterface[];
     showUsers = false;
 
+    requests: UserRequestInterface[];
+    showRequests = false;
+
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private metricsService: MetricsService,
+                private requestService: UserRequestService,
                 private userService: UserService,
                 private chapterService: ChapterService,
                 private eventService: EventServiceService) {
@@ -91,5 +97,19 @@ export class AdminpanelComponent implements OnInit {
     toggleUsers() {
         console.log('Toggle users');
         this.showUsers = !this.showUsers;
+    }
+
+    toggleRequests() {
+        console.log('Toggle requests');
+        this.showRequests = !this.showRequests;
+
+        if (this.requests === undefined) {
+            this.requestService.getAllRequests().subscribe(
+                requestData => {
+                    console.log(requestData);
+                    this.requests = requestData;
+                }
+            );
+        }
     }
 }
