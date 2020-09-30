@@ -1,19 +1,87 @@
 <div class="container">
-
-    <div class="col-md-5 col-8">
+    <div id="configurations" class="container col-md-12">
         <div class="row">
-            <div class="column">
-                <button (click)="toggleChapters()" [ngClass]="{'is-invalid': showChapters }" type="button">Show Chapters
-                </button>
-            </div>
-            <div class="column">
-                <button (click)="toggleEvents()" class="replyButton notDecided" type="button">Show Events</button>
-            </div>
-            <div class="column">
-                <button (click)="toggleUsers()" class="replyButton notDecided" type="button">Show Users</button>
-            </div>
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Chapters details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div id="chapterMetrics">
+                        <p class="card-text">{{metrics.totalChapters}} chapters found</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="toggleChapters()">Show Chapters</button>
+                </mat-card-actions>
+            </mat-card>
+
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title">Chapters</h5>-->
+<!--                    <p class="card-text">{{metrics.totalChapters}} chapters found</p>-->
+<!--                    <button (click)="toggleChapters()" type="button">Show Chapters</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Events details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div id="eventMetrics">
+                        <p class="card-text">{{metrics.totalEvents}} events found</p>
+                        <p class="card-text">{{metrics.publishedEvents}} events published</p>
+                        <p class="card-text">{{metrics.futureEvents}} events on the future</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="toggleEvents()">Show Events</button>
+                </mat-card-actions>
+            </mat-card>
+
+
+
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Users details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div id="userMetrics">
+                        <p>Total users: {{metrics.totalUsers}}</p>
+                        <p>Active users: {{metrics.activeUsers}}</p>
+                        <p>Logged users: {{metrics.usersThatAlreadyLoggedIn}}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="toggleUsers()">Show Users</button>
+                </mat-card-actions>
+            </mat-card>
+
+
+
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Users requests details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div id="userRequestMetrics">
+                        <p>Total requests: {{metrics.totalUserRequests}}</p>
+                        <p>Converted requests: {{metrics.convertedUserRequest}}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button (click)="toggleRequests()">Show requests</button>
+                </mat-card-actions>
+            </mat-card>
         </div>
     </div>
+
     <div class="row">
         <div *ngIf="showChapters">
             <div class="row">
@@ -32,7 +100,9 @@
                 </tr>
             </table>
         </div>
+    </div>
 
+    <div class="row">
         <div *ngIf="showEvents">
             <div class="row">
                 <h1> List all events </h1>
@@ -58,7 +128,9 @@
                 </tr>
             </table>
         </div>
+    </div>
 
+    <div class="row">
         <div *ngIf="showUsers">
             <div class="row">
                 <h1> List all users </h1>
@@ -82,6 +154,35 @@
                     <td>{{user.master}}</td>
                     <td>{{user.lastLogin}}</td>
 <!--                    <td>{{user.chapter.id}}</td>-->
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div *ngIf="showRequests">
+            <div class="row">
+                <h1> List all requests </h1>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Request</th>
+                    <th>Email</th>
+                    <th>Criada</th>
+                    <th>Capítulo</th>
+                    <th>Criador</th>
+                    <th>Usuário</th>
+                </tr>
+                <tr *ngFor="let request of requests">
+                    <td>{{request.id}}</td>
+                    <td>{{request.email}}</td>
+                    <td>{{request.creationDate}}</td>
+                    <td>{{request.chapterName}}</td>
+                    <td>{{request.createdByUsername}}</td>
+                    <td>{{request.userId}}</td>
+<!--                    <td>{{request | json}}</td>-->
+                    <!--                    <td>{{user.chapter.id}}</td>-->
                 </tr>
             </table>
         </div>
