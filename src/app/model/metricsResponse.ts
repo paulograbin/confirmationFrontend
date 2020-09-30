@@ -8,4 +8,9 @@ export interface MetricsResponse {
     publishedEvents: number;
     futureEvents: number;
 
+    totalChapters: number;
+
+    totalUserRequests: number;
+    convertedUserRequest: number;
+
 }
