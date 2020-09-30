@@ -23,4 +23,8 @@ export class UserRequestService {
     convertRequestToUser(requestId: string, convertUserRequest: any) {
         return this.http.post<ConvertUserRequestResponse>(`${this.userRequestUrl}/${requestId}`, convertUserRequest);
     }
+
+    getAllRequests(): Observable<UserRequestInterface[]> {
+        return this.http.get<UserRequestInterface[]>(`${this.userRequestUrl}`);
+    }
 }
