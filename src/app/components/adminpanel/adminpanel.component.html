@@ -167,6 +167,7 @@
             </div>
             <table class="table">
                 <tr>
+                    <th>Id</th>
                     <th>Request</th>
                     <th>Email</th>
                     <th>Criada</th>
@@ -175,6 +176,7 @@
                     <th>Usuário</th>
                 </tr>
                 <tr *ngFor="let request of requests">
+                    <td>{{request.id2}}</td>
                     <td>{{request.id}}</td>
                     <td>{{request.email}}</td>
                     <td>{{request.creationDate}}</td>

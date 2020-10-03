@@ -1,6 +1,7 @@
 export interface UserRequestInterface {
 
     requestId: string;
+    id: string;
     firstName: string;
     lastName: string;
     username: string;
