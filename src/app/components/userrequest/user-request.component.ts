@@ -56,7 +56,7 @@ export class UserRequestComponent implements OnInit {
                 console.log(err);
             },
             () => {
-                console.log(`user ${this.userRequest.requestId} loaded completely`);
+                console.log(`user ${this.userRequest.code} loaded completely`);
             }
         );
     }
@@ -76,7 +76,7 @@ export class UserRequestComponent implements OnInit {
 
     convertUser() {
         const convertUserRequest = {
-            requestNumber: this.userRequest.requestId,
+            requestNumber: this.userRequest.code,
             firstName: this.requestForm.get('firstName').value,
             lastName: this.requestForm.get('lastName').value,
             username: this.requestForm.get('username').value,
@@ -85,7 +85,7 @@ export class UserRequestComponent implements OnInit {
 
         console.log(convertUserRequest);
 
-        this.userRequestService.convertRequestToUser(this.userRequest.requestId, convertUserRequest)
+        this.userRequestService.convertRequestToUser(this.userRequest.code, convertUserRequest)
             .subscribe(
                 data => {
                     console.log(data);
