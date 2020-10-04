@@ -6,6 +6,7 @@ export interface UserRequestInterface {
     lastName: string;
     username: string;
     email: string;
+    userId: string;
 
     chapterId: string;
     chapterName: string;
