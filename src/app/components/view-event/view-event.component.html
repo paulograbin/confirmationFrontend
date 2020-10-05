@@ -8,23 +8,25 @@
     <div class='alert alert-success' *ngIf="eventCreated">{{successMessage}}<a href="event/view/{{event.id}}">dasdasdas</a></div>
     <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
 
-    <form novalidate [formGroup]="eventForm">
-        <fieldset>
-            <!--            <legend>Opa</legend>-->
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="eventTitle">Título</label>
-                <div>
-                    <input class="form-control"
-                           id="eventTitle"
-                           type="text"
-                           placeholder="Título da cerimônia"
-                           size="50"
-                           formControlName="title"
-                           name="eventTitle"
-                           [ngClass]="{'is-invalid': (eventForm.get('title').touched ||
+    <div *ngIf="loggedUser.master">
+        <div>
+            <form novalidate [formGroup]="eventForm">
+                <fieldset>
+                    <!--            <legend>Opa</legend>-->
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="eventTitle">Título</label>
+                        <div>
+                            <input class="form-control"
+                                   id="eventTitle"
+                                   type="text"
+                                   placeholder="Título da cerimônia"
+                                   size="50"
+                                   formControlName="title"
+                                   name="eventTitle"
+                                   [ngClass]="{'is-invalid': (eventForm.get('title').touched ||
                                                        eventForm.get('title').dirty) &&
                                                        !eventForm.get('title').valid }"/>
-                    <span class="invalid-feedback">
+                            <span class="invalid-feedback">
                         <span *ngIf="eventForm.get('title').errors?.required">
                             Título é um campo obrigatório.
                         </span>
@@ -32,33 +34,33 @@
                             Título deve ter pelo menos 3 letras.
                         </span>
                     </span>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-<!--            <div class="form-group row">-->
-<!--                <label class="col-md-2 col-form-label" for="eventDescription">Descrição</label>-->
-<!--                <div>-->
-<!--                    <input class="form-control"-->
-<!--                           id="eventDescription"-->
-<!--                           type="text"-->
-<!--                           placeholder="Descrição, ordem do dia, etc"-->
-<!--                           size="50"-->
-<!--                           formControlName="description"-->
-<!--                           name="eventDescription"-->
-<!--                           [ngClass]="{'is-invalid': (eventForm.get('description').touched ||-->
-<!--                                                       eventForm.get('description').dirty) &&-->
-<!--                                                       !eventForm.get('description').valid }">-->
-<!--                    <span class="invalid-feedback">-->
-<!--                        <span *ngIf="eventForm.get('description').errors?.required">-->
-<!--                            Descrição é um campo obrigatório.-->
-<!--                        </span>-->
-<!--                    </span>-->
-<!--                </div>-->
-<!--            </div>-->
+                    <!--            <div class="form-group row">-->
+                    <!--                <label class="col-md-2 col-form-label" for="eventDescription">Descrição</label>-->
+                    <!--                <div>-->
+                    <!--                    <input class="form-control"-->
+                    <!--                           id="eventDescription"-->
+                    <!--                           type="text"-->
+                    <!--                           placeholder="Descrição, ordem do dia, etc"-->
+                    <!--                           size="50"-->
+                    <!--                           formControlName="description"-->
+                    <!--                           name="eventDescription"-->
+                    <!--                           [ngClass]="{'is-invalid': (eventForm.get('description').touched ||-->
+                    <!--                                                       eventForm.get('description').dirty) &&-->
+                    <!--                                                       !eventForm.get('description').valid }">-->
+                    <!--                    <span class="invalid-feedback">-->
+                    <!--                        <span *ngIf="eventForm.get('description').errors?.required">-->
+                    <!--                            Descrição é um campo obrigatório.-->
+                    <!--                        </span>-->
+                    <!--                    </span>-->
+                    <!--                </div>-->
+                    <!--            </div>-->
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="eventDescription">Descrição</label>
-                <div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="eventDescription">Descrição</label>
+                        <div>
                     <textarea
                             id="eventDescription"
                             class="form-control"
@@ -69,7 +71,7 @@
                             placeholder="Descrição, ordem do dia, etc"
                             [ngClass]="{'is-invalid': (eventForm.get('description').touched || eventForm.get('description').dirty) &&
                                                        !eventForm.get('description').valid }"></textarea>
-                    <span class="invalid-feedback">
+                            <span class="invalid-feedback">
                         <span *ngIf="eventForm.get('description').errors?.required">
                             Descrição é um campo obrigatório.
                         </span>
@@ -80,112 +82,145 @@
                             Descrição deve ter no máximo 500 letras.
                         </span>
                     </span>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="eventAddress">Endereço</label>
-                <div>
-                    <input class="form-control"
-                           id="eventAddress"
-                           type="text"
-                           placeholder="Endereço do Capítulo, Loja, etc"
-                           size="50"
-                           name="eventAddress"
-                           formControlName="address"
-                           [ngClass]="{'is-invalid': (eventForm.get('address').touched ||
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="eventAddress">Endereço</label>
+                        <div>
+                            <input class="form-control"
+                                   id="eventAddress"
+                                   type="text"
+                                   placeholder="Endereço do Capítulo, Loja, etc"
+                                   size="50"
+                                   name="eventAddress"
+                                   formControlName="address"
+                                   [ngClass]="{'is-invalid': (eventForm.get('address').touched ||
                                                        eventForm.get('address').dirty) &&
                                                        !eventForm.get('address').valid }">
-                    <span class="invalid-feedback">
+                            <span class="invalid-feedback">
                         <span *ngIf="eventForm.get('address').errors?.required">
                             Endereço é um campo obrigatório.
                         </span>
                     </span>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="eventDate">Data</label>
-                <div>
-                    <input class="form-control"
-                           id="eventDate"
-                           type="text"
-                           placeholder="Data da cerimônia, exemplo: 30/08/2020"
-                           size="50"
-                           formControlName="date"
-                           name="eventDate"
-                           [ngClass]="{'is-invalid': (eventForm.get('date').touched ||
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="eventDate">Data</label>
+                        <div>
+                            <input class="form-control"
+                                   id="eventDate"
+                                   type="text"
+                                   placeholder="Data da cerimônia, exemplo: 30/08/2020"
+                                   size="50"
+                                   formControlName="date"
+                                   name="eventDate"
+                                   [ngClass]="{'is-invalid': (eventForm.get('date').touched ||
                                                        eventForm.get('date').dirty) &&
                                                        !eventForm.get('date').valid }">
-                    <span class="invalid-feedback">
+                            <span class="invalid-feedback">
                         <span *ngIf="eventForm.get('date').errors?.required">
                             Data é um campo obrigatório.
                         </span>
                     </span>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="form-group row">
-                <label class="col-md-2 col-form-label" for="eventTime">Horário</label>
-                <div>
-                    <input class="form-control"
-                           id="eventTime"
-                           type="time"
-                           placeholder="Horário da cerimônia, exemplo: 14:00"
-                           size="35"
-                           minlength="5"
-                           formControlName="time"
-                           name="eventTime"
-                           [ngClass]="{'is-invalid': (eventForm.get('time').touched ||
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="eventTime">Horário</label>
+                        <div>
+                            <input class="form-control"
+                                   id="eventTime"
+                                   type="time"
+                                   placeholder="Horário da cerimônia, exemplo: 14:00"
+                                   size="35"
+                                   minlength="5"
+                                   formControlName="time"
+                                   name="eventTime"
+                                   [ngClass]="{'is-invalid': (eventForm.get('time').touched ||
                                                        eventForm.get('time').dirty) &&
                                                        !eventForm.get('time').valid }">
-                    <span class="invalid-feedback">
+                            <span class="invalid-feedback">
                         <span *ngIf="eventForm.get('time').errors?.required">
                             Horário é um campo obrigatório.
                         </span>
                     </span>
-                </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" *ngIf="loggedUser.master">
+                        <label class="col-md-2 col-form-label" for="published">Publicado</label>
+                        <div>
+                            <mat-checkbox class="example-margin"
+                                          id="published"
+                                          name="published"
+                                          formControlName="published">
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div>
+            <button *ngIf="loggedUser.master"
+                    class="btn btn-primary mr-3"
+                    style="width:80px"
+                    type="button"
+                    [title]="isValid() ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                    [disabled]="!isValid()"
+                    (click)="saveEvent()">
+                Save
+            </button>
+            <button *ngIf="loggedUser.master"
+                    class="btn btn-outline-secondary mr-3"
+                    style="width:80px"
+                    type="button"
+                    title="Cancel your edits"
+                    [routerLink]="['/createdEvents']">
+                Cancel
+            </button>
+            <button *ngIf="loggedUser.master"
+                    class="btn btn-outline-danger"
+                    style="width:80px"
+                    type="button"
+                    title="Delete this event"
+                    (click)="deleteEvent()">
+                Delete
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="!loggedUser.master">
+        <fieldset>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Título</label>
+                <h2>{{event.title}}</h2>
             </div>
 
-            <div class="form-group row" *ngIf="loggedUser.master">
-                <label class="col-md-2 col-form-label" for="published">Publicado</label>
-                <div>
-                    <mat-checkbox class="example-margin"
-                                  id="published"
-                                  name="published"
-                                  formControlName="published">
-                    </mat-checkbox>
-                </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Descrição</label>
+                <h2>{{event.description}}</h2>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Endereço</label>
+                <h2>{{event.address}}</h2>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Data</label>
+                <h2>{{event.date}}</h2>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Horário</label>
+                <h2>{{event.time}}</h2>
             </div>
         </fieldset>
-    </form>
+    </div>
 
-
-    <button *ngIf="loggedUser.master"
-            class="btn btn-primary mr-3"
-            style="width:80px"
-            type="button"
-            [title]="isValid() ? 'Save your entered data' : 'Disabled until the form data is valid'"
-            [disabled]="!isValid()"
-            (click)="saveEvent()">
-        Save
-    </button>
-    <button *ngIf="loggedUser.master"
-            class="btn btn-outline-secondary mr-3"
-            style="width:80px"
-            type="button"
-            title="Cancel your edits"
-            [routerLink]="['/createdEvents']">
-        Cancel
-    </button>
-    <button *ngIf="loggedUser.master"
-            class="btn btn-outline-danger"
-            style="width:80px"
-            type="button"
-            title="Delete this event"
-            (click)="deleteEvent()">
-        Delete
-    </button>
 
     <div *ngIf="event.id != 0">
         <h3>Convidados</h3>
@@ -215,4 +250,3 @@
 <!--    Valid: {{eventForm.valid}} <br>-->
 <!--    Value: {{eventForm.value | json}}-->
 <!--</div>-->
-
