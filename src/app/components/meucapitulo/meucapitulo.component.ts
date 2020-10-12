@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder} from '@angular/forms';
-import {UserService} from '../../services/user.service';
-import {ChapterService} from '../../services/chapter.service';
+import {ActivatedRoute} from '@angular/router';
 import {Chapter} from '../../model/chapterModel';
 
 @Component({
