@@ -10,6 +10,9 @@ export interface MetricsResponse {
 
     totalChapters: number;
 
+    totalParticipations: number;
+    confirmedParticipations: number;
+
     totalUserRequests: number;
     convertedUserRequest: number;
 
