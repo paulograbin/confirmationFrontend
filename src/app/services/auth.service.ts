@@ -19,6 +19,7 @@ export class AuthService {
             .pipe(
                 map(
                     data => {
+                        console.log('authenticate response', data);
                         this.setSession(data);
 
                         return data;
@@ -29,40 +30,46 @@ export class AuthService {
 
     private setSession(authResult): void {
         // Set the time that the access token will expire at
-        // const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
         localStorage.setItem('access_token', authResult.token);
-        // localStorage.setItem('id_token', authResult.idToken);
-        // localStorage.setItem('expires_at', expiresAt);
+        localStorage.setItem('expirationDate', authResult.expirationDate);
     }
 
     public getAuthenticationToken(): string {
         return localStorage.getItem('access_token');
     }
 
+
     public logout(): void {
         // Remove tokens and expiry time from localStorage
         localStorage.removeItem('access_token');
-        localStorage.removeItem('id_token');
-        localStorage.removeItem('expires_at');
+        localStorage.removeItem('expirationDate');
         // Go back to the home route
         this.router.navigate(['/login']);
     }
 
     public isAuthenticated(): boolean {
-        // console.log('Okay, lets check if you are authenticated');
-
         const accessToken = localStorage.getItem('access_token');
+        const expirationDate = localStorage.getItem('expirationDate');
 
-        if (accessToken) {
-            // console.log('Yees you are!!');
-            return true;
+        if (accessToken === null || expirationDate === null) {
+            console.log('Not authenticated.');
+            return false;
         }
 
-        return false;
-        // // Check whether the current time is past the
-        // // access token's expiry time
-        // const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-        // console.log(expiresAt);
-        // return new Date().getTime() < expiresAt;
+        const computedExpirationDate = new Date(0); // The 0 there is the key, which sets the date to the epoch
+        computedExpirationDate.setUTCMilliseconds(Number(expirationDate));
+
+        const now = new Date();
+
+        // console.log('now', now);
+        // console.log('expiration date', computedExpirationDate);
+
+        if (now > computedExpirationDate) {
+            console.log('Expired!!!');
+            this.logout();
+            return false;
+        }
+
+        return true;
     }
 }
