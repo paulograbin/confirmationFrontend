@@ -169,7 +169,7 @@
                     style="width:80px"
                     type="button"
                     [title]="isValid() ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                    [disabled]="!isValid()"
+                    [disabled]="!isValid() || lockButtons"
                     (click)="saveEvent()">
                 Save
             </button>
@@ -178,6 +178,7 @@
                     style="width:80px"
                     type="button"
                     title="Cancel your edits"
+                    [disabled]="lockButtons"
                     [routerLink]="['/createdEvents']">
                 Cancel
             </button>
@@ -186,6 +187,7 @@
                     style="width:80px"
                     type="button"
                     title="Delete this event"
+                    [disabled]="lockButtons"
                     (click)="deleteEvent()">
                 Delete
             </button>

@@ -22,6 +22,7 @@ export class ViewEventComponent implements OnInit {
     successMessage = '';
     invalidCreationRequest = false;
     eventCreated = false;
+    lockButtons = false;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -80,6 +81,7 @@ export class ViewEventComponent implements OnInit {
     saveEvent(): void {
         this.successMessage = '';
         this.errorMessage = '';
+        this.lockButtons = true;
 
         if (this.eventForm.valid) {
             if (this.eventForm.dirty) {
@@ -120,6 +122,10 @@ export class ViewEventComponent implements OnInit {
             }, error => {
                 console.log('Update event errored!');
                 console.log('err', error);
+                this.lockButtons = false;
+            }, () => {
+                console.log('completed!!');
+                this.lockButtons = false;
             }
         );
     }
@@ -151,8 +157,10 @@ export class ViewEventComponent implements OnInit {
 
                 this.invalidCreationRequest = true;
                 this.errorMessage = error;
+                this.lockButtons = false;
             },
             () => {
+                console.log('completed!!');
             }
         );
     }
