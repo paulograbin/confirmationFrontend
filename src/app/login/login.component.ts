@@ -30,8 +30,13 @@ export class LoginComponent implements OnInit {
     handleLogin() {
         this.invalidLogin = false;
 
+        const loginData = {
+            usernameOrEmail: this.loginForm.get('usernameOrEmail').value.trim(),
+            password: this.loginForm.get('password').value.trim(),
+        };
+
         if (this.loginForm.valid) {
-            this.authService.login(this.loginForm.value)
+            this.authService.login(loginData)
                 .subscribe(
                     data => {
                         this.router.navigate(['/']);

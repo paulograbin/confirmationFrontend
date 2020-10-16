@@ -52,7 +52,7 @@ export class AuthService {
         const expirationDate = localStorage.getItem('expirationDate');
 
         if (accessToken === null || expirationDate === null) {
-            console.log('Not authenticated.');
+            // console.log('Not authenticated.');
             return false;
         }
 
