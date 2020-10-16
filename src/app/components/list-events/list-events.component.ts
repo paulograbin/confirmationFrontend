@@ -4,7 +4,7 @@ import {UserService} from '../../services/user.service';
 import {ParticipationModel} from '../../model/participationModel';
 import {ActivatedRoute} from '@angular/router';
 import {UserInterface} from '../../model/userModel';
-import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-list-events',
@@ -13,7 +13,7 @@ import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar
 })
 export class ListEventsComponent implements OnInit {
 
-    participations: ParticipationModel[];
+    participations: ParticipationModel[] = [];
     loggedUser: UserInterface;
 
     confirmationMessage = '';
@@ -44,8 +44,6 @@ export class ListEventsComponent implements OnInit {
             },
             err => console.error(err)
         );
-
-        // this.fetchEvents();
     }
 
     private fetchEvents() {
