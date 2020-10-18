@@ -121,8 +121,8 @@ export class EventServiceService {
         return throwError(errorMessage);
     }
 
-    getUserInvitations(id: number) {
-        return this.http.get<ParticipationModel[]>(`${this.eventServiceUrl}/invitations/${id}`);
+    getInvitationsForCurrentUser() {
+        return this.http.get<ParticipationModel[]>(`${this.eventServiceUrl}/invitations`);
     }
 
     confirmPresence(eventId: number, userId: number) {

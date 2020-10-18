@@ -41,24 +41,21 @@ export class ListEventsComponent implements OnInit {
             data => {
                 this.loggedUser = data.loggedUser;
                 // this.participations = data.loggedUser.participations;
-                this.fetchEvents();
+                this.fetchUserInvitations();
             },
             err => console.error(err)
         );
     }
 
-    private fetchEvents() {
-        this.fetchUserInvitations(this.loggedUser.id);
-    }
-
-    private fetchUserInvitations(id) {
-        this.eventService.getUserInvitations(id).subscribe(
-            data => {
-                this.participations = data;
-            },
-            err => console.error(err),
-            () => console.log('events loaded')
-        );
+    private fetchUserInvitations() {
+        this.eventService.getInvitationsForCurrentUser()
+            .subscribe(
+                data => {
+                    this.participations = data;
+                },
+                err => console.error(err),
+                () => console.log('events loaded')
+            );
     }
 
     confirmPresenceInEvent(indice: number, eventId: number) {
@@ -101,7 +98,7 @@ export class ListEventsComponent implements OnInit {
                     }.bind(this), 1500);
 
                     console.log('refetch');
-                    this.fetchEvents();
+                    this.fetchUserInvitations();
                 }
             );
 
