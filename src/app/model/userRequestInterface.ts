@@ -1,7 +1,7 @@
 export interface UserRequestInterface {
 
     id: string;
-    code: string;
+    requestId: string;
     firstName: string;
     lastName: string;
     username: string;
