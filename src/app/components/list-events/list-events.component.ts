@@ -40,16 +40,14 @@ export class ListEventsComponent implements OnInit {
         this.route.data.subscribe(
             data => {
                 this.loggedUser = data.loggedUser;
-                this.participations = data.loggedUser.participations;
+                // this.participations = data.loggedUser.participations;
+                this.fetchEvents();
             },
             err => console.error(err)
         );
     }
 
     private fetchEvents() {
-        // console.log('fetch events', this.loggedUser);
-
-        // console.log('Not MC');
         this.fetchUserInvitations(this.loggedUser.id);
     }
 
@@ -57,10 +55,9 @@ export class ListEventsComponent implements OnInit {
         this.eventService.getUserInvitations(id).subscribe(
             data => {
                 this.participations = data;
-                // console.log(this.participations);
             },
             err => console.error(err),
-            // () => console.log('events loaded')
+            () => console.log('events loaded')
         );
     }
 
