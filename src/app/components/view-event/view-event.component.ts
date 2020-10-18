@@ -4,6 +4,8 @@ import {EventModel} from '../../model/eventModel';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserInterface} from '../../model/userModel';
 import {EventServiceService} from '../../services/event-service.service';
+import {ViewEventResponse} from '../../model/viewEventResponse';
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-view-event',
@@ -12,11 +14,11 @@ import {EventServiceService} from '../../services/event-service.service';
 })
 export class ViewEventComponent implements OnInit {
 
+    response: ViewEventResponse;
+
     event: EventModel;
     loggedUser: UserInterface;
     eventForm: FormGroup;
-
-    // TODO impedir usuario de navegar pelos eventos pela URL
 
     errorMessage = '';
     successMessage = '';
@@ -24,10 +26,22 @@ export class ViewEventComponent implements OnInit {
     eventCreated = false;
     lockButtons = false;
 
+    horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+    verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private eventService: EventServiceService,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                private snackBar: MatSnackBar) {
+    }
+
+    openSnackBar(mensagem: string) {
+        this.snackBar.open(mensagem, 'Fechar', {
+            duration: 1000,
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+        });
     }
 
     ngOnInit() {
@@ -44,19 +58,20 @@ export class ViewEventComponent implements OnInit {
             data => {
                 const resolvedData = data;
 
-                const error = resolvedData.resolvedEvent.error;
-
-                this.event = resolvedData.resolvedEvent.event;
-                this.displayEvent(resolvedData.resolvedEvent.event);
-                // this.errorMessage = resolvedData.resolvedEvent.error;
-
                 this.loggedUser = resolvedData.loggedUser;
+                this.response = resolvedData.response;
 
-                // if (this.event.creatorId === this.loggedUser.id) {
-                //     console.log('MC vendo seu evento');
-                // } else {
-                //     console.log('É só um qualquer');
-                // }
+                if (this.response.successful) {
+                    console.log('user can see event');
+
+                    this.event = this.response.eventDetails;
+                    // console.log('event', this.event);
+                    this.displayEvent(this.event);
+                } else {
+                    console.log('user can NOT see event');
+                    // this.displayEvent(this.event);
+                    this.openSnackBar(this.response.errorMessage);
+                }
             },
             err => console.error(err),
             () => {
@@ -66,8 +81,6 @@ export class ViewEventComponent implements OnInit {
     }
 
     displayEvent(event: EventModel) {
-        console.log('Displaying', event);
-
         this.eventForm.patchValue({
             title: this.event.title,
             description: this.event.description,
@@ -86,7 +99,7 @@ export class ViewEventComponent implements OnInit {
         if (this.eventForm.valid) {
             if (this.eventForm.dirty) {
 
-                if (this.event.id === 0) {
+                if (this.response.creating) {
                     this.requestEventCreationToBackend();
                 } else {
                     this.requestEventUpdateToBackend();
@@ -124,7 +137,7 @@ export class ViewEventComponent implements OnInit {
                 console.log('err', error);
                 this.lockButtons = false;
             }, () => {
-                console.log('completed!!');
+                // console.log('completed!!');
                 this.lockButtons = false;
             }
         );
@@ -160,14 +173,12 @@ export class ViewEventComponent implements OnInit {
                 this.lockButtons = false;
             },
             () => {
-                console.log('completed!!');
+                // console.log('completed!!');
             }
         );
     }
 
     isValid(path?: string): boolean {
-        // console.log(path);
-        // console.log(true);
         return true;
     }
 
@@ -182,7 +193,7 @@ export class ViewEventComponent implements OnInit {
     }
 
     private onSaveComplete() {
-        console.log('On Save Complete');
+        // console.log('On Save Complete');
         this.eventForm.reset();
         this.router.navigate(['/']);
     }

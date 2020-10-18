@@ -5,6 +5,7 @@ import {ParticipationModel} from '../model/participationModel';
 import {catchError, tap} from 'rxjs/operators';
 import {Observable, of, throwError} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {ViewEventResponse} from '../model/viewEventResponse';
 
 @Injectable({
     providedIn: 'root'
@@ -40,36 +41,64 @@ export class EventServiceService {
         return this.http.get<EventInterface[]>(`${this.eventServiceUrl}`);
     }
 
-    getEvent(id: number): Observable<EventInterface> {
-        if (id === 0) {
-            return of(this.createNullEvent());
-        }
+    // getEvent(id: number): Observable<EventInterface> {
+    //     if (id === 0) {
+    //         return of(this.createNullEvent());
+    //     }
+    //
+    //     return this.http.get<EventInterface>(`${this.eventServiceUrl}/${id}`)
+    //         .pipe(
+    //             // tap(data => console.log('getEvent: ' + JSON.stringify(data))),
+    //             // tap(data => console.log('getEvent: ' + data)),
+    //             // catchError(this.handleError)
+    //         );
+    // }
 
-        return this.http.get<EventInterface>(`${this.eventServiceUrl}/${id}`)
+    getEvent2(id: number): Observable<ViewEventResponse> {
+        // if (id === 0) {
+        //     return of(this.createNullEvent2());
+        // }
+
+        return this.http.get<ViewEventResponse>(`${this.eventServiceUrl}/${id}`)
             .pipe(
                 // tap(data => console.log('getEvent: ' + JSON.stringify(data))),
                 // tap(data => console.log('getEvent: ' + data)),
-                // catchError(this.handleError)
+                catchError(this.handleError)
             );
     }
 
-    private createNullEvent(): EventInterface {
-        console.log('Return null event');
-        return {
-            id: 0,
-            title: null,
-            address: null,
-            chapter: null,
-            creatorId: 0,
-            published: false,
-            description: null,
-            creationDate: null,
-            date: null,
-            time: null,
-            participants: null,
-        };
-    }
-
+    // private createNullEvent2(): ViewEventResponse {
+    //     console.log('Return null event');
+    //
+    //     return {
+    //         eventDetails: undefined,
+    //         canChange: false,
+    //         errorMessage: '',
+    //         invalidEvent: false,
+    //         invalidUser: false,
+    //         isInThePast: false,
+    //         notAllowed: false,
+    //         successful: false,
+    //         creating: true,
+    //     };
+    // }
+    //
+    // private createNullEvent(): EventInterface {
+    //     console.log('Return null event');
+    //     return {
+    //         id: 0,
+    //         title: null,
+    //         address: null,
+    //         chapter: null,
+    //         creatorId: 0,
+    //         published: false,
+    //         description: null,
+    //         creationDate: null,
+    //         date: null,
+    //         time: null,
+    //         participants: null,
+    //     };
+    // }
 
     private handleError(err) {
         console.log('HANDLER ERROR!!!', err);
