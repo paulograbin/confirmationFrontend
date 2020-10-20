@@ -94,10 +94,10 @@ export class ViewEventComponent implements OnInit {
     saveEvent(): void {
         this.successMessage = '';
         this.errorMessage = '';
-        this.lockButtons = true;
 
         if (this.eventForm.valid) {
             if (this.eventForm.dirty) {
+                this.lockButtons = true;
 
                 if (this.response.creating) {
                     this.requestEventCreationToBackend();
@@ -135,7 +135,6 @@ export class ViewEventComponent implements OnInit {
             }, error => {
                 console.log('Update event errored!');
                 console.log('err', error);
-                this.lockButtons = false;
             }, () => {
                 // console.log('completed!!');
                 this.lockButtons = false;
@@ -144,8 +143,6 @@ export class ViewEventComponent implements OnInit {
     }
 
     private requestEventCreationToBackend() {
-        console.log('cerate');
-
         const eventToCreate = {
             title: this.eventForm.get('title').value,
             description: this.eventForm.get('description').value,
@@ -154,32 +151,30 @@ export class ViewEventComponent implements OnInit {
             time: this.eventForm.get('time').value,
             published: this.eventForm.get('published').value
         };
-        console.log('event to create', eventToCreate);
 
-        this.eventService.createEvent(eventToCreate).subscribe(
-            data => {
-                console.log('Event creation returned successful', data);
-                this.successMessage = 'Evento criado! Clique para vê-lo';
-                this.event = data;
-                this.eventCreated = true;
-                this.onSaveComplete();
-            },
-            error => {
-                console.log('Create event errored!');
-                console.log('err', error);
+        this.eventService.createEvent(eventToCreate)
+            .subscribe(
+                data => {
+                    this.successMessage = 'Evento criado! Clique para vê-lo';
+                    this.event = data;
+                    this.eventCreated = true;
+                    this.onSaveComplete();
+                },
+                error => {
+                    console.log('err', error);
 
-                this.invalidCreationRequest = true;
-                this.errorMessage = error;
-                this.lockButtons = false;
-            },
-            () => {
-                // console.log('completed!!');
-            }
-        );
+                    this.invalidCreationRequest = true;
+                    this.errorMessage = error;
+                    this.lockButtons = false;
+                },
+                () => {
+                    this.lockButtons = false;
+                }
+            );
     }
 
     isValid(path?: string): boolean {
-        return true;
+        return this.lockButtons;
     }
 
     deleteEvent(): void {
