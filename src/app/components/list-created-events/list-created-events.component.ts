@@ -43,7 +43,7 @@ export class ListCreatedEventsComponent implements OnInit {
                 },
                 err => console.error(err),
                 () => {
-                    console.log(`${this.events.length} events loadded`);
+                    console.log(`${this.events.length} events loaded`);
                 }
             );
     }

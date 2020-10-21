@@ -13,7 +13,7 @@ import {MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition, MatSnackBar}
 })
 export class ListEventsComponent implements OnInit {
 
-    participations: ParticipationModel[] = [];
+    participations: ParticipationModel[];
     loggedUser: UserInterface;
 
     loading = true;
@@ -42,7 +42,6 @@ export class ListEventsComponent implements OnInit {
         this.route.data.subscribe(
             data => {
                 this.loggedUser = data.loggedUser;
-                // this.participations = data.loggedUser.participations;
                 this.fetchUserInvitations();
             },
             err => console.error(err)
@@ -57,7 +56,7 @@ export class ListEventsComponent implements OnInit {
                     this.loading = false;
                 },
                 err => console.error(err),
-                () => console.log('events loaded')
+                () => console.log(`${this.participations.length} events loaded`)
             );
     }
 
