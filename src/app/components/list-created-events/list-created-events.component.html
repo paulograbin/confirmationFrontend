@@ -13,6 +13,8 @@
         </button>
     </header>
 
+    <mat-spinner *ngIf="loading" class="fa fa-spinner spinner"></mat-spinner>
+
     <ul class="post-list" *ngFor="let event of events">
         <li class="post-stub">
             <!--            <div [ngClass]="{'not-published': event.published === false}">-->
@@ -25,5 +27,4 @@
             </div>
         </li>
     </ul>
-
 </div>

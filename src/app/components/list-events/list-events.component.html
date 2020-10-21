@@ -7,6 +7,8 @@
         </header>
     </div>
 
+    <mat-spinner *ngIf="loading" class="fa fa-spinner spinner"></mat-spinner>
+
     <div *ngIf="confirmed" class='alert alert-success'>{{confirmationMessage}}</div>
 
     <ul class="post-list" *ngFor="let participation of participations; let i = index">
