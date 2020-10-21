@@ -16,6 +16,8 @@ export class ListEventsComponent implements OnInit {
     participations: ParticipationModel[] = [];
     loggedUser: UserInterface;
 
+    loading = true;
+
     confirmationMessage = '';
     confirmed = false;
 
@@ -52,6 +54,7 @@ export class ListEventsComponent implements OnInit {
             .subscribe(
                 data => {
                     this.participations = data;
+                    this.loading = false;
                 },
                 err => console.error(err),
                 () => console.log('events loaded')
