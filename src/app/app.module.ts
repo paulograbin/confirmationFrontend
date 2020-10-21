@@ -43,6 +43,7 @@ import {AdminpanelComponent} from './components/adminpanel/adminpanel.component'
 import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
 import {MatSelectModule} from '@angular/material/select';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 export const MY_FORMATS = {
     parse: {
@@ -88,7 +89,8 @@ export const MY_FORMATS = {
         MatCheckboxModule,
         MatCardModule,
         MatSnackBarModule,
-        MatSelectModule
+        MatSelectModule,
+        MatProgressSpinnerModule
     ],
     providers: [
         {
