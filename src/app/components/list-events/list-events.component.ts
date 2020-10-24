@@ -61,7 +61,7 @@ export class ListEventsComponent implements OnInit {
     }
 
     confirmPresenceInEvent(indice: number, eventId: number) {
-        this.eventService.confirmPresence(eventId, Number(this.loggedUser.id))
+        this.eventService.confirmPresence(eventId)
             .subscribe(
                 data => {
                     this.openSnackBar(`Presença confirmada com sucesso`);
@@ -83,7 +83,7 @@ export class ListEventsComponent implements OnInit {
     }
 
     declinePresenceInEvent(indice: number, eventId: number) {
-        this.eventService.declinePresence(eventId, Number(this.loggedUser.id))
+        this.eventService.declinePresence(eventId)
             .subscribe(
                 data => {
                     this.openSnackBar(`Presença declinada com sucesso`);

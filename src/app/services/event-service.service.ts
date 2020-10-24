@@ -125,12 +125,12 @@ export class EventServiceService {
         return this.http.get<ParticipationModel[]>(`${this.eventServiceUrl}/invitations`);
     }
 
-    confirmPresence(eventId: number, userId: number) {
-        return this.http.post(`${this.eventServiceUrl}/${eventId}/confirm/${userId}`, null);
+    confirmPresence(eventId: number) {
+        return this.http.post(`${this.eventServiceUrl}/${eventId}/confirm`, null);
     }
 
-    declinePresence(eventId: number, userId: number) {
-        return this.http.post(`${this.eventServiceUrl}/${eventId}/decline/${userId}`, null);
+    declinePresence(eventId: number) {
+        return this.http.post(`${this.eventServiceUrl}/${eventId}/decline`, null);
     }
 
     getEventsCreatedByUser(userId: number): Observable<EventInterface[]> {
