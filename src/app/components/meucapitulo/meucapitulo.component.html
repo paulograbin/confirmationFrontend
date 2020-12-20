@@ -8,7 +8,7 @@
     <label class="col-md-4 col-form-label">Lista de membros</label>
     <div id="members">
         <tr *ngFor="let member of chapter.members">
-            <h2>{{member.firstName}} {{member.lastName}}</h2>
+            <h2 *ngIf="member.active">{{member.firstName}} {{member.lastName}}</h2>
         </tr>
     </div>
 
