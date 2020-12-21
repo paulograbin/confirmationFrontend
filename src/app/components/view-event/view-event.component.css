@@ -4,6 +4,14 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
+.progress-container {
+    position: fixed;
+    top: 0px; /* Adjust to desired height */
+    width: 200%;
+    background: #0E112B;
+    justify-content: left;
+}
+
 body {
     margin: 0;
 }

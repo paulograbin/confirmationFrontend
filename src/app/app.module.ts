@@ -44,6 +44,7 @@ import {ViewChapterComponent} from './components/view-chapter/view-chapter.compo
 import {MatSelectModule} from '@angular/material/select';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 export const MY_FORMATS = {
     parse: {
@@ -90,7 +91,8 @@ export const MY_FORMATS = {
         MatCardModule,
         MatSnackBarModule,
         MatSelectModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatProgressBarModule
     ],
     providers: [
         {

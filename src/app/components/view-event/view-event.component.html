@@ -1,3 +1,11 @@
+<div *ngIf="lockButtons" class="row progress-container">
+    <mat-progress-bar
+            class="example-margin"
+            [color]="color"
+            [mode]="mode">
+    </mat-progress-bar>
+</div>
+
 <div class="container">
     <div class="post-index">
         <header class="post-header">
@@ -247,6 +255,7 @@
             </table>
         </div>
     </div>
+</div>
 
 <!--<div>-->
 <!--    Dirty: {{eventForm.dirty}} <br>-->

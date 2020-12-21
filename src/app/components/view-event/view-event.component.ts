@@ -6,6 +6,8 @@ import {UserInterface} from '../../model/userModel';
 import {EventServiceService} from '../../services/event-service.service';
 import {ViewEventResponse} from '../../model/viewEventResponse';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
+import {ThemePalette} from '@angular/material/core';
+import {ProgressBarMode} from '@angular/material/progress-bar';
 
 @Component({
     selector: 'app-view-event',
@@ -28,6 +30,9 @@ export class ViewEventComponent implements OnInit {
 
     horizontalPosition: MatSnackBarHorizontalPosition = 'center';
     verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+    color: ThemePalette = 'accent';
+    mode: ProgressBarMode = 'indeterminate';
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -72,6 +77,7 @@ export class ViewEventComponent implements OnInit {
                     // this.displayEvent(this.event);
                     this.openSnackBar(this.response.errorMessage);
                 }
+
             },
             err => console.error(err),
             () => {
@@ -135,6 +141,9 @@ export class ViewEventComponent implements OnInit {
             }, error => {
                 console.log('Update event errored!');
                 console.log('err', error);
+
+                this.errorMessage = error.error.message;
+                this.lockButtons = false;
             }, () => {
                 // console.log('completed!!');
                 this.lockButtons = false;
