@@ -4,8 +4,7 @@ import {UserInterface} from '../model/userModel';
 
 @Component({
     selector: 'app-event-router',
-    templateUrl: './event-router.component.html',
-    styleUrls: ['./event-router.component.css']
+    templateUrl: './event-router.component.html'
 })
 export class EventRouterComponent implements OnInit {
 
