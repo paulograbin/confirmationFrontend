@@ -45,6 +45,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 
 export const MY_FORMATS = {
     parse: {
@@ -75,7 +76,8 @@ export const MY_FORMATS = {
         MeuscapituloComponent,
         AdminpanelComponent,
         ViewChapterComponent,
-        UserRequestComponent
+        UserRequestComponent,
+        ForgotPasswordComponent
     ],
     imports: [
         BrowserModule,

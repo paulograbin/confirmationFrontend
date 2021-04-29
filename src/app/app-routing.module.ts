@@ -22,6 +22,7 @@ import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.compon
 import {MyChapterResolverService} from './services/resolvers/my-chapter-resolver.service';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
 import {UserRequestResolverService} from './services/resolvers/userrequest-resolver.service';
+import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 
 const routes: Routes = [
     {
@@ -39,6 +40,10 @@ const routes: Routes = [
         resolve: {
             loggedUser: LoggedUserResolverService
         }
+    },
+    {
+        path: 'forgotpassword',
+        component: ForgotPasswordComponent
     },
     {
         path: 'capitulo',

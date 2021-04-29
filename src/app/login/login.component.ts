@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-login',
@@ -14,14 +14,15 @@ export class LoginComponent implements OnInit {
     invalidLogin = false;
     errorMessage = 'error message';
 
-    constructor(private router: Router,
+    constructor(private formBuilder: FormBuilder,
+                private router: Router,
                 private authService: AuthService) {
     }
 
     ngOnInit() {
-        this.loginForm = new FormGroup({
-            usernameOrEmail: new FormControl('', Validators.required),
-            password: new FormControl('', Validators.required),
+        this.loginForm = this.formBuilder.group({
+            usernameOrEmail: ['', Validators.required],
+            password: ['', Validators.required],
         });
 
         this.authService.logout();
@@ -57,5 +58,10 @@ export class LoginComponent implements OnInit {
             this.invalidLogin = true;
             this.errorMessage = 'Preencha os dados!';
         }
+    }
+
+    teste() {
+        console.log('testeando...');
+        this.router.navigate(['forgotpassword']);
     }
 }
