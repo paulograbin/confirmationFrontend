@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --prod --output-path docs --base-href /confirmationFrontend/",
+    "build": "ng build --prod --deploy-url=/confirmation-frontend/",
+    "buildPages": "ng build --prod --output-path docs --base-href /confirmationFrontend/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
