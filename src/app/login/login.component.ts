@@ -59,9 +59,4 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Preencha os dados!';
         }
     }
-
-    teste() {
-        console.log('testeando...');
-        this.router.navigate(['forgotpassword']);
-    }
 }
