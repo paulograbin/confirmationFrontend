@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -14,7 +14,10 @@ export class LoginComponent implements OnInit {
     invalidLogin = false;
     errorMessage = 'error message';
 
-    constructor(private formBuilder: FormBuilder,
+    showResetButton = true;
+
+    constructor(private route: ActivatedRoute,
+                private formBuilder: FormBuilder,
                 private router: Router,
                 private authService: AuthService) {
     }
@@ -26,6 +29,12 @@ export class LoginComponent implements OnInit {
         });
 
         this.authService.logout();
+
+        this.route.data
+            .subscribe(
+                data => {
+                    this.showResetButton = data.features.RESET_PASSWORD_BUTTON;
+                });
     }
 
     handleLogin() {

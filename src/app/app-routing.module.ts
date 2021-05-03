@@ -23,6 +23,7 @@ import {MyChapterResolverService} from './services/resolvers/my-chapter-resolver
 import {UserRequestComponent} from './components/userrequest/user-request.component';
 import {UserRequestResolverService} from './services/resolvers/userrequest-resolver.service';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
+import {FeatureFlagResolverService} from './services/resolvers/feature-flag-resolver.service';
 
 const routes: Routes = [
     {
@@ -63,7 +64,10 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        resolve: {
+            features: FeatureFlagResolverService,
+        }
     },
     {
         path: 'logout',
