@@ -12,9 +12,7 @@ export class ForgotPasswordComponent implements OnInit {
     loading = false;
     submitted = false;
 
-    constructor(
-        private formBuilder: FormBuilder,
-    ) {
+    constructor(private formBuilder: FormBuilder) {
     }
 
     ngOnInit(): void {
@@ -36,6 +34,16 @@ export class ForgotPasswordComponent implements OnInit {
 
         this.loading = true;
         console.log('value ', this.f.email.value);
+
+        // this.loading = true;
+        // this.alertService.clear();
+        // this.accountService.forgotPassword(this.f.email.value)
+        //     .pipe(first())
+        //     .pipe(finalize(() => this.loading = false))
+        //     .subscribe({
+        //         next: () => this.alertService.success('Please check your email for password reset instructions'),
+        //         error: error => this.alertService.error(error)
+        //     });
     }
 
 }

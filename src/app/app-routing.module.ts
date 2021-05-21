@@ -24,6 +24,8 @@ import {UserRequestComponent} from './components/userrequest/user-request.compon
 import {UserRequestResolverService} from './services/resolvers/userrequest-resolver.service';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {FeatureFlagResolverService} from './services/resolvers/feature-flag-resolver.service';
+import {DefineNewPasswordComponent} from './components/define-new-password/define-new-password.component';
+import {PasswordRequestResolverService} from './services/resolvers/password-request-resolver.service';
 
 const routes: Routes = [
     {
@@ -45,6 +47,13 @@ const routes: Routes = [
     {
         path: 'forgotpassword',
         component: ForgotPasswordComponent
+    },
+    {
+        path: 'forgotpassword/:passwordRequestCode',
+        component: DefineNewPasswordComponent,
+        resolve: {
+            passwordRequestCode: PasswordRequestResolverService,
+        }
     },
     {
         path: 'capitulo',
