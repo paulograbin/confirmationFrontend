@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {finalize, first} from 'rxjs/operators';
+import {UserService} from '../../services/user.service';
 
 @Component({
     selector: 'app-forgot-password',
@@ -12,7 +14,11 @@ export class ForgotPasswordComponent implements OnInit {
     loading = false;
     submitted = false;
 
-    constructor(private formBuilder: FormBuilder) {
+    errorMessage = '';
+    successMessage = '';
+
+    constructor(private formBuilder: FormBuilder,
+                private userService: UserService) {
     }
 
     ngOnInit(): void {
@@ -29,14 +35,28 @@ export class ForgotPasswordComponent implements OnInit {
         this.submitted = true;
 
         if (this.form.invalid) {
+            this.errorMessage = 'Esse email não parece certo, tem certeza';
             return;
         }
 
         this.loading = true;
-        console.log('value ', this.f.email.value);
-
-        // this.loading = true;
+        this.errorMessage = '';
         // this.alertService.clear();
+        this.userService.submitNewForgotPasswordRequest(this.f.email.value)
+            .pipe(first())
+            .pipe(finalize(() => this.loading = false))
+            .subscribe(data => {
+                console.log(data);
+
+                if (data.successful) {
+                    this.errorMessage = '';
+                    this.successMessage = 'Confira seu email pra continuar o processo';
+                } else {
+                    this.errorMessage = 'Esse email não parece certo, tem certeza?';
+                    this.successMessage = '';
+                }
+            });
+
         // this.accountService.forgotPassword(this.f.email.value)
         //     .pipe(first())
         //     .pipe(finalize(() => this.loading = false))
