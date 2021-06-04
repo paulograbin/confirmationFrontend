@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     invalidLogin = false;
     errorMessage = 'error message';
 
-    showResetButton = true;
+    showResetButton = false;
 
     constructor(private route: ActivatedRoute,
                 private formBuilder: FormBuilder,

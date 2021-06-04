@@ -1,7 +1,7 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+            <form class="login100-form validate-form" novalidate [formGroup]="loginForm" (ngSubmit)="handleLogin()">
 
                 <div class="col alert alert-warning text-center" *ngIf="invalidLogin">{{errorMessage}}</div>
 
@@ -35,19 +35,20 @@
                     </button>
                 </div>
 
-
-                <a [routerLink]="['../forgotpassword']" *ngIf="showResetButton" class="login100-form-btn">ESQUECI A SENHA</a>
+                <div class="container-login100-form-btn">
+                    <a [routerLink]="['../forgotpassword']" *ngIf="showResetButton" class="login100-form-btn">ESQUECI A SENHA</a>
+                </div>
 
                 <!--                <div class="container-login100-form-btn">-->
-<!--                    <button class="login100-form-btn" type="submit">-->
-<!--                        CRIAR NOVA CONTA-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div class="w-full text-center p-t-27 p-b-239">-->
-<!--                    <span class="txt1">-->
-<!--                        Esqueci a senha-->
-<!--					</span>-->
-<!--                </div>-->
+                <!--                    <button class="login100-form-btn" type="submit">-->
+                <!--                        CRIAR NOVA CONTA-->
+                <!--                    </button>-->
+                <!--                </div>-->
+                <!--                <div class="w-full text-center p-t-27 p-b-239">-->
+                <!--                    <span class="txt1">-->
+                <!--                        Esqueci a senha-->
+                <!--					</span>-->
+                <!--                </div>-->
             </form>
 
             <div class="login100-more" style="background-image: url('assets/demolay_logo.png');"></div>
