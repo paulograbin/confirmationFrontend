@@ -186,3 +186,13 @@ body {
         transform: rotate(359deg);
     }
 }
+
+.mat-card {
+    margin: 5px;
+    height: 250px;
+    width: 250px;
+}
+
+.card {
+    margin: 5px;
+}
