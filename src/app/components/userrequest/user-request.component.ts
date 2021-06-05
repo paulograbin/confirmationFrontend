@@ -7,7 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 @Component({
     selector: 'app-userrequest',
     templateUrl: './user-request.component.html',
-    styleUrls: ['./user-request.component.css']
+    styleUrls: ['../meusdados/meusdados.component.css']
 })
 export class UserRequestComponent implements OnInit {
 

@@ -4,7 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
     selector: 'app-define-new-password',
     templateUrl: './define-new-password.component.html',
-    styleUrls: ['./define-new-password.component.css']
+    styleUrls: ['../meusdados/meusdados.component.css']
 })
 export class DefineNewPasswordComponent implements OnInit {
 
