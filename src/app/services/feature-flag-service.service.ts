@@ -13,6 +13,9 @@ export class FeatureFlagServiceService {
     backendUrl = environment.localApiAddress;
     featureFlagControllerURL = this.backendUrl + '/feature';
 
+    private SHOW_RESET_PASSWORD_BUTTON = 'ENABLE_RESET_PASSWORD';
+    private ENABLE_PASSWORD_RESET = 'ENABLE_RESET_PASSWORD';
+
     constructor(private http: HttpClient) {
     }
 
@@ -20,6 +23,14 @@ export class FeatureFlagServiceService {
         console.log(`Checking status of ALL feature`);
 
         return this.http.get<FeatureFlag[]>(`${this.featureFlagControllerURL}`);
+    }
+
+    fetchShowResetButton() {
+        return this.fetchSingle(this.SHOW_RESET_PASSWORD_BUTTON);
+    }
+
+    fetchPasswordResetEnabled() {
+        return this.fetchSingle(this.ENABLE_PASSWORD_RESET);
     }
 
     fetchSingle(featureKey: string): Observable<FeatureFlag> {
