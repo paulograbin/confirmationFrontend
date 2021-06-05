@@ -5,7 +5,6 @@ import {UserInterface} from '../model/userModel';
 import {catchError} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {PasswordResponse} from '../model/passwordRequestResponse';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -89,11 +88,5 @@ export class UserService {
 
     updateUserForAdmin(id: number, passwordUpdateRequest: any): Observable<UserInterface> {
         return this.http.put<UserInterface>(`${this.userServiceUrl}/${id}/admin`, passwordUpdateRequest);
-    }
-
-    submitNewForgotPasswordRequest(value: string) {
-        console.log('submitting forgot password request');
-
-        return this.http.post<PasswordResponse>(`${this.resetServiceUrl}/${value}`, null);
     }
 }
