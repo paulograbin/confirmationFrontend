@@ -31,7 +31,7 @@ export class ForgotPasswordComponent implements OnInit {
                 this.forgotPasswordFeatureEnabled = data.features.ENABLE_RESET_PASSWORD;
             });
 
-        if (this.forgotPasswordFeatureEnabled === false) {
+        if (!this.isFeatureEnabled) {
             this.successMessage = '';
             this.errorMessage = 'Essa funcionalidade ainda não está disponível';
         }
@@ -43,6 +43,10 @@ export class ForgotPasswordComponent implements OnInit {
 
     get f() {
         return this.form.controls;
+    }
+
+    get isFeatureEnabled(): boolean {
+        return this.forgotPasswordFeatureEnabled === true;
     }
 
     onSubmit() {
