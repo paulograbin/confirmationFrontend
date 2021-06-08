@@ -52,7 +52,7 @@ const routes: Routes = [
         path: 'forgotpassword/:passwordRequestCode',
         component: DefineNewPasswordComponent,
         resolve: {
-            passwordRequestCode: PasswordRequestResolverService,
+            passwordRequestRequest: PasswordRequestResolverService,
         }
     },
     {
