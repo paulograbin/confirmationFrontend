@@ -1,20 +1,9 @@
 export interface PasswordRequest {
 
+    successful: boolean;
     id: string;
-    code: string;
+    requestCode: string;
     email: string;
     creationDate: Date;
     expirationDate: Date;
-}
-
-export class PasswordRequestModel implements PasswordRequest {
-    constructor(
-        public code: string
-    ) {
-    }
-
-    creationDate: Date;
-    email: string;
-    expirationDate: Date;
-    id: string;
 }
