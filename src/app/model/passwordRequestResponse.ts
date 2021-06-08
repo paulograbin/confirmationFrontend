@@ -1,4 +1,4 @@
-export interface PasswordResponse {
+export interface NewPasswordRequestResponse {
 
     successful: boolean;
 

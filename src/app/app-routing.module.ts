@@ -46,7 +46,10 @@ const routes: Routes = [
     },
     {
         path: 'forgotpassword',
-        component: ForgotPasswordComponent
+        component: ForgotPasswordComponent,
+        resolve: {
+            features: FeatureFlagResolverService,
+        }
     },
     {
         path: 'forgotpassword/:passwordRequestCode',
