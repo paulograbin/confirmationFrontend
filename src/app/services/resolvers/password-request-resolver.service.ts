@@ -14,7 +14,7 @@ export class PasswordRequestResolverService implements Resolve<PasswordRequest> 
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PasswordRequest> {
         const requestCode = route.paramMap.get('passwordRequestCode');
-        console.log(`Resolve password request ${requestCode}`);
+        console.log(`Resolving password request with code ${requestCode}`);
 
         return this.passwordResetService.fetchPasswordRequest(requestCode);
     }
