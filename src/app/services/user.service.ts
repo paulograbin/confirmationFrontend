@@ -20,6 +20,7 @@ export class UserService {
 
     private backendUrl = environment.localApiAddress;
     private userServiceUrl = this.backendUrl + '/users';
+    private resetServiceUrl = this.backendUrl + '/reset';
 
     fetchDetailsAboutLoggedUser(): Observable<UserInterface> {
         return this.http.get<UserInterface>(`${this.userServiceUrl}/me`)

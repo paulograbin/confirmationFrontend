@@ -44,8 +44,7 @@ export class MeusdadosComponent implements OnInit {
     }
 
     isValid() {
-        if (this.passwordForm.get('password').value != null &&
-            this.passwordForm.get('password').value.length > 0 &&
+        if (this.passwordForm.valid &&
             this.passwordForm.get('password').value === this.passwordForm.get('passwordConfirmation').value) {
             return true;
         }
@@ -71,7 +70,6 @@ export class MeusdadosComponent implements OnInit {
                 error => {
                     this.confirmed = true;
                     this.confirmationMessage = 'Ocorreu algum problema na troca da senha';
-                    console.log('Ops não deu pra atualizar');
                 },
                 () => {
                     setTimeout(function() {

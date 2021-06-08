@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-login',
@@ -14,17 +14,28 @@ export class LoginComponent implements OnInit {
     invalidLogin = false;
     errorMessage = 'error message';
 
-    constructor(private router: Router,
+    showResetButton = false;
+
+    constructor(private route: ActivatedRoute,
+                private formBuilder: FormBuilder,
+                private router: Router,
                 private authService: AuthService) {
     }
 
     ngOnInit() {
-        this.loginForm = new FormGroup({
-            usernameOrEmail: new FormControl('', Validators.required),
-            password: new FormControl('', Validators.required),
+        this.loginForm = this.formBuilder.group({
+            usernameOrEmail: ['', Validators.required],
+            password: ['', Validators.required],
         });
 
         this.authService.logout();
+
+        this.route.data
+            .subscribe(
+                data => {
+                    this.showResetButton = data.features.RESET_PASSWORD_BUTTON;
+                    console.log('showReset', this.showResetButton);
+                });
     }
 
     handleLogin() {

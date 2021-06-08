@@ -19,7 +19,7 @@ export class AuthService {
             .pipe(
                 map(
                     data => {
-                        console.log('authenticate response', data);
+                        // console.log('authenticate response', data);
                         this.setSession(data);
 
                         return data;
@@ -37,7 +37,6 @@ export class AuthService {
     public getAuthenticationToken(): string {
         return localStorage.getItem('access_token');
     }
-
 
     public logout(): void {
         // Remove tokens and expiry time from localStorage

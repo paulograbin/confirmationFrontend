@@ -22,6 +22,10 @@ import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.compon
 import {MyChapterResolverService} from './services/resolvers/my-chapter-resolver.service';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
 import {UserRequestResolverService} from './services/resolvers/userrequest-resolver.service';
+import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
+import {FeatureFlagResolverService} from './services/resolvers/feature-flag-resolver.service';
+import {DefineNewPasswordComponent} from './components/define-new-password/define-new-password.component';
+import {PasswordRequestResolverService} from './services/resolvers/password-request-resolver.service';
 
 const routes: Routes = [
     {
@@ -38,6 +42,20 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         resolve: {
             loggedUser: LoggedUserResolverService
+        }
+    },
+    {
+        path: 'forgotpassword',
+        component: ForgotPasswordComponent,
+        resolve: {
+            features: FeatureFlagResolverService,
+        }
+    },
+    {
+        path: 'forgotpassword/:passwordRequestCode',
+        component: DefineNewPasswordComponent,
+        resolve: {
+            passwordRequestRequest: PasswordRequestResolverService,
         }
     },
     {
@@ -58,7 +76,10 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        resolve: {
+            features: FeatureFlagResolverService,
+        }
     },
     {
         path: 'logout',
