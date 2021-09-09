@@ -47,6 +47,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {DefineNewPasswordComponent} from './components/define-new-password/define-new-password.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 export const MY_FORMATS = {
     parse: {
@@ -79,7 +80,8 @@ export const MY_FORMATS = {
         ViewChapterComponent,
         UserRequestComponent,
         ForgotPasswordComponent,
-        DefineNewPasswordComponent
+        DefineNewPasswordComponent,
+        AlertComponent
     ],
     imports: [
         BrowserModule,

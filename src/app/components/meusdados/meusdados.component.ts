@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserInterface} from '../../model/userModel';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
+import {AlertService} from '../../services/alert/alert.service';
 
 @Component({
     selector: 'app-meusdados',
@@ -20,7 +21,8 @@ export class MeusdadosComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private formBuilder: FormBuilder,
-                private userService: UserService) {
+                private userService: UserService,
+                private alertService: AlertService) {
     }
 
     ngOnInit() {
