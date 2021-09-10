@@ -1,33 +1,35 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {AuthService} from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor(
-    private basicAuthService: AuthService) { }
-
-
-  intercept(request: HttpRequest<any>, next: HttpHandler) {
-    let authenticationToken: string;
-
-    if (this.basicAuthService.isAuthenticated()) {
-      authenticationToken = this.basicAuthService.getAuthenticationToken();
+    constructor(
+        private basicAuthService: AuthService) {
     }
 
-    const basicHeaderString = `Bearer ${authenticationToken}`;
+    intercept(request: HttpRequest<any>, next: HttpHandler) {
+        console.log('Intercepting 1...');
 
-    if (basicHeaderString) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: basicHeaderString
+        let authenticationToken: string;
+
+        if (this.basicAuthService.isAuthenticated()) {
+            authenticationToken = this.basicAuthService.getAuthenticationToken();
         }
-      });
-    }
 
-    return next.handle(request);
-  }
+        const basicHeaderString = `Bearer ${authenticationToken}`;
+
+        if (basicHeaderString) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: basicHeaderString
+                }
+            });
+        }
+
+        return next.handle(request);
+    }
 }
