@@ -47,7 +47,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {DefineNewPasswordComponent} from './components/define-new-password/define-new-password.component';
-import { AlertComponent } from './components/alert/alert.component';
+import {AlertComponent} from './components/alert/alert.component';
+import {ErrorInterceptor} from './services/error.interceptor';
 
 export const MY_FORMATS = {
     parse: {
@@ -101,13 +102,15 @@ export const MY_FORMATS = {
         MatProgressBarModule
     ],
     providers: [
-        {
-            provide: DateAdapter,
-            useClass: MomentDateAdapter,
-            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-        },
-        {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-        AuthService, AuthGuard, AdminGuard, {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]},
+        { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        AuthService,
+        AuthGuard,
+        AdminGuard
+
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {
