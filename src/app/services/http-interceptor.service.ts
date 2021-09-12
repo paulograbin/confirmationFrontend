@@ -12,7 +12,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
-        console.log('Intercepting 1...');
+        // console.log('Intercepting 1...');
 
         let authenticationToken: string;
 
