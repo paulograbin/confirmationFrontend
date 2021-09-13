@@ -10,7 +10,7 @@ import {AuthGuard} from './services/guards/auth.guard';
 import {LogoutComponent} from './logout/logout.component';
 import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
 import {LoggedUserResolverService} from './services/resolvers/logged-user-resolver.service';
-import {EventResolverService} from './services/resolvers/event-resolver.service';
+import {EventResolver} from './services/resolvers/event-resolver';
 import {EventRouterComponent} from './event-router/event-router.component';
 import {MeusdadosComponent} from './components/meusdados/meusdados.component';
 import {AdminpanelComponent} from './components/adminpanel/adminpanel.component';
@@ -114,7 +114,7 @@ const routes: Routes = [
         component: ViewEventComponent,
         canActivate: [AuthGuard],
         resolve: {
-            response: EventResolverService,
+            response: EventResolver,
             loggedUser: LoggedUserResolverService
         }
     },

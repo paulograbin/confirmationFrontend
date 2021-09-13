@@ -7,7 +7,7 @@ import {ViewEventResponse} from '../../model/viewEventResponse';
 @Injectable({
     providedIn: 'root'
 })
-export class EventResolverService implements Resolve<ViewEventResponse> {
+export class EventResolver implements Resolve<ViewEventResponse> {
 
     constructor(private eventService: EventServiceService) {}
 
