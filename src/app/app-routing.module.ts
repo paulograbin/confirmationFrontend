@@ -147,7 +147,7 @@ const routes: Routes = [
 // TODO: don't user access events created by other MC
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {enableTracing: false})],
+    imports: [RouterModule.forRoot(routes, { enableTracing: false, relativeLinkResolution: 'legacy' })],
     exports: [RouterModule]
 })
 export class AppRoutingModule {
