@@ -13,8 +13,7 @@ export class UserRequestResolverService implements Resolve<UserRequestInterface>
     constructor(private userRequestService: UserRequestService) {
     }
 
-    resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<UserRequestInterface> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserRequestInterface> {
         const requestId = route.paramMap.get('requestNumber');
         console.log(`Resolving request ${requestId}`);
 

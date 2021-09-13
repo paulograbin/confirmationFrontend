@@ -12,8 +12,7 @@ export class ChapterResolver implements Resolve<Chapter> {
     constructor(private chapterService: ChapterService) {
     }
 
-    resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<Chapter> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Chapter> {
         const chapterId = route.paramMap.get('id');
         console.log(`Resolving chapter ${chapterId}`);
 

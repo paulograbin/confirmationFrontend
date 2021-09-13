@@ -12,8 +12,7 @@ export class UserResolver implements Resolve<UserInterface> {
     constructor(private userService: UserService) {
     }
 
-    resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<UserInterface> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserInterface> {
         const userId = route.paramMap.get('id');
         console.log(`Resolving user ${userId}`);
 
