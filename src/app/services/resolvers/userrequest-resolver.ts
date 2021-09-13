@@ -8,7 +8,7 @@ import {tap} from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
-export class UserRequestResolverService implements Resolve<UserRequestInterface> {
+export class UserrequestResolver implements Resolve<UserRequestInterface> {
 
     constructor(private userRequestService: UserRequestService) {
     }

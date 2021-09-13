@@ -21,7 +21,7 @@ import {UserResolver} from './services/resolvers/user-resolver';
 import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
 import {MyChapterResolver} from './services/resolvers/my-chapter-resolver';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
-import {UserRequestResolverService} from './services/resolvers/userrequest-resolver.service';
+import {UserrequestResolver} from './services/resolvers/userrequest-resolver';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {FeatureFlagResolver} from './services/resolvers/feature-flag-resolver';
 import {DefineNewPasswordComponent} from './components/define-new-password/define-new-password.component';
@@ -131,7 +131,7 @@ const routes: Routes = [
         component: UserRequestComponent,
         // canActivate: [AdminGuard],
         resolve: {
-            resolvedRequest: UserRequestResolverService,
+            resolvedRequest: UserrequestResolver,
         }
     },
     {
