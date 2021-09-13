@@ -92,20 +92,20 @@ export class DefineNewPasswordComponent implements OnInit {
 
         this.passwordResetService.defineNewPasswordAfterForgot(newPasswordRequest)
             .pipe(first())
-            .subscribe({
-                next: () => {
+            .subscribe(
+                () => {
                     this.emptyFields();
                     this.successMessage = 'Sua senha foi redefinida com sucesso, clique aqui para logar novamente ';
 
                     this.alertService.success('Password reset successful, you can now login', {keepAfterRouteChange: true});
                     // this.router.navigate(['/login'], {relativeTo: this.route});
                 },
-                error: error => {
+                () => {
                     // this.alertService.error(error);
                     this.loading = false;
                     this.errorMessage = 'Não conseguimos mudar a sua senha, tente novamente';
                 }
-            });
+            );
     }
 
     emptyFields() {
