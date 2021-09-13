@@ -3,24 +3,23 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserInterface} from '../model/userModel';
 import {catchError} from 'rxjs/operators';
-import {Observable, throwError} from 'rxjs';
+import {EMPTY, Observable, throwError} from 'rxjs';
 import {environment} from '../../environments/environment';
-
-const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+import {AuthService} from './auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
 
-    constructor(private http: HttpClient) {
+    public user: Observable<UserInterface>;
+
+    constructor(private authService: AuthService,
+                private http: HttpClient) {
     }
 
     private backendUrl = environment.localApiAddress;
     private userServiceUrl = this.backendUrl + '/users';
-    private resetServiceUrl = this.backendUrl + '/reset';
 
     fetchDetailsAboutLoggedUser(): Observable<UserInterface> {
         const authenticated = this.authService.isAuthenticated();
