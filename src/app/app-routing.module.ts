@@ -17,7 +17,7 @@ import {AdminpanelComponent} from './components/adminpanel/adminpanel.component'
 import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
 import {ChapterResolverService} from './services/resolvers/chapter-resolver.service';
 import {AdminGuard} from './services/guards/admin.guard';
-import {UserResolverService} from './services/resolvers/user-resolver.service';
+import {UserResolver} from './services/resolvers/user-resolver';
 import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
 import {MyChapterResolverService} from './services/resolvers/my-chapter-resolver.service';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
@@ -106,7 +106,7 @@ const routes: Routes = [
         component: ViewUserComponent,
         canActivate: [AdminGuard],
         resolve: {
-            resolvedUser: UserResolverService,
+            resolvedUser: UserResolver,
         }
     },
     {

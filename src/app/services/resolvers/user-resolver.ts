@@ -7,7 +7,7 @@ import {UserInterface} from '../../model/userModel';
 @Injectable({
     providedIn: 'root'
 })
-export class UserResolverService implements Resolve<UserInterface> {
+export class UserResolver implements Resolve<UserInterface> {
 
     constructor(private userService: UserService) {
     }
@@ -16,6 +16,10 @@ export class UserResolverService implements Resolve<UserInterface> {
             state: RouterStateSnapshot): Observable<UserInterface> {
         const userId = route.paramMap.get('id');
         console.log(`Resolving user ${userId}`);
+
+        if (isNaN(+userId)) {
+            console.error('user it not valid');
+        }
 
         return this.userService.getUser(Number(userId));
         // .pipe(
