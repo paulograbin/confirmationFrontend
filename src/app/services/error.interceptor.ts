@@ -14,14 +14,16 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // console.log('Intercepting 2...');
 
-        return next.handle(req).pipe(catchError(err => {
-            if ([401, 403].includes(err.status)) {
-                console.log(' log out ? ');
-            }
+        return next.handle(req)
+            .pipe(catchError(err => {
+                if ([401, 403].includes(err.status)) {
+                    console.log(' log out ? ');
+                }
 
-            const error = err.error?.message || err.statusText;
-            console.error('The following error ocurred', err);
-            return throwError(error);
-        }));
+                const error = err.error?.message || err.statusText;
+
+                // todo fix the return of this method
+                return throwError(err);
+            }));
     }
 }
