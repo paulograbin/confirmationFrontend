@@ -9,7 +9,7 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './services/guards/auth.guard';
 import {LogoutComponent} from './logout/logout.component';
 import {ListCreatedEventsComponent} from './components/list-created-events/list-created-events.component';
-import {LoggedUserResolverService} from './services/resolvers/logged-user-resolver.service';
+import {LoggedUserResolver} from './services/resolvers/logged-user-resolver';
 import {EventResolver} from './services/resolvers/event-resolver';
 import {EventRouterComponent} from './event-router/event-router.component';
 import {MeusdadosComponent} from './components/meusdados/meusdados.component';
@@ -33,7 +33,7 @@ const routes: Routes = [
         component: EventRouterComponent,
         canActivate: [AuthGuard],
         resolve: {
-            loggedUser: LoggedUserResolverService
+            loggedUser: LoggedUserResolver
         }
     },
     {
@@ -41,7 +41,7 @@ const routes: Routes = [
         component: ListEventsComponent,
         canActivate: [AuthGuard],
         resolve: {
-            loggedUser: LoggedUserResolverService
+            loggedUser: LoggedUserResolver
         }
     },
     {
@@ -71,7 +71,7 @@ const routes: Routes = [
         component: ListCreatedEventsComponent,
         canActivate: [AuthGuard],
         resolve: {
-            loggedUser: LoggedUserResolverService
+            loggedUser: LoggedUserResolver
         }
     },
     {
@@ -90,7 +90,7 @@ const routes: Routes = [
         component: AdminpanelComponent,
         canActivate: [AdminGuard],
         resolve: {
-            loggedUser: LoggedUserResolverService
+            loggedUser: LoggedUserResolver
         }
     },
     {
@@ -98,7 +98,7 @@ const routes: Routes = [
         component: MeusdadosComponent,
         canActivate: [AuthGuard],
         resolve: {
-            loggedUser: LoggedUserResolverService
+            loggedUser: LoggedUserResolver
         }
     },
     {
@@ -115,7 +115,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         resolve: {
             response: EventResolver,
-            loggedUser: LoggedUserResolverService
+            loggedUser: LoggedUserResolver
         }
     },
     {
@@ -139,7 +139,7 @@ const routes: Routes = [
         component: ListUsersComponent,
         canActivate: [AuthGuard],
         resolve: {
-            loggedUser: LoggedUserResolverService
+            loggedUser: LoggedUserResolver
         }
     }
 ];

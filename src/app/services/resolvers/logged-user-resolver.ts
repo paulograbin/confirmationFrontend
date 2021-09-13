@@ -7,16 +7,12 @@ import {UserService} from '../user.service';
 @Injectable({
     providedIn: 'root'
 })
-export class LoggedUserResolverService implements Resolve<UserInterface> {
+export class LoggedUserResolver implements Resolve<UserInterface> {
 
     constructor(private userService: UserService) {
     }
 
-    resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<UserInterface> {
-
-        // console.log('Resolving logged user');
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserInterface> {
         return this.userService.fetchDetailsAboutLoggedUser();
     }
-
 }
