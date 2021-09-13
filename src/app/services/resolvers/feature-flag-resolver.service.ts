@@ -17,7 +17,7 @@ export class FeatureFlagResolverService implements Resolve<FeatureFlag[]> {
         return this.featureFlagService.fetchAll()
             .pipe(
                 tap(
-                    data => console.log(data)
+                    // data => console.log(data)
                 ));
     }
 }
