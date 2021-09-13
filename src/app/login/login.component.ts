@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.showResetButton = data.features.RESET_PASSWORD_BUTTON;
-                    console.log('showReset', this.showResetButton);
                 });
     }
 
@@ -49,7 +48,7 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.valid) {
             this.authService.login(loginData)
                 .subscribe(
-                    data => {
+                    () => {
                         this.router.navigate(['/']);
 
                         this.invalidLogin = false;
