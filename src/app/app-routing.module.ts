@@ -19,7 +19,7 @@ import {ChapterResolver} from './services/resolvers/chapter-resolver';
 import {AdminGuard} from './services/guards/admin.guard';
 import {UserResolver} from './services/resolvers/user-resolver';
 import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
-import {MyChapterResolverService} from './services/resolvers/my-chapter-resolver.service';
+import {MyChapterResolver} from './services/resolvers/my-chapter-resolver';
 import {UserRequestComponent} from './components/userrequest/user-request.component';
 import {UserRequestResolverService} from './services/resolvers/userrequest-resolver.service';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
@@ -63,7 +63,7 @@ const routes: Routes = [
         component: MeuscapituloComponent,
         canActivate: [AuthGuard],
         resolve: {
-            resolvedChapter: MyChapterResolverService,
+            resolvedChapter: MyChapterResolver,
         }
     },
     {
