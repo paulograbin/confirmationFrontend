@@ -23,6 +23,14 @@ export class UserService {
     private resetServiceUrl = this.backendUrl + '/reset';
 
     fetchDetailsAboutLoggedUser(): Observable<UserInterface> {
+        const authenticated = this.authService.isAuthenticated();
+        // console.log(`authenticated ${authenticated}`);
+
+        if (!authenticated) {
+            // console.log('Not authenticated');
+            return EMPTY;
+        }
+
         return this.http.get<UserInterface>(`${this.userServiceUrl}/me`)
             .pipe(
                 // map(user => { this.loggedUser = user; }),
