@@ -7,7 +7,7 @@ import {PasswordResetService} from '../password-reset.service';
 @Injectable({
     providedIn: 'root'
 })
-export class PasswordRequestResolverService implements Resolve<PasswordRequest> {
+export class PasswordRequestResolver implements Resolve<PasswordRequest> {
 
     constructor(private passwordResetService: PasswordResetService) {
     }

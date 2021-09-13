@@ -25,7 +25,7 @@ import {UserRequestResolverService} from './services/resolvers/userrequest-resol
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {FeatureFlagResolver} from './services/resolvers/feature-flag-resolver';
 import {DefineNewPasswordComponent} from './components/define-new-password/define-new-password.component';
-import {PasswordRequestResolverService} from './services/resolvers/password-request-resolver.service';
+import {PasswordRequestResolver} from './services/resolvers/password-request-resolver';
 
 const routes: Routes = [
     {
@@ -55,7 +55,7 @@ const routes: Routes = [
         path: 'forgotpassword/:passwordRequestCode',
         component: DefineNewPasswordComponent,
         resolve: {
-            passwordRequestRequest: PasswordRequestResolverService,
+            passwordRequestRequest: PasswordRequestResolver,
         }
     },
     {
