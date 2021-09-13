@@ -7,7 +7,7 @@ import {ChapterService} from '../chapter.service';
 @Injectable({
     providedIn: 'root'
 })
-export class ChapterResolverService implements Resolve<Chapter> {
+export class ChapterResolver implements Resolve<Chapter> {
 
     constructor(private chapterService: ChapterService) {
     }

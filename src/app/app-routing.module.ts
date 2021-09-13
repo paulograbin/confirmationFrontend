@@ -15,7 +15,7 @@ import {EventRouterComponent} from './event-router/event-router.component';
 import {MeusdadosComponent} from './components/meusdados/meusdados.component';
 import {AdminpanelComponent} from './components/adminpanel/adminpanel.component';
 import {ViewChapterComponent} from './components/view-chapter/view-chapter.component';
-import {ChapterResolverService} from './services/resolvers/chapter-resolver.service';
+import {ChapterResolver} from './services/resolvers/chapter-resolver';
 import {AdminGuard} from './services/guards/admin.guard';
 import {UserResolver} from './services/resolvers/user-resolver';
 import {MeuscapituloComponent} from './components/meucapitulo/meucapitulo.component';
@@ -123,7 +123,7 @@ const routes: Routes = [
         component: ViewChapterComponent,
         canActivate: [AdminGuard],
         resolve: {
-            resolvedChapter: ChapterResolverService,
+            resolvedChapter: ChapterResolver,
         }
     },
     {
