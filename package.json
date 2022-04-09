@@ -28,7 +28,7 @@
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "express-http-proxy": "^1.6.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ngx-bootstrap": "^5.5.0",
     "port": "^0.8.1",
     "rxjs": "~6.6.0",
